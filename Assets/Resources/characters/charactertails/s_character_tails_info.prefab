@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1912503524578336
+GameObject:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Component:
+  - component: {fileID: 4099576168717298}
+  - component: {fileID: 114214411812998860}
+  m_Layer: 11
+  m_Name: s_character_tails_info
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099576168717298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912503524578336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &114214411812998860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912503524578336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32fb94a7d815b2bbd42cc331c82c2dd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  m_gradientStart: {r: 0.9254902, g: 0.42352942, b: 0.015686275, a: 1}
+  m_gradientEnd: {r: 1, g: 0.7176471, b: 0, a: 1}
+  m_characterAccentColor: {r: 0.69411767, g: 0.44313726, b: 0.039215688, a: 1}
+  m_panelBaseColour: {r: 0.9647059, g: 0.6745098, b: 0.101960786, a: 1}
+  m_junctionImage: {fileID: 21300000, guid: b1e22e94c0b78e14cb9c7a943360ffb0, type: 2}
+  m_backgroundImage: {fileID: 21300000, guid: ebce627ce5b1d564baf24b8e158d7152, type: 2}
+  m_themedImageType: -597953086
+  m_characterButtonImage: {fileID: 21300000, guid: aa3b797a776bd3c40aae10298f916068, type: 2}
+  m_unlocksAtLevel: 7
+  m_character: 2
+  m_name: 859988037
+  m_abilityDescription: 339276748
+  m_abilityShortDescription: 76034189
+  m_abilityLongDescription: 719658036
+  m_abilityUpgradeDescription: 621763242
+  m_scoreBonusDescription: 1060381580
+  m_scoreBonusShortDescription: -51686655
+  m_scoreBonusLongDescription: 724105705
+  m_scoreMultiplierType: 1012316494
+  m_usedInGame: 1
+  m_progressLaddderPanelColours:
+  - m_name: Future
+    state: 2
+    colours:
+      m_cornerEdgeColour: {r: 0.038514707, g: 0.14039472, b: 0.291, a: 1}
+      m_cornerInnerColour: {r: 0.015686275, g: 0.16078432, b: 0.35686275, a: 1}
+      m_backgroundTexture: {fileID: 21300000, guid: c81fd970002661548bcca9564869eaaf, type: 2}
+      m_backgroundFadeStart: {r: 0.12941177, g: 0.28627452, b: 0.56078434, a: 1}
+      m_backgroundFadeEnd: {r: 0.043137256, g: 0.1764706, b: 0.42352945, a: 1}
+      m_borderColour: {r: 0.039215688, g: 0.11764707, b: 0.24705884, a: 1}
+      m_keyImageShader: {fileID: 2100000, guid: d6ae4759f9217da4590237514ebd48af, type: 2}
+      m_keyImageTint: {r: 0, g: 0.10285517, b: 0.254902, a: 0.722}
+  - m_name: Current
+    state: 1
+    colours:
+      m_cornerEdgeColour: {r: 1, g: 1, b: 1, a: 0}
+      m_cornerInnerColour: {r: 1, g: 1, b: 1, a: 0}
+      m_backgroundTexture: {fileID: 21300000, guid: 44a2db95b6ebe704e9ef4d74020609db, type: 2}
+      m_backgroundFadeStart: {r: 1, g: 0.47450984, b: 0.13333334, a: 1}
+      m_backgroundFadeEnd: {r: 1, g: 0.9294118, b: 0.3372549, a: 1}
+      m_borderColour: {r: 1, g: 1, b: 1, a: 1}
+      m_keyImageShader: {fileID: 2100000, guid: 30a3de0b8d285674ab29005e911bbf40, type: 2}
+      m_keyImageTint: {r: 1, g: 1, b: 1, a: 1}
+  - m_name: Past
+    state: 0
+    colours:
+      m_cornerEdgeColour: {r: 0.708, g: 0.33039996, b: 0.03630769, a: 1}
+      m_cornerInnerColour: {r: 0.7647059, g: 0.35780445, b: 0.039359853, a: 1}
+      m_backgroundTexture: {fileID: 21300000, guid: 44a2db95b6ebe704e9ef4d74020609db, type: 2}
+      m_backgroundFadeStart: {r: 1, g: 0.47450984, b: 0.13333334, a: 1}
+      m_backgroundFadeEnd: {r: 1, g: 0.9294842, b: 0.33823532, a: 1}
+      m_borderColour: {r: 0.039215688, g: 0.11764707, b: 0.24705884, a: 1}
+      m_keyImageShader: {fileID: 2100000, guid: 30a3de0b8d285674ab29005e911bbf40, type: 2}
+      m_keyImageTint: {r: 1, g: 1, b: 1, a: 1}
+  m_progressLaddderRewardColours:
+  - m_name: Future
+    state: 2
+    colours:
+      m_edgeColour: {r: 0.16078432, g: 0.4156863, b: 0.7294118, a: 0.8627451}
+      m_innerColour: {r: 0.09019608, g: 0.40784317, b: 0.6901961, a: 0.259}
+      m_dropShadowColour: {r: 0, g: 0, b: 0, a: 0}
+      m_prizeBoxMaterial: {fileID: 2100000, guid: e8aa83177125ab647a200ed8f26d7ad0, type: 2}
+      m_prizeBoxTint: {r: 0.3882353, g: 0.728, b: 1, a: 1}
+  - m_name: Current
+    state: 1
+    colours:
+      m_edgeColour: {r: 0.70980394, g: 0.32941177, b: 0.03529412, a: 0.8627451}
+      m_innerColour: {r: 0.76470596, g: 0.35686275, b: 0.039215688, a: 0.259}
+      m_dropShadowColour: {r: 0, g: 0, b: 0, a: 0.19607843}
+      m_prizeBoxMaterial: {fileID: 2100000, guid: 30a3de0b8d285674ab29005e911bbf40, type: 2}
+      m_prizeBoxTint: {r: 1, g: 1, b: 1, a: 1}
+  - m_name: Past
+    state: 0
+    colours:
+      m_edgeColour: {r: 0.70980394, g: 0.32941177, b: 0.03529412, a: 0.8627451}
+      m_innerColour: {r: 0.67058825, g: 0.3137255, b: 0.03529412, a: 0.259}
+      m_dropShadowColour: {r: 0, g: 0, b: 0, a: 0.19607843}
+      m_prizeBoxMaterial: {fileID: 2100000, guid: 30a3de0b8d285674ab29005e911bbf40, type: 2}
+      m_prizeBoxTint: {r: 1, g: 1, b: 1, a: 1}
