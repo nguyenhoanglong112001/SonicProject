@@ -27,6 +27,7 @@ public class InputManager : MonoBehaviour
     private Vector3 startpoint;
     private Vector3 endpoint;
     private bool iscrouching;
+    public bool isball;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,13 +41,19 @@ public class InputManager : MonoBehaviour
         if(GroundCheck() == true && !iscrouching)
         {
             Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
-
+            isball = false;
         }
         else
         {
             Switch(ballmesh,ballmaterial,ballanimator,ballAvatar,true,false);
+            isball = true;
         }
         InputMove();
+    }
+
+    public void SwitchToCharacter()
+    {
+        Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
     }
 
     private void InputMove()
@@ -89,7 +96,8 @@ public class InputManager : MonoBehaviour
                 if(deltalY > 0 && GroundCheck())
                 {
                     playeranimator.SetTrigger("Jump");
-                    playerrigi.velocity = Vector3.up * jumpforce * Time.deltaTime;
+                    playerrigi.AddForce(Vector3.up * jumpforce);
+                    isball = true;
                 }
                 else
                 {
@@ -102,11 +110,11 @@ public class InputManager : MonoBehaviour
 
     IEnumerator ChangeCrouch()
     {
-        Debug.Log("A");
         iscrouching = true;
 
         yield return new WaitForSeconds(timeroll);
         iscrouching = false;
+        isball = false;
     }
 
     private void Crouch()
@@ -127,5 +135,10 @@ public class InputManager : MonoBehaviour
     private bool GroundCheck()
     {
         return Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
+    }
+
+    public void SpeedUp(float mutilpl)
+    {
+        speed *= mutilpl;
     }
 }
