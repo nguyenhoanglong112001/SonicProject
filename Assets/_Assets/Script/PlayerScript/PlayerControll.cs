@@ -9,6 +9,10 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float knock;
     [SerializeField] private InputManager ballcheck;
     [SerializeField] private DashPower checkdash;
+    [SerializeField] private float coin; //for test
+    [SerializeField] private int playerlayer;
+    [SerializeField] private int enemylayer;
+    [SerializeField] private int blockerlayer;
     public bool isalive;
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,37 @@ public class PlayerControll : MonoBehaviour
             {
                 Destroy(collision.gameObject);
             }
+        }
+
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            if(ballcheck.isball || checkdash.isdashing)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                if (coin > 0)
+                {
+                    coin = 0;
+                    Physics.IgnoreLayerCollision(playerlayer, enemylayer);
+                    Physics.IgnoreLayerCollision(playerlayer, blockerlayer);
+                    playeranimator.SetTrigger("Stumble");
+                }
+                else
+                {
+                    Death("Death1");
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("NonGround"))
+        {
+            playeranimator.SetTrigger("DeathFall");
+            isalive = false;
         }
     }
 }
