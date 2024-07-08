@@ -2,15 +2,13 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1243647505825294
 GameObject:
-  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4059754726721028}
-  - component: {fileID: 114298851748907546}
-  - component: {fileID: 114902638765337273}
   m_Layer: 0
   m_Name: Ring Streak
   m_TagString: Untagged
@@ -33,38 +31,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!114 &114298851748907546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243647505825294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3526cdc8a6d607649d3422d939d69d2, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_lane: 0
-  m_laneValid: 0
-  m_enerbeamAngle: 0
-  m_enerbeamAnchorPoint: {x: 0, y: 0, z: 0}
-  m_spline: {fileID: 0}
---- !u!114 &114902638765337273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243647505825294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9a867fb9d543b7dcc8f87ead373100, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_ringPoints: []
-  m_endPointOffset: {x: 0, y: 0, z: 0}
-  m_ownerSpring: {fileID: 0}
-  m_isEnerbeamStreak: 0
-  m_beamStartAngle: 0
-  m_beamEndAngle: 0

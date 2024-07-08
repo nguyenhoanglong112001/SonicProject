@@ -24,7 +24,6 @@ public class DashPower : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F) && !isdashing)
         {
-            Debug.Log("C");
             playeranimator.SetBool("Dash", true);
             speed.SpeedUp(1.5f);
             StartCoroutine(DashTime());

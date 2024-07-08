@@ -2,15 +2,13 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1136090485286602
 GameObject:
-  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4626649070655764}
-  - component: {fileID: 114440502804284508}
-  - component: {fileID: 114298737481527066}
   - component: {fileID: 65608034198153249}
   - component: {fileID: 54746069867480693}
   m_Layer: 0
@@ -35,48 +33,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!114 &114440502804284508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136090485286602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3526cdc8a6d607649d3422d939d69d2, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_lane: 0
-  m_laneValid: 0
-  m_enerbeamAngle: 0
-  m_enerbeamAnchorPoint: {x: 0, y: 0, z: 0}
-  m_spline: {fileID: 0}
---- !u!114 &114298737481527066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136090485286602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ebbf0e4e64a14070861e7498301d773, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_page: 0
-  m_behaviour: 0
-  m_LeftDisabled: 0
-  m_RightDisabled: 0
-  m_JumpDisabled: 0
-  m_RollDisabled: 0
-  m_SetToMiddleLane: 0
-  m_CompleteBossTutorial: 0
-  m_completeTutorialForCharacters: []
-  m_ftueEvent: {fileID: 0}
 --- !u!65 &65608034198153249
 BoxCollider:
-  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -85,16 +43,17 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
+  serializedVersion: 2
   m_Size: {x: 10, y: 6, z: 1}
   m_Center: {x: 0, y: 2, z: 0}
 --- !u!54 &54746069867480693
 Rigidbody:
-  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136090485286602}
+  serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05

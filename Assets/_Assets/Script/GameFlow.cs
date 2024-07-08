@@ -20,8 +20,6 @@ public class GameFlow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(123);
-        Debug.Log(playerdeath.isalive);
         StartGame();
         //if (!isplaying)
         //{
@@ -29,7 +27,6 @@ public class GameFlow : MonoBehaviour
         //}
         if(!playerdeath.isalive)
         {
-            Debug.Log("avc");
             EndGame();
         }
     }

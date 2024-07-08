@@ -9,7 +9,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float knock;
     [SerializeField] private InputManager ballcheck;
     [SerializeField] private DashPower checkdash;
-    [SerializeField] private float coin; //for test
+    [SerializeField] private Collect coincheck;
     [SerializeField] private int playerlayer;
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
@@ -59,9 +59,9 @@ public class PlayerControll : MonoBehaviour
             }
             else
             {
-                if (coin > 0)
+                if (coincheck.GetCoin() > 0)
                 {
-                    coin = 0;
+                    coincheck.SetCoin(-coincheck.GetCoin());
                     Physics.IgnoreLayerCollision(playerlayer, enemylayer);
                     Physics.IgnoreLayerCollision(playerlayer, blockerlayer);
                     playeranimator.SetTrigger("Stumble");
@@ -78,6 +78,7 @@ public class PlayerControll : MonoBehaviour
     {
         if(other.CompareTag("NonGround"))
         {
+            ballcheck.SwitchToCharacter();
             playeranimator.SetTrigger("DeathFall");
             isalive = false;
         }

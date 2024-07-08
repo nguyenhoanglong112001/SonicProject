@@ -68,7 +68,6 @@ public class InputManager : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
         {
-            Debug.Log(lane);
             float deltalX = endpoint.x - startpoint.x;
             float deltalY = endpoint.y - startpoint.y;
             if (Mathf.Abs(deltalX) > Mathf.Abs(deltalY))
@@ -101,6 +100,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
+                    playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
                     Crouch();
                 }
             }
