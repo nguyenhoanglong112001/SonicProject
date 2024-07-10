@@ -36,7 +36,7 @@ public class PlayerControll : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Blocker"))
         {
-            if(!checkdash.isdashing)
+            if(!checkdash.isdashing && !checkcollect.CheckShield())
             {
                 if (ballcheck.isball)
                 {
@@ -45,42 +45,46 @@ public class PlayerControll : MonoBehaviour
                 }
                 Death("Death1");
             }
-            else
+            else if (!checkdash.isdashing || checkcollect.CheckShield())
             {
                 Destroy(collision.gameObject);
+                checkcollect.SetShield(false);
             }
         }
 
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            if(ballcheck.isball || checkdash.isdashing)
+            if(ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())
             {
                 Destroy(collision.gameObject);
+                if(checkcollect.CheckShield())
+                {
+                    checkcollect.SetShield(false);
+                }
             }
             else
             {
-                if (checkcollect.GetRing() > 0)
+                if (checkcollect.GetRing() > 0 && !checkcollect.CheckShield())
                 {
                     checkcollect.SetRing(-checkcollect.GetRing());
                     Physics.IgnoreLayerCollision(playerlayer, enemylayer);
                     Physics.IgnoreLayerCollision(playerlayer, blockerlayer);
                     playeranimator.SetTrigger("Stumble");
                 }
-                else
+                else if (checkcollect.GetRing() < 0 && !checkcollect.CheckShield())
                 {
                     Death("Death1");
                 }
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("NonGround"))
+        if (collision.gameObject.CompareTag("NonGround"))
         {
-            ballcheck.SwitchToCharacter();
-            playeranimator.SetTrigger("DeathFall");
-            isalive = false;
+            if (!checkdash.isdashing)
+            {
+                ballcheck.SwitchToCharacter();
+                playeranimator.SetTrigger("DeathFall");
+                isalive = false;
+            }
         }
     }
 }

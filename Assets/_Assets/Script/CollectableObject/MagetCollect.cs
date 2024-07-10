@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RingCollect : MonoBehaviour
+public class MagetCollect : MonoBehaviour
 {
+    [SerializeField] private CollectManager checkmaget;
     // Start is called before the first frame update
-    [SerializeField] private CollectManager check;
-    [SerializeField] private int ringsup;
     void Start()
     {
-        check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
+        checkmaget = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
     }
 
     // Update is called once per frame
@@ -17,13 +16,13 @@ public class RingCollect : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if(other.CompareTag("Player"))
         {
-            check.SetRing(ringsup);
+            checkmaget.SetMaget(true);
             Destroy(gameObject);
-        }
+        }    
     }
 }

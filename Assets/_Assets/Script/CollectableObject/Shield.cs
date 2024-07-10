@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RingCollect : MonoBehaviour
+public class Shield : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private CollectManager check;
-    [SerializeField] private int ringsup;
+    // Start is called before the first frame update
     void Start()
     {
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
@@ -17,12 +16,12 @@ public class RingCollect : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if(other.CompareTag("Player"))
         {
-            check.SetRing(ringsup);
+            check.SetShield(true);
             Destroy(gameObject);
         }
     }

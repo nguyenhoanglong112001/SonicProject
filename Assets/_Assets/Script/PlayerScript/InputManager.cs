@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CapsuleCollider charactercollider;
     [SerializeField] private SphereCollider ballcollider;
     [SerializeField] private float timeroll;
+    [SerializeField] private float distancetouch;
 
     [SerializeField] private LayerMask groundlayer;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
@@ -68,42 +69,45 @@ public class InputManager : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
         {
-            float deltalX = endpoint.x - startpoint.x;
-            float deltalY = endpoint.y - startpoint.y;
-            if (Mathf.Abs(deltalX) > Mathf.Abs(deltalY))
+            if(distancetouch < Vector3.Distance(endpoint,startpoint))
             {
-                if (deltalX > 0)
+                float deltalX = endpoint.x - startpoint.x;
+                float deltalY = endpoint.y - startpoint.y;
+                if (Mathf.Abs(deltalX) > Mathf.Abs(deltalY))
                 {
-                    if (lane < 1)
+                    if (deltalX > 0)
                     {
-                        lane++;
+                        if (lane < 1)
+                        {
+                            lane++;
+                        }
                     }
+                    else
+                    {
+                        if (lane > -1)
+                        {
+                            lane--;
+                        }
+                    }
+                    Vector3 targetPosition = transform.position;
+                    targetPosition.x = lane * lanedistance;
+                    transform.position = targetPosition;
                 }
                 else
                 {
-                    if (lane > -1)
+                    if (deltalY > 0 && GroundCheck())
                     {
-                        lane--;
+                        playeranimator.SetTrigger("Jump");
+                        playerrigi.AddForce(Vector3.up * jumpforce);
+                        isball = true;
+                    }
+                    else
+                    {
+                        playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
+                        Crouch();
                     }
                 }
-                Vector3 targetPosition = transform.position;
-                targetPosition.x = lane * lanedistance;
-                transform.position = targetPosition;
-            }
-            else
-            {
-                if(deltalY > 0 && GroundCheck())
-                {
-                    playeranimator.SetTrigger("Jump");
-                    playerrigi.AddForce(Vector3.up * jumpforce);
-                    isball = true;
-                }
-                else
-                {
-                    playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
-                    Crouch();
-                }
-            }
+            }    
         }
     }
 
