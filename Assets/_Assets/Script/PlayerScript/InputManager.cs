@@ -22,8 +22,10 @@ public class InputManager : MonoBehaviour
     [SerializeField] private SphereCollider ballcollider;
     [SerializeField] private float timeroll;
     [SerializeField] private float distancetouch;
+    [SerializeField] private Grind checkrail;
 
     [SerializeField] private LayerMask groundlayer;
+    [SerializeField] private LayerMask raillayer;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
     private Vector3 startpoint;
     private Vector3 endpoint;
@@ -39,14 +41,14 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        if(GroundCheck() == true && !iscrouching)
+        if((GroundCheck() == true && !iscrouching) || checkrail.CheckRail())
         {
             Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
             isball = false;
         }
         else
         {
-            Switch(ballmesh,ballmaterial,ballanimator,ballAvatar,true,false);
+            //Switch(ballmesh,ballmaterial,ballanimator,ballAvatar,true,false);
             isball = true;
         }
         InputMove();
@@ -97,12 +99,13 @@ public class InputManager : MonoBehaviour
                 {
                     if (deltalY > 0 && GroundCheck())
                     {
-                        playeranimator.SetTrigger("Jump");
+                        playeranimator.SetTrigger("Roll");
                         playerrigi.AddForce(Vector3.up * jumpforce);
                         isball = true;
                     }
                     else
                     {
+                        playeranimator.SetTrigger("Roll");
                         playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
                         Crouch();
                     }
@@ -115,7 +118,6 @@ public class InputManager : MonoBehaviour
     IEnumerator ChangeCrouch()
     {
         iscrouching = true;
-
         yield return new WaitForSeconds(timeroll);
         iscrouching = false;
         isball = false;
@@ -136,9 +138,21 @@ public class InputManager : MonoBehaviour
         charactercollider.enabled = active2;
     }
 
+    public void ChangeBall()
+    {
+        Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
+    }
+
     private bool GroundCheck()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
+        bool isGround = Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
+
+        if(!isGround)
+        {
+            isGround = Physics.Raycast(transform.position, Vector3.down, 1.1f, raillayer);
+        }
+
+        return isGround;
     }
 
     public void SpeedUp(float mutilpl)
