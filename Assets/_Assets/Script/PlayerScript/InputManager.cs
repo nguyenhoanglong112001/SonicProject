@@ -159,4 +159,9 @@ public class InputManager : MonoBehaviour
     {
         speed *= mutilpl;
     }
+
+    public int CheckLane()
+    {
+        return lane;
+    }
 }
