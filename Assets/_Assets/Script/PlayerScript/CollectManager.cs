@@ -11,6 +11,10 @@ public class CollectManager : MonoBehaviour
     [SerializeField] private GameObject magetlimit;
     [SerializeField] private float timeCD;
     [SerializeField] private bool isshield;
+    [SerializeField] private bool isenerbeam;
+
+    public bool Isenerbeam { get => isenerbeam; set => isenerbeam = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,5 +96,5 @@ public class CollectManager : MonoBehaviour
     public bool CheckShield()
     {
         return isshield;
-    }    
+    }
 }

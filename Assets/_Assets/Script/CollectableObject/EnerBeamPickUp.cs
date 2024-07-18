@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableObject : MonoBehaviour
+public class EnerBeamPickUp : MonoBehaviour
 {
+    [SerializeField] private CollectManager checkcollect;
     // Start is called before the first frame update
     void Start()
     {
-        
+        checkcollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
     }
 
     // Update is called once per frame
@@ -20,7 +21,8 @@ public class CollectableObject : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            checkcollect.Isenerbeam = true;
         }
     }
+
 }

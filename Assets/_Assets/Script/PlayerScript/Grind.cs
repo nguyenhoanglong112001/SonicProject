@@ -12,12 +12,21 @@ public class Grind : MonoBehaviour
     [SerializeField] private int currentrail;
     [SerializeField] private List<SplineContainer> splines;
     [SerializeField] private InputManager lane;
-    public bool israil;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private CollectManager check;
+    [SerializeField] private float downspeed;
+    [SerializeField] private bool isfalling;
+    private bool israil;
     private bool istrigger;
+
+    public SplineContainer SplineContain { get => splineContain; set => splineContain = value; }
+    public bool Isfalling { get => isfalling; set => isfalling = value; }
+    public bool Israil { get => israil; set => israil = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,7 +37,7 @@ public class Grind : MonoBehaviour
 
     private void GrindRail()
     {
-        if(splineContain != null && israil)
+        if (splineContain != null && israil)
         {
             progress += speed * Time.deltaTime;
             progress = Mathf.Clamp01(progress);
@@ -60,16 +69,17 @@ public class Grind : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject);
         if (other.CompareTag("rail"))
         {
-            Debug.Log("enter");
+            progress = 0;
             playeranimator.SetTrigger("StartGrind");
             istrigger = true;
-            for (int i =0; i< other.transform.childCount;i++)
+            for (int i = 0; i < other.transform.childCount; i++)
             {
                 splines.Add(other.transform.GetChild(i).GetComponent<SplineContainer>());
             }
-            if(lane.CheckLane() == -1)
+            if (lane.CheckLane() == -1)
             {
                 splineContain = splines[0];
             }
@@ -77,10 +87,14 @@ public class Grind : MonoBehaviour
             {
                 splineContain = splines[1];
             }
-            else if(lane.CheckLane() == 1)
+            else if (lane.CheckLane() == 1)
             {
                 splineContain = splines[2];
             }
+        }
+        if(other.CompareTag("EnerbeamPickup"))
+        {
+            playeranimator.SetTrigger("StartEnerbeam");
         }
     }
 
@@ -93,10 +107,5 @@ public class Grind : MonoBehaviour
             israil = false;
             istrigger = false;
         }
-    }
-
-    public bool CheckRail()
-    {
-        return israil;
     }
 }

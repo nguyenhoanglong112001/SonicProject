@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7856080271215421783}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &852930660
 BoxCollider:
@@ -3147,13 +3147,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7855956103008452044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.0069014, z: 0.020891838}
-  m_LocalScale: {x: 1, y: 1.3110694, z: 0.95812976}
+  m_LocalPosition: {x: -0.018178701, y: -1.0011227, z: 0.01757312}
+  m_LocalScale: {x: 1, y: 1.3110694, z: 0.9581299}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7860792790055311930}
   m_Father: {fileID: 7856080271215421783}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
 --- !u!1 &7855957240933241328
 GameObject:
@@ -3237,6 +3237,7 @@ GameObject:
   - component: {fileID: 67734967}
   - component: {fileID: 67734968}
   - component: {fileID: 459529682}
+  - component: {fileID: 459529691}
   m_Layer: 6
   m_Name: Sonic
   m_TagString: Player
@@ -3257,8 +3258,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7856080271468835836}
-  - {fileID: 7860590472538262846}
   - {fileID: 852930659}
+  - {fileID: 7860590472538262846}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3339,9 +3340,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerrigi: {fileID: 7856080271215421802}
-  speed: 15
+  speed: 500
   jumpforce: 300
   lanedistance: 3.5
+  fallSpeed: 500
   playeranimator: {fileID: 7856080271215421803}
   mesh: {fileID: 7848742096492270378}
   ballmaterial: {fileID: 2100000, guid: 710a52653a2d3874a83cb9c17c7d49b4, type: 2}
@@ -3356,9 +3358,14 @@ MonoBehaviour:
   ballcollider: {fileID: 7856080271215421804}
   timeroll: 2
   distancetouch: 100
+  check: {fileID: 459529691}
+  checkdash: {fileID: 67734967}
   groundlayer:
     serializedVersion: 2
     m_Bits: 8192
+  raillayer:
+    serializedVersion: 2
+    m_Bits: 0
   isball: 0
 --- !u!54 &7856080271215421802
 Rigidbody:
@@ -3374,7 +3381,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &7856080271215421803
 Animator:
@@ -3470,6 +3477,35 @@ MonoBehaviour:
   magetlimit: {fileID: 852930658}
   timeCD: 5
   isshield: 0
+  isenerbeam: 0
+--- !u!114 &459529691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856080271215421779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a84bedac679344abd46f567ef0259e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playeranimator: {fileID: 7856080271215421803}
+  splineContain: {fileID: 0}
+  speed: 0.2
+  progress: 0
+  currentrail: 0
+  splines: []
+  lane: {fileID: 7856080271215421801}
+  rb: {fileID: 7856080271215421802}
+  check: {fileID: 459529682}
+  downspeed: 20
+  isfalling: 0
+  enerbeam: {fileID: 0}
+  startbeampos: {fileID: 0}
+  railpos: {fileID: 0}
+  dis: 0
+  upspeed: 0
 --- !u!1 &7856080271468835833
 GameObject:
   m_ObjectHideFlags: 0

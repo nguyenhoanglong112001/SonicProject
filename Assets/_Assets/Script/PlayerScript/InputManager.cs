@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpforce;
     [SerializeField] private float lanedistance;
+    [SerializeField] private float fallSpeed;
     [SerializeField] private Animator playeranimator;
     [SerializeField] private SkinnedMeshRenderer mesh;
     [SerializeField] private Material ballmaterial;
@@ -22,7 +23,9 @@ public class InputManager : MonoBehaviour
     [SerializeField] private SphereCollider ballcollider;
     [SerializeField] private float timeroll;
     [SerializeField] private float distancetouch;
-    [SerializeField] private Grind checkrail;
+    [SerializeField] private Grind check;
+    [SerializeField] private DashPower checkdash;
+    [SerializeField] private CollectManager checkcollect;
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
@@ -40,8 +43,20 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        if((GroundCheck() == true && !iscrouching) || checkrail.CheckRail())
+        if(!check.Isfalling && !checkcollect.Isenerbeam)
+        {
+            playerrigi.velocity = Vector3.forward * speed * Time.deltaTime;
+        }    
+        else
+        {
+            playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
+        }
+        if(GroundCheck())
+        {
+            check.Isfalling = false;
+            playeranimator.SetBool("IsFalling", false);
+        }    
+        if((GroundCheck() == true && !iscrouching) || check.Israil)
         {
             Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
             isball = false;
@@ -97,17 +112,20 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    if (deltalY > 0 && GroundCheck())
+                    if(!checkdash.isdashing)
                     {
-                        playeranimator.SetTrigger("Roll");
-                        playerrigi.AddForce(Vector3.up * jumpforce);
-                        isball = true;
-                    }
-                    else
-                    {
-                        playeranimator.SetTrigger("Roll");
-                        playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
-                        Crouch();
+                        if (deltalY > 0 && GroundCheck())
+                        {
+                            playeranimator.SetTrigger("Roll");
+                            playerrigi.AddForce(Vector3.up * jumpforce);
+                            isball = true;
+                        }
+                        else
+                        {
+                            playeranimator.SetTrigger("Roll");
+                            playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
+                            Crouch();
+                        }
                     }
                 }
             }    

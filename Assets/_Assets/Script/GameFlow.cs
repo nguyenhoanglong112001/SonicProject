@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameFlow : MonoBehaviour
 {
     private bool isplaying = false;
-    private bool isend;
     [SerializeField] private List<MonoBehaviour> scriptCom;
     [SerializeField] private InputManager PlayerInput;
     [SerializeField] private PlayerControll playerdeath;
