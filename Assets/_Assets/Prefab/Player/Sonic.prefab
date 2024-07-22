@@ -62,6 +62,112 @@ MonoBehaviour:
   Ring: []
   playerposition: {fileID: 7856080271215421783}
   speed: 20
+--- !u!1 &1939652553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939652554}
+  m_Layer: 6
+  m_Name: BeamPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1939652554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939652553}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.037, y: 0.58, z: 0.315}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7856080271215421783}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1980848782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980848785}
+  - component: {fileID: 1980848784}
+  m_Layer: 0
+  m_Name: EnerbeamCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1980848785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980848782}
+  m_LocalRotation: {x: 0.1653039, y: -0, z: -0, w: 0.9862427}
+  m_LocalPosition: {x: -0.02, y: 0.6, z: -2.1}
+  m_LocalScale: {x: 1, y: 1.2616597, z: 0.9863594}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7856080271215421783}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1980848784
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980848782}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &7854292788924408540
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +735,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854495551521764437}
   m_LocalRotation: {x: -0.23134615, y: -0.30079055, z: -0.23762517, w: 0.89416903}
-  m_LocalPosition: {x: -0.2242179, y: 0.012113019, z: -0.09065336}
+  m_LocalPosition: {x: -0.20708564, y: 0.07910425, z: -0.09065325}
   m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1969,7 +2075,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7855144713569826103}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 1.24, z: 0}
+  m_LocalPosition: {x: -0, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2437,7 +2543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7855291095539655675}
   m_LocalRotation: {x: 0.23134616, y: 0.3007919, z: -0.23762351, w: 0.89416903}
-  m_LocalPosition: {x: -0.2242179, y: 0.012112521, z: 0.09065353}
+  m_LocalPosition: {x: -0.20708571, y: 0.07910368, z: 0.09065364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3238,6 +3344,8 @@ GameObject:
   - component: {fileID: 67734968}
   - component: {fileID: 459529682}
   - component: {fileID: 459529691}
+  - component: {fileID: 1966666365}
+  - component: {fileID: 1966666366}
   m_Layer: 6
   m_Name: Sonic
   m_TagString: Player
@@ -3260,6 +3368,8 @@ Transform:
   - {fileID: 7856080271468835836}
   - {fileID: 852930659}
   - {fileID: 7860590472538262846}
+  - {fileID: 1939652554}
+  - {fileID: 1980848785}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3340,7 +3450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerrigi: {fileID: 7856080271215421802}
-  speed: 500
+  speed: 15
   jumpforce: 300
   lanedistance: 3.5
   fallSpeed: 500
@@ -3360,6 +3470,7 @@ MonoBehaviour:
   distancetouch: 100
   check: {fileID: 459529691}
   checkdash: {fileID: 67734967}
+  checkcollect: {fileID: 459529682}
   groundlayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -3381,7 +3492,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!95 &7856080271215421803
 Animator:
@@ -3492,7 +3603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playeranimator: {fileID: 7856080271215421803}
   splineContain: {fileID: 0}
-  speed: 0.2
+  speed: 0
   progress: 0
   currentrail: 0
   splines: []
@@ -3501,11 +3612,41 @@ MonoBehaviour:
   check: {fileID: 459529682}
   downspeed: 20
   isfalling: 0
-  enerbeam: {fileID: 0}
-  startbeampos: {fileID: 0}
-  railpos: {fileID: 0}
-  dis: 0
-  upspeed: 0
+--- !u!114 &1966666365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856080271215421779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430486a4972975f468a490994261de44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playeranimator: {fileID: 7856080271215421803}
+  rb: {fileID: 7856080271215421802}
+  checkcollect: {fileID: 459529682}
+  enerbeamPrefab: {fileID: 6224373718343450414, guid: 064df913a86165c4c95cf9698dd45981, type: 3}
+  pos: {fileID: 1939652554}
+  splinepos: {fileID: 0}
+  grappoint: {fileID: 0}
+--- !u!114 &1966666366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856080271215421779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2754ec5309bbafd41b3bdcf8130d2cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCam: {fileID: 7856080271468835835}
+  enerbeamCam: {fileID: 1980848784}
+  checkrail: {fileID: 459529691}
+  checkcollect: {fileID: 459529682}
 --- !u!1 &7856080271468835833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,14 +3672,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7856080271468835833}
-  m_LocalRotation: {x: 0.1961624, y: 4.7201304e-10, z: -8.715845e-11, w: 0.98057145}
-  m_LocalPosition: {x: 0, y: 1.95, z: -2.07}
+  m_LocalRotation: {x: 0.21996029, y: 4.739945e-10, z: -7.564938e-11, w: 0.97550887}
+  m_LocalPosition: {x: -0, y: 2.8, z: -2.66}
   m_LocalScale: {x: 1, y: 1.2435656, z: 0.9977084}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7856080271215421783}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.625, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.413, y: 0, z: 0}
 --- !u!20 &7856080271468835835
 Camera:
   m_ObjectHideFlags: 0

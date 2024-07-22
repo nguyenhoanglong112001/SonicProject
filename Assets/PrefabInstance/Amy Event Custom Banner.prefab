@@ -2,38 +2,17 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1273094452840666
 GameObject:
-  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 224823417654599434}
   - component: {fileID: 222820380274485672}
   - component: {fileID: 114853959105182345}
-  - component: {fileID: 114081897504035521}
   m_Layer: 10
   m_Name: Amy Event Custom Banner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1458207648387124
-GameObject:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Component:
-  - component: {fileID: 224748920560628560}
-  - component: {fileID: 222350004779843908}
-  - component: {fileID: 114160303122936829}
-  - component: {fileID: 114231346331197288}
-  - component: {fileID: 114395688129104918}
-  m_Layer: 10
-  m_Name: Hearts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,9 +56,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1273094452840666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -98,23 +77,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &114081897504035521
-MonoBehaviour:
+--- !u!1 &1458207648387124
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1273094452840666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300c1ed08b42df396608965426224366, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_start: {r: 0.8352942, g: 0.21960786, b: 0.427451, a: 1}
-  m_end: {r: 0.9607844, g: 0.40784317, b: 0.6156863, a: 1}
-  m_direction: {x: 0, y: 1}
-  m_offset: 0
-  m_scale: 1
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224748920560628560}
+  - component: {fileID: 222350004779843908}
+  - component: {fileID: 114160303122936829}
+  m_Layer: 10
+  m_Name: Hearts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!224 &224748920560628560
 RectTransform:
   m_ObjectHideFlags: 0
@@ -152,9 +132,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1458207648387124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -173,33 +153,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &114231346331197288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458207648387124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300c1ed08b42df396608965426224366, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_start: {r: 0.8352942, g: 0.21960786, b: 0.427451, a: 0.5}
-  m_end: {r: 0.9607844, g: 0.40784317, b: 0.6156863, a: 1}
-  m_direction: {x: 0, y: 1}
-  m_offset: 0
-  m_scale: 1
---- !u!114 &114395688129104918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458207648387124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a37b2313a2e5e5210b4ab974d9cf208, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  m_requiredFeature: 17

@@ -19,6 +19,7 @@ public class Rotate : MonoBehaviour
     void Update()
     {
         RotateHorizontal();
+        RotateVertical();
     }
 
     private void RotateHorizontal()
@@ -27,5 +28,13 @@ public class Rotate : MonoBehaviour
 
         float yaw = mouseX * angleRotate;
         transform.Rotate(0, yaw, 0);
+    }
+
+    private void RotateVertical()
+    {
+        float MouseY = Input.GetAxis("Mouse Y");
+        float deltaPitch = -MouseY * angleRotate;
+        pitch = Mathf.Clamp(pitch + deltaPitch, minpitch, maxpitch);
+        cameraholder.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 }

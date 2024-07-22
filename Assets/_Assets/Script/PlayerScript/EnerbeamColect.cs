@@ -38,7 +38,7 @@ public class EnerbeamColect : MonoBehaviour
             if(ener == null)
             {
                 ener = Instantiate(enerbeamPrefab, pos.position, enerbeamPrefab.transform.rotation);
-                grappoint = ener.transform.GetChild(3);
+                grappoint = ener.transform.GetChild(0).transform.GetChild(4);
                 rb.useGravity = false;
             }
         }

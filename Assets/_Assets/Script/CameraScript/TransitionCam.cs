@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TransitionCam : MonoBehaviour
 {
-    [SerializeField] private GameObject MainCam;
-    [SerializeField] private GameObject enerbeamCam;
+    [SerializeField] private Camera MainCam;
+    [SerializeField] private Camera enerbeamCam;
     [SerializeField] private Grind checkrail;
     [SerializeField] private CollectManager checkcollect;
 
@@ -20,15 +20,13 @@ public class TransitionCam : MonoBehaviour
     {
         if(checkrail.Israil && checkcollect.Isenerbeam)
         {
-            MainCam.SetActive(false);
-            enerbeamCam.SetActive(true);
-            enerbeamCam.transform.SetParent(gameObject.transform);
+            MainCam.enabled = false;
+            enerbeamCam.enabled = true;
         }
         else if (!checkrail.Israil && !checkcollect.Isenerbeam)
         {
-            MainCam.SetActive(true);
-            enerbeamCam.SetActive(false);
-            enerbeamCam.transform.SetParent(null);
+            MainCam.enabled = true;
+            enerbeamCam.enabled = false;
         }
     }
 }

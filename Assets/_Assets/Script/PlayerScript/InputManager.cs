@@ -45,7 +45,7 @@ public class InputManager : MonoBehaviour
     {
         if(!check.Isfalling && !checkcollect.Isenerbeam)
         {
-            playerrigi.velocity = Vector3.forward * speed * Time.deltaTime;
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }    
         else
         {

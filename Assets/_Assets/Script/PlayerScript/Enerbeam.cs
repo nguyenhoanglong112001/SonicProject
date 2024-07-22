@@ -23,7 +23,7 @@ public class Enerbeam : MonoBehaviour
         checkrail = GameObject.FindWithTag("Player").GetComponent<Grind>();
         checkcollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         playeranimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-        endpoint = getpos.Splinepos;
+        endpoint = getpos.Splinepos.transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -36,10 +36,11 @@ public class Enerbeam : MonoBehaviour
     private void MoveToRail()
     {
         transform.position = Vector3.MoveTowards(startpoint.position, endpoint.transform.position, speedtorail * Time.deltaTime);
-        if(Vector3.Distance(transform.position,endpoint.transform.position) < 0.01f)
+        Debug.Log(Vector3.Distance(transform.position, endpoint.transform.position));
+        if (Vector3.Distance(transform.position,endpoint.transform.position) < 0.01f)
         {
             playeranimator.SetBool("Enerbeam", true);
-            splines = endpoint.GetComponent<SplineContainer>();
+            splines = getpos.Splinepos.GetComponent<SplineContainer>();
             checkrail.Israil = true;
         }
     }
