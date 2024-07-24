@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnerBeamPickUp : MonoBehaviour
 {
     [SerializeField] private CollectManager checkcollect;
+    [SerializeField] private GameObject railprefab;
+    [SerializeField] private Transform spawnpoint;
+    private GameObject enerbeamRail;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,11 @@ public class EnerBeamPickUp : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             checkcollect.Isenerbeam = true;
+            if(enerbeamRail == null)
+            {
+                enerbeamRail = Instantiate(railprefab, spawnpoint.position,railprefab.transform.rotation);
+            }
+            Destroy(gameObject);
         }
     }
 

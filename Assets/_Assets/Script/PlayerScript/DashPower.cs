@@ -7,7 +7,7 @@ public class DashPower : MonoBehaviour
     [SerializeField] private Animator playeranimator;
     [SerializeField] private InputManager speed;
     public bool isdashing;
-    [SerializeField] private float time;
+    [SerializeField] private float duration;
     [SerializeField] private CollectManager check;
 
     [SerializeField] private float timeclick;
@@ -26,13 +26,13 @@ public class DashPower : MonoBehaviour
 
     private void Dash()
     {
-        if(check.GetEnergyDash() == 100)
+        if(check.Energydash == 100)
         {
             if(Input.GetMouseButtonDown(0))
             {
                 if(Time.time - lastclicktime < timeclick && !isdashing)
                 {
-                    Debug.Log("abc");
+                    isdashing = true;
                     playeranimator.SetBool("Dash", true);
                     speed.SpeedUp(1.5f);
                     StartCoroutine(DashTime());
@@ -44,10 +44,16 @@ public class DashPower : MonoBehaviour
 
     IEnumerator DashTime()
     {
-        isdashing = true;
-        yield return new WaitForSeconds(time);
+        float energy = check.Energydash;
+        float eslapedTime = 0;
+        while (eslapedTime < duration)
+        {
+            eslapedTime += Time.deltaTime;
+            check.Energydash = Mathf.Lerp(energy, 0, eslapedTime / duration);
+            yield return null;
+        }
         playeranimator.SetBool("Dash", false);
-        speed.SpeedUp(1/1.5f);
+        speed.SpeedUp(1 / 1.5f);
         isdashing = false;
     }
 }

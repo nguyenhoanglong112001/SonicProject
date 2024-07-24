@@ -14,6 +14,7 @@ public class CollectManager : MonoBehaviour
     [SerializeField] private bool isenerbeam;
 
     public bool Isenerbeam { get => isenerbeam; set => isenerbeam = value; }
+    public float Energydash { get => energydash; set => energydash = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +41,6 @@ public class CollectManager : MonoBehaviour
     public float GetEnergyDash()
     {
         return energydash;
-    }
-
-    public void SetEnergyDash(float energy) => energydash += energy;
-
-    public int GetRedRings()
-    {
-        return redstartring;
     }
 
     public void SetRedStartRing(int redrings) => redstartring += redrings;

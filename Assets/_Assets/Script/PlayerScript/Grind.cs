@@ -16,6 +16,7 @@ public class Grind : MonoBehaviour
     [SerializeField] private CollectManager check;
     [SerializeField] private float downspeed;
     [SerializeField] private bool isfalling;
+    [SerializeField] private float offset;
     private bool israil;
     private bool istrigger;
 
@@ -42,6 +43,7 @@ public class Grind : MonoBehaviour
             progress += speed * Time.deltaTime;
             progress = Mathf.Clamp01(progress);
             Vector3 pos = splineContain.EvaluatePosition(progress);
+            pos.y += offset;
             transform.position = pos;
         }
     }
@@ -69,7 +71,7 @@ public class Grind : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
+        Debug.Log(other);
         if (other.CompareTag("rail"))
         {
             progress = 0;
@@ -94,18 +96,14 @@ public class Grind : MonoBehaviour
         }
         if(other.CompareTag("EnerbeamPickup"))
         {
-            playeranimator.SetTrigger("StartEnerbeam");
+            playeranimator.SetTrigger("StartEnerbeam"); 
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("rail"))
+        if(other.CompareTag("EndRail"))
         {
             splineContain = null;
             playeranimator.SetBool("Grind", false);
             israil = false;
             istrigger = false;
-        }
+        }    
     }
 }

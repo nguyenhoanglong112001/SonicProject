@@ -7,11 +7,14 @@ public class EnerbeamRailInput : MonoBehaviour
     [SerializeField] private float sensitive;
     [SerializeField] private Grind checkrail;
     [SerializeField] private CollectManager check;
-    [SerializeField] private float minpitch;
-    [SerializeField] private float maxpitch;
-    [SerializeField] private float angleRotate;
     [SerializeField] private Animator playeranima;
+    [SerializeField] private float tiltthreshold;
+    [SerializeField] private float AngleRotate;
+    [SerializeField] private float maxrotate;
+    [SerializeField] private float minrorate;
+    private Vector3 acceleration;
     private float pitch;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,33 +26,34 @@ public class EnerbeamRailInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateHorizontal();
+        MovementOnRail  ();
     }
 
-    private void RotateHorizontal()
+    private void MovementOnRail()
     {
         if(checkrail.Israil && check.Isenerbeam)
         {
-            float MouseX = Input.GetAxis("Mouse X");
-            float deltaPitch = MouseX * angleRotate;
-            pitch = Mathf.Clamp(pitch + deltaPitch, minpitch, maxpitch);
-            transform.localEulerAngles = new Vector3(0, 0, pitch);
-            Debug.Log(pitch);
-            if(pitch > 0)
+            acceleration = Input.acceleration;
+            float deltaPitch = acceleration.x * AngleRotate;
+            pitch = Mathf.Clamp(pitch + deltaPitch, minrorate, maxrotate);
+            transform.localEulerAngles= new Vector3(0, 0, pitch);
+            if (acceleration.x > tiltthreshold)
             {
                 playeranima.SetBool("EnerRight", true);
                 playeranima.SetBool("EnerLeft", false);
             }
-            else if (pitch <0)
+            else if (acceleration.x < tiltthreshold)
             {
+                transform.Rotate(Vector3.forward);
                 playeranima.SetBool("EnerRight", false);
                 playeranima.SetBool("EnerLeft", true);
             }
-            else if (pitch == 0)
+            else if (acceleration.x == tiltthreshold)
             {
+                transform.Rotate(Vector3.zero);
                 playeranima.SetBool("EnerRight", false);
                 playeranima.SetBool("EnerLeft", false);
-            }
+            }    
         }
     }
 }

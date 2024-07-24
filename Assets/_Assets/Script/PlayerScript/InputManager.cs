@@ -10,22 +10,13 @@ public class InputManager : MonoBehaviour
     [SerializeField] private float lanedistance;
     [SerializeField] private float fallSpeed;
     [SerializeField] private Animator playeranimator;
-    [SerializeField] private SkinnedMeshRenderer mesh;
-    [SerializeField] private Material ballmaterial;
-    [SerializeField] private Material characterMaterial;
-    [SerializeField] private Mesh ballmesh;
-    [SerializeField] private Mesh charactermesh;
-    [SerializeField] private Avatar characterAvatar;
-    [SerializeField] private Avatar ballAvatar;
-    [SerializeField] private RuntimeAnimatorController ballanimator;
-    [SerializeField] private RuntimeAnimatorController characteranimator;
-    [SerializeField] private CapsuleCollider charactercollider;
-    [SerializeField] private SphereCollider ballcollider;
+    [SerializeField] private SwitchBall switchcheck;
     [SerializeField] private float timeroll;
     [SerializeField] private float distancetouch;
     [SerializeField] private Grind check;
     [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
+    [SerializeField] private DashPad checkpad;
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
@@ -34,6 +25,9 @@ public class InputManager : MonoBehaviour
     private Vector3 endpoint;
     private bool iscrouching;
     public bool isball;
+
+    public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,22 +50,7 @@ public class InputManager : MonoBehaviour
             check.Isfalling = false;
             playeranimator.SetBool("IsFalling", false);
         }    
-        if((GroundCheck() == true && !iscrouching) || check.Israil)
-        {
-            Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
-            isball = false;
-        }
-        else
-        {
-            //Switch(ballmesh,ballmaterial,ballanimator,ballAvatar,true,false);
-            isball = true;
-        }
         InputMove();
-    }
-
-    public void SwitchToCharacter()
-    {
-        Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
     }
 
     private void InputMove()
@@ -146,22 +125,7 @@ public class InputManager : MonoBehaviour
         StartCoroutine(ChangeCrouch());
     }
 
-    private void Switch(Mesh meshchange, Material material, RuntimeAnimatorController animator, Avatar avatar, bool active1,bool active2)
-    {
-        mesh.sharedMesh = meshchange;
-        mesh.material = material;
-        playeranimator.runtimeAnimatorController = animator;
-        playeranimator.avatar = avatar;
-        ballcollider.enabled = active1;
-        charactercollider.enabled = active2;
-    }
-
-    public void ChangeBall()
-    {
-        Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
-    }
-
-    private bool GroundCheck()
+    public bool GroundCheck()
     {
         bool isGround = Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
 

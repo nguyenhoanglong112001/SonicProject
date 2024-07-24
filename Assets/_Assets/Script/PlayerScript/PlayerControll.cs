@@ -7,7 +7,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private Animator playeranimator;
     [SerializeField] private Rigidbody playerrigi;
     [SerializeField] private float knock;
-    [SerializeField] private InputManager ballcheck;
+    [SerializeField] private SwitchBall ballcheck;
     [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private int playerlayer;

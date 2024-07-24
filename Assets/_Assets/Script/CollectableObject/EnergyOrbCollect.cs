@@ -22,7 +22,7 @@ public class EnergyOrbCollect : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            check.SetEnergyDash(dashenergy);
+            check.Energydash += dashenergy;
             Destroy(gameObject);
         }
     }

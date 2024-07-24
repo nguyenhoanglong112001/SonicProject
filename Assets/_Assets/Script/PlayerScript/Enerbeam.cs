@@ -8,7 +8,6 @@ public class Enerbeam : MonoBehaviour
     [SerializeField] private Transform startpoint;
     [SerializeField] private GameObject endpoint;
     [SerializeField] private SplineContainer splines;
-    [SerializeField] private EnerbeamColect getpos;
     [SerializeField] private Grind checkrail;
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private float speedtorail;
@@ -19,11 +18,10 @@ public class Enerbeam : MonoBehaviour
     void Start()
     {
         startpoint = gameObject.transform;
-        getpos = GameObject.FindWithTag("Player").GetComponent<EnerbeamColect>();
         checkrail = GameObject.FindWithTag("Player").GetComponent<Grind>();
         checkcollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         playeranimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
-        endpoint = getpos.Splinepos.transform.GetChild(1).gameObject;
+        endpoint = GameObject.FindWithTag("EnerbeamRail");
     }
 
     // Update is called once per frame
@@ -36,11 +34,10 @@ public class Enerbeam : MonoBehaviour
     private void MoveToRail()
     {
         transform.position = Vector3.MoveTowards(startpoint.position, endpoint.transform.position, speedtorail * Time.deltaTime);
-        Debug.Log(Vector3.Distance(transform.position, endpoint.transform.position));
         if (Vector3.Distance(transform.position,endpoint.transform.position) < 0.01f)
         {
             playeranimator.SetBool("Enerbeam", true);
-            splines = getpos.Splinepos.GetComponent<SplineContainer>();
+            splines = endpoint.GetComponent<SplineContainer>();
             checkrail.Israil = true;
         }
     }
@@ -59,7 +56,6 @@ public class Enerbeam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         if(other.CompareTag("EndRail"))
         {
             splines = null;
@@ -68,7 +64,9 @@ public class Enerbeam : MonoBehaviour
             checkcollect.Isenerbeam = false;
             playeranimator.SetBool("Enerbeam", false);
             playeranimator.SetBool("IsFalling", true);
-            Destroy(gameObject);
+            playeranimator.SetBool("EnerRight", false);
+            playeranimator.SetBool("EnerLeft", false);
+            Destroy(other.transform.parent.gameObject,3.0f);
         }
     }
 }
