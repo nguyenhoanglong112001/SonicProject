@@ -20,18 +20,23 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
+    private float minspeed;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
     private Vector3 startpoint;
     private Vector3 endpoint;
     private bool iscrouching;
-    public bool isball;
+    private bool isjumping;
+    private bool isball;
+
 
     public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
+    public bool Isball { get => isball; set => isball = value; }
+    public bool Isjumping { get => isjumping; set => isjumping = value; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        minspeed = speed;
     }
 
     // Update is called once per frame
@@ -45,7 +50,7 @@ public class InputManager : MonoBehaviour
         {
             playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
-        if(GroundCheck())
+        if(GroundCheck() && check.Isfalling)
         {
             check.Isfalling = false;
             playeranimator.SetBool("IsFalling", false);
@@ -95,6 +100,7 @@ public class InputManager : MonoBehaviour
                     {
                         if (deltalY > 0 && GroundCheck())
                         {
+                            Isjumping = true;
                             playeranimator.SetTrigger("Roll");
                             playerrigi.AddForce(Vector3.up * jumpforce);
                             isball = true;
@@ -114,8 +120,10 @@ public class InputManager : MonoBehaviour
 
     IEnumerator ChangeCrouch()
     {
+        switchcheck.ChangeBall();
         iscrouching = true;
         yield return new WaitForSeconds(timeroll);
+        switchcheck.SwitchToCharacter();
         iscrouching = false;
         isball = false;
     }
@@ -140,6 +148,10 @@ public class InputManager : MonoBehaviour
     public void SpeedUp(float mutilpl)
     {
         speed *= mutilpl;
+        if(speed < minspeed)
+        {
+            speed = minspeed;
+        }
     }
 
     public int CheckLane()

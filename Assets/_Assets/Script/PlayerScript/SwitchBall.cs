@@ -30,16 +30,14 @@ public class SwitchBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((checkcondition.GroundCheck() == true && !checkcondition.Iscrouching) || checkcollect.Isenerbeam || checkrail.Israil ||checkrail.Isfalling)
+        if(checkcondition.Isjumping)
         {
-            SwitchToCharacter();
-            isball = false;
-        }
-        else
-        {
-            ChangeBall();
-            isball = true;
-        }
+            if(checkcondition.GroundCheck())
+            {
+                SwitchToCharacter();
+                checkcondition.Isjumping = false;
+            }
+        }    
     }
 
     private void Switch(Mesh meshchange, Material material, RuntimeAnimatorController animator, Avatar avatar, bool active1, bool active2)
@@ -54,11 +52,13 @@ public class SwitchBall : MonoBehaviour
 
     public void ChangeBall()
     {
+        Debug.Log("Ball");
         Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
     }
 
     public void SwitchToCharacter()
     {
+        Debug.Log("sonic");
         Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
     }
 }

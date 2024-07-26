@@ -6,10 +6,11 @@ public class DashPad : MonoBehaviour
 {
     [SerializeField] private SwitchBall switchball;
     [SerializeField] private DashPower dashcheck;
-    [SerializeField] private float dashpadspeed;
     [SerializeField] private float dashdistance;
+    [SerializeField] private InputManager speed;
     private Vector3 startpos;
-    private bool isdashpad;
+    public bool isdashpad;
+    private bool istrigger;
 
     public bool Isdashpad { get => isdashpad; set => isdashpad = value; }
 
@@ -22,29 +23,36 @@ public class DashPad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(isdashpad)
+        {
+            //Debug.Log(Vector3.Distance(transform.position, startpos));
+            if (Vector3.Distance(transform.position, startpos) > dashdistance && istrigger)
+            {
+                Debug.Log("Abc");
+                isdashpad = false;
+                speed.SpeedUp(1/4);
+                switchball.isball = false;
+                switchball.SwitchToCharacter();
+                dashcheck.isdashing = false;
+                istrigger = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Dashpad"))
+        if (other.CompareTag("Dashpad") && !istrigger)
         {
-            isdashpad = true;
-            startpos = other.transform.position;
             switchball.ChangeBall();
             dashcheck.isdashing = true;
             switchball.isball = true;
-            if (Vector3.Distance(transform.position,startpos) < dashdistance)
+            startpos = other.transform.position;
+            if (Vector3.Distance(transform.position, startpos) < dashdistance)
             {
-                transform.Translate(Vector3.forward * dashpadspeed * Time.deltaTime);
+                speed.SpeedUp(4);
             }
-            else
-            {
-                isdashpad = false;
-                switchball.isball = true;
-                switchball.SwitchToCharacter();
-                dashcheck.isdashing = false;
-            }
+            istrigger = true;
+            isdashpad = true;
         }
     }
 }

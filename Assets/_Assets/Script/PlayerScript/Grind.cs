@@ -14,6 +14,7 @@ public class Grind : MonoBehaviour
     [SerializeField] private InputManager lane;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CollectManager check;
+    [SerializeField] private SwitchBall switchcheck;
     [SerializeField] private float downspeed;
     [SerializeField] private bool isfalling;
     [SerializeField] private float offset;
@@ -71,9 +72,9 @@ public class Grind : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         if (other.CompareTag("rail"))
         {
+            switchcheck.SwitchToCharacter();
             progress = 0;
             playeranimator.SetTrigger("StartGrind");
             istrigger = true;
@@ -96,6 +97,7 @@ public class Grind : MonoBehaviour
         }
         if(other.CompareTag("EnerbeamPickup"))
         {
+            switchcheck.SwitchToCharacter();
             playeranimator.SetTrigger("StartEnerbeam"); 
         }
         if(other.CompareTag("EndRail"))
