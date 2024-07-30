@@ -28,7 +28,6 @@ public class DashPad : MonoBehaviour
             //Debug.Log(Vector3.Distance(transform.position, startpos));
             if (Vector3.Distance(transform.position, startpos) > dashdistance && istrigger)
             {
-                Debug.Log("Abc");
                 isdashpad = false;
                 speed.SpeedUp(1/4);
                 switchball.isball = false;

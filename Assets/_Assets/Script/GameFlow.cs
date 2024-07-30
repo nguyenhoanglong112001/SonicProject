@@ -40,6 +40,7 @@ public class GameFlow : MonoBehaviour
     {
         PlayerInput = GameObject.FindWithTag("Player").GetComponent<InputManager>();
         dashcom = GameObject.FindWithTag("Player").GetComponent<DashPower>();
+        playerdeath = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
     }     
 
     private void Init()

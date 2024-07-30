@@ -30,14 +30,6 @@ public class SwitchBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(checkcondition.Isjumping)
-        {
-            if(checkcondition.GroundCheck())
-            {
-                SwitchToCharacter();
-                checkcondition.Isjumping = false;
-            }
-        }    
     }
 
     private void Switch(Mesh meshchange, Material material, RuntimeAnimatorController animator, Avatar avatar, bool active1, bool active2)
@@ -52,7 +44,6 @@ public class SwitchBall : MonoBehaviour
 
     public void ChangeBall()
     {
-        Debug.Log("Ball");
         Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
     }
 
@@ -60,5 +51,17 @@ public class SwitchBall : MonoBehaviour
     {
         Debug.Log("sonic");
         Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(checkcondition.Isjumping)
+        {
+            if(collision.gameObject.CompareTag("Ground"))
+            {
+                Debug.Log("avcdds");
+                SwitchToCharacter();
+                checkcondition.Isjumping = false;
+            }
+        }
     }
 }
