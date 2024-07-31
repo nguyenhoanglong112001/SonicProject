@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +18,10 @@ public class InputManager : MonoBehaviour
     [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private DashPad checkpad;
+    [SerializeField] private PlayerControll checkground;
 
-    [SerializeField] private LayerMask groundlayer;
-    [SerializeField] private LayerMask raillayer;
+    [SerializeField] private SpawnMap GetRoad;
+    public int indexroad;
     private float minspeed;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
     private Vector3 startpoint;
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
     private bool iscrouching;
     private bool isjumping;
     private bool isball;
+    private bool canchange;
 
 
     public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
@@ -50,7 +53,7 @@ public class InputManager : MonoBehaviour
         {
             playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
-        if(GroundCheck() && check.Isfalling)
+        if(checkground.GroundCheck() && check.Isfalling)
         {
             check.Isfalling = false;
             playeranimator.SetBool("IsFalling", false);
@@ -78,14 +81,14 @@ public class InputManager : MonoBehaviour
                 {
                     if (deltalX > 0)
                     {
-                        if (lane < 1)
+                        if (lane < 1 && CheckChangeLane(lane+1))
                         {
                             lane++;
                         }
                     }
                     else
                     {
-                        if (lane > -1)
+                        if (lane > -1 && CheckChangeLane(lane-1))
                         {
                             lane--;
                         }
@@ -98,7 +101,7 @@ public class InputManager : MonoBehaviour
                 {
                     if(!checkdash.isdashing)
                     {
-                        if (deltalY > 0 && GroundCheck())
+                        if (deltalY > 0 && checkground.GroundCheck())
                         {
                             Isjumping = true;
                             playeranimator.SetTrigger("Roll");
@@ -133,18 +136,6 @@ public class InputManager : MonoBehaviour
         StartCoroutine(ChangeCrouch());
     }
 
-    public bool GroundCheck()
-    {
-        bool isGround = Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
-
-        if(!isGround)
-        {
-            isGround = Physics.Raycast(transform.position, Vector3.down, 1.1f, raillayer);
-        }
-
-        return isGround;
-    }
-
     public void SpeedUp(float mutilpl)
     {
         speed *= mutilpl;
@@ -157,5 +148,77 @@ public class InputManager : MonoBehaviour
     public int CheckLane()
     {
         return lane;
+    }
+
+    private bool CheckChangeLane(int lanetarget)
+    {
+        if (GetRoad != null)
+        {
+            if (lanetarget == 1)
+            {
+                if (GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if (lanetarget == 0)
+            {
+                if (GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if (lanetarget == -1)
+            {
+                if (GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Road"))
+        {
+            GetRoad = other.GetComponentInParent<SpawnMap>();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (GetRoad != null)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                Debug.Log(collision.gameObject.transform.parent);
+                if (lane == 0)
+                {
+                    indexroad = Array.IndexOf(GetRoad.RoadMspawn, collision.gameObject.transform.parent.gameObject);
+                }
+                else if (lane == 1)
+                {
+                    indexroad = Array.IndexOf(GetRoad.RoadRspawn, collision.gameObject.transform.parent.gameObject);
+                }
+                else if (lane == -1)
+                {
+                    indexroad = Array.IndexOf(GetRoad.RoadLspawn, collision.gameObject.transform.parent.gameObject);
+                }
+            }
+        }
     }
 }

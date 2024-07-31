@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpawnMap : MonoBehaviour
 {
     [SerializeField] private GameObject[] roadM;
@@ -15,6 +16,11 @@ public class SpawnMap : MonoBehaviour
     [SerializeField] private Transform Rspawnpos;
     [SerializeField] private Transform Lspawnpos;
     private int a;
+
+    public GameObject[] RoadMspawn { get => roadMspawn; set => roadMspawn = value; }
+    public GameObject[] RoadLspawn { get => roadLspawn; set => roadLspawn = value; }
+    public GameObject[] RoadRspawn { get => roadRspawn; set => roadRspawn = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,23 +38,42 @@ public class SpawnMap : MonoBehaviour
         
     }
 
-    private void SpawnRoad(GameObject[] road, GameObject[] roadspawn,Transform pos)
+    private void SpawnRoad(GameObject[] road,GameObject[] roadspawn,Transform pos)
     {
         for (int i = 0; i < road.Length; i++)
         {
-            Debug.Log(road[i]);
             int r = Random.Range(0, 100);
-            if (0 < r && r < 90)
+            if (i == road.Length-1)
             {
-                a = 0;
+                if (0 > r && r < 90)
+                {
+                    a = 0;
+                }
+                else
+                {
+                    a = 1;
+                }    
             }
-            else if (r >= 90)
+            else if (r >= 95)
             {
                 a = 1;
             }
+            else if (r>=90 && r<95)
+            {
+                a = 2;
+            }
+            else
+            {
+                a = 0;
+            }
+
             if (i == 0)
             {
                 road[i] = Instantiate(roadspawn[a], pos.position, Quaternion.Euler(-90, 0, 0));
+            }
+            else if (road[i - 1].GetComponent<RoadType>().type == TypeRoad.Hillup)
+            {
+                road[i] = Instantiate(roadspawn[3], road[i - 1].transform.GetChild(0).position, Quaternion.Euler(-90, 0, 0));
             }
             else
             {

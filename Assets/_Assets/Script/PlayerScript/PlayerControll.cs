@@ -13,6 +13,9 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private int playerlayer;
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
+
+    [SerializeField] private LayerMask groundlayer;
+    [SerializeField] private LayerMask raillayer;
     public bool isalive;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,18 @@ public class PlayerControll : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool GroundCheck()
+    {
+        bool isGround = Physics.Raycast(transform.position, Vector3.down, 1.0f, groundlayer);
+
+        if (!isGround)
+        {
+            isGround = Physics.Raycast(transform.position, Vector3.down, 1.1f, raillayer);
+        }
+
+        return isGround;
     }
 
     private void Death(string parameter)

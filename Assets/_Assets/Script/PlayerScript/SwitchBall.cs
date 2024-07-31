@@ -49,7 +49,6 @@ public class SwitchBall : MonoBehaviour
 
     public void SwitchToCharacter()
     {
-        Debug.Log("sonic");
         Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
     }
     private void OnCollisionEnter(Collision collision)
@@ -58,7 +57,6 @@ public class SwitchBall : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Ground"))
             {
-                Debug.Log("avcdds");
                 SwitchToCharacter();
                 checkcondition.Isjumping = false;
             }
