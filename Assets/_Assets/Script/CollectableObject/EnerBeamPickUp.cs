@@ -12,6 +12,7 @@ public class EnerBeamPickUp : MonoBehaviour
     void Start()
     {
         checkcollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
+        spawnpoint.position = new Vector3(0, spawnpoint.position.y, spawnpoint.position.z);
     }
 
     // Update is called once per frame

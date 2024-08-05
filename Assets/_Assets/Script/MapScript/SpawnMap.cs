@@ -45,26 +45,29 @@ public class SpawnMap : MonoBehaviour
             int r = Random.Range(0, 100);
             if (i == road.Length-1)
             {
-                if (0 > r && r < 90)
+                if (r >= 90)
                 {
-                    a = 0;
+                    a = 1;
                 }
                 else
                 {
-                    a = 1;
+                    a = 0;
                 }    
-            }
-            else if (r >= 95)
-            {
-                a = 1;
-            }
-            else if (r>=90 && r<95)
-            {
-                a = 2;
             }
             else
             {
-                a = 0;
+                if (r >= 95)
+                {
+                    a = 1;
+                }
+                else if (r >= 90 && r < 95)
+                {
+                    a = 2;
+                }
+                else
+                {
+                    a = 0;
+                }
             }
 
             if (i == 0)

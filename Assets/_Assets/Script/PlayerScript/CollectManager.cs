@@ -12,9 +12,11 @@ public class CollectManager : MonoBehaviour
     [SerializeField] private float timeCD;
     [SerializeField] private bool isshield;
     [SerializeField] private bool isenerbeam;
+    [SerializeField] private bool isSpring;
 
     public bool Isenerbeam { get => isenerbeam; set => isenerbeam = value; }
     public float Energydash { get => energydash; set => energydash = value; }
+    public bool IsSpring { get => isSpring; set => isSpring = value; }
 
     // Start is called before the first frame update
     void Start()

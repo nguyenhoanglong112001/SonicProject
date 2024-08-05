@@ -29,7 +29,6 @@ public class InputManager : MonoBehaviour
     private bool iscrouching;
     private bool isjumping;
     private bool isball;
-    private bool canchange;
 
 
     public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
@@ -39,6 +38,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(lane);
         minspeed = speed;
     }
 
@@ -49,14 +49,16 @@ public class InputManager : MonoBehaviour
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }    
-        else
+        else if ((check.Isfalling && !checkcollect.Isenerbeam) || ((check.Isfalling && !checkcollect.IsSpring)))
         {
+            Debug.Log("Falling");
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
             playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
         if(checkground.GroundCheck() && check.Isfalling)
         {
-            check.Isfalling = false;
             playeranimator.SetBool("IsFalling", false);
+            check.Isfalling = false;
         }    
         InputMove();
     }
@@ -99,7 +101,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    if(!checkdash.isdashing)
+                    if(!checkdash.isdashing && !check.Israil)
                     {
                         if (deltalY > 0 && checkground.GroundCheck())
                         {
@@ -205,7 +207,6 @@ public class InputManager : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Ground"))
             {
-                Debug.Log(collision.gameObject.transform.parent);
                 if (lane == 0)
                 {
                     indexroad = Array.IndexOf(GetRoad.RoadMspawn, collision.gameObject.transform.parent.gameObject);

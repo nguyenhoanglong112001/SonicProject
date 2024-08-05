@@ -15,11 +15,10 @@ public class Grind : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CollectManager check;
     [SerializeField] private SwitchBall switchcheck;
-    [SerializeField] private float downspeed;
     [SerializeField] private bool isfalling;
     [SerializeField] private float offset;
+    [SerializeField] private float fallSpeed;
     private bool israil;
-    private bool istrigger;
 
     public SplineContainer SplineContain { get => splineContain; set => splineContain = value; }
     public bool Isfalling { get => isfalling; set => isfalling = value; }
@@ -51,36 +50,38 @@ public class Grind : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("rail") && istrigger)
+        if ((other.CompareTag("rail")) || (other.CompareTag("SpringRail")))
         {
-            israil = true;
-            playeranimator.SetBool("Grind", true);
-            if (lane.CheckLane() == -1)
+            if(splines.Count > 0)
             {
-                splineContain = splines[0];
-            }
-            else if (lane.CheckLane() == 0)
-            {
-                splineContain = splines[1];
-            }
-            else if (lane.CheckLane() == 1)
-            {
-                splineContain = splines[2];
+                israil = true;
+                playeranimator.SetBool("Grind", true);
+                if (lane.CheckLane() == -1)
+                {
+                    splineContain = splines[0];
+                }
+                else if (lane.CheckLane() == 0)
+                {
+                    splineContain = splines[1];
+                }
+                else if (lane.CheckLane() == 1)
+                {
+                    splineContain = splines[2];
+                }
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("rail"))
+        if (other.CompareTag("rail") || other.CompareTag("SpringRail"))
         {
             switchcheck.SwitchToCharacter();
             progress = 0;
             playeranimator.SetTrigger("StartGrind");
-            istrigger = true;
             for (int i = 0; i < other.transform.childCount; i++)
             {
-                splines.Add(other.transform.GetChild(i).GetComponent<SplineContainer>());
+                splines.Add(other.transform.GetChild(i).GetComponentInChildren<SplineContainer>());
             }
             if (lane.CheckLane() == -1)
             {
@@ -102,10 +103,18 @@ public class Grind : MonoBehaviour
         }
         if(other.CompareTag("EndRail"))
         {
+            splines.Clear();
             splineContain = null;
             playeranimator.SetBool("Grind", false);
             israil = false;
-            istrigger = false;
+            if(check.IsSpring)
+            {
+                isfalling = true;
+                playeranimator.SetBool("IsFalling", true);
+                playeranimator.SetBool("Spring", false);
+                check.IsSpring = false;
+                Destroy(other.gameObject.transform.parent.gameObject.transform.parent.gameObject, 1.0f);
+            }
         }    
     }
 }

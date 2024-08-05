@@ -3180,6 +3180,7 @@ GameObject:
   - component: {fileID: 7408805254435770491}
   - component: {fileID: 7856080270845940541}
   - component: {fileID: 7856080270845940547}
+  - component: {fileID: 1678412254}
   m_Layer: 6
   m_Name: Sonic
   m_TagString: Player
@@ -3296,12 +3297,9 @@ MonoBehaviour:
   checkdash: {fileID: 7408805255791538098}
   checkcollect: {fileID: 7408805256016576471}
   checkpad: {fileID: 7856080270845940541}
-  groundlayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  raillayer:
-    serializedVersion: 2
-    m_Bits: 0
+  checkground: {fileID: 7408805255791538109}
+  GetRoad: {fileID: 0}
+  indexroad: 0
 --- !u!54 &853214710780529519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3392,6 +3390,12 @@ MonoBehaviour:
   playerlayer: 6
   enemylayer: 8
   blockerlayer: 7
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  raillayer:
+    serializedVersion: 2
+    m_Bits: 16384
   isalive: 1
 --- !u!114 &7408805256016576471
 MonoBehaviour:
@@ -3413,6 +3417,7 @@ MonoBehaviour:
   timeCD: 5
   isshield: 0
   isenerbeam: 0
+  isSpring: 0
 --- !u!114 &7408805256016576478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3518,6 +3523,23 @@ MonoBehaviour:
   checkrail: {fileID: 7408805256016576478}
   checkcollect: {fileID: 7408805256016576471}
   isball: 0
+--- !u!114 &1678412254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853214710780529494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e27d23b2958f746879a75198ab58ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rig: {fileID: 853214710780529519}
+  force: 500
+  anim: {fileID: 853214710780529518}
+  checkCollect: {fileID: 7408805256016576471}
+  groundcheck: {fileID: 7408805255791538109}
 --- !u!1 &853214711134769660
 GameObject:
   m_ObjectHideFlags: 0
