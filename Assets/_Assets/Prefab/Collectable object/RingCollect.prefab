@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3513177437914828476}
   - component: {fileID: 3513177437914828477}
   - component: {fileID: 3513177437914828478}
-  - component: {fileID: 4055454614350515398}
   - component: {fileID: 236670158}
   m_Layer: 0
   m_Name: RingCollect
@@ -99,18 +98,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.43126607
   m_Center: {x: -0.02412881, y: 0, z: -0.00004298986}
---- !u!114 &4055454614350515398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513177437914828479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3b546a9f68708f4786a05012642ba45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &236670158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   check: {fileID: 0}
-  playerpos: {fileID: 0}
   ringsup: 1
-  autospeed: 200

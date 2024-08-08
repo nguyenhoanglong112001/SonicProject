@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4345975601667323}
   - component: {fileID: 65548038100761361}
   - component: {fileID: 205734938435386245}
+  - component: {fileID: 852122554}
   m_Layer: 0
   m_Name: Dashpad
   m_TagString: Dashpad
@@ -44,7 +45,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006289016796766}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.6, z: 2.4}
@@ -76,6 +77,23 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23099417694856559}
   m_Enabled: 1
+--- !u!114 &852122554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006289016796766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a392b2723bdec694b835e336d86e5c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchball: {fileID: 0}
+  dashcheck: {fileID: 0}
+  dashdistance: 100
+  speed: {fileID: 0}
+  isdashpad: 0
 --- !u!1 &1109115587851723
 GameObject:
   m_ObjectHideFlags: 0

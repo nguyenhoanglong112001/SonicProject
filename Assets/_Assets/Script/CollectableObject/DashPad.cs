@@ -17,7 +17,9 @@ public class DashPad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        switchball = GameObject.FindWithTag("Player").GetComponent<SwitchBall>();
+        dashcheck = GameObject.FindWithTag("Player").GetComponent<DashPower>();
+        speed = GameObject.FindWithTag("Player").GetComponent<InputManager>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class DashPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Dashpad") && !istrigger)
+        if (other.CompareTag("Dashpad"))
         {
             switchball.ChangeBall();
             dashcheck.isdashing = true;

@@ -8,6 +8,7 @@ public enum TypeRoad
     Hillup,
     HillDown,
     GapRoad,
+    Rail,
 }
 public class RoadType : MonoBehaviour
 {

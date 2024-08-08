@@ -205,7 +205,7 @@ public class InputManager : MonoBehaviour
     {
         if (GetRoad != null)
         {
-            if (collision.gameObject.CompareTag("Ground"))
+            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("StartRail"))
             {
                 if (lane == 0)
                 {
