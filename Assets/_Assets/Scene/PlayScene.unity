@@ -264,7 +264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529619061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15.71, z: 8.9}
+  m_LocalPosition: {x: 0, y: 15.71, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -574,10 +574,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1678412254, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
-      propertyPath: speedtoeb
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 853214710780529490, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -626,17 +622,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sonic
       objectReference: {fileID: 0}
-    - target: {fileID: 853214710780529516, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
-      propertyPath: fallSpeed
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 853214710780529519, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 7408805255791538109, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: change
+      value: 
+      objectReference: {fileID: 1678412245}
     - target: {fileID: 7408805256016576478, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: fallSpeed
-      value: 800
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
@@ -696,6 +688,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fccdf9347828bf449ac0febd3b61f579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1678412245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7856080270845940547, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+  m_PrefabInstance: {fileID: 1511108552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9071856cb81e545bde14b52218533b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!64 &1689976849
@@ -801,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4014444102017196, guid: 7859fcf583aa14246a13ae615c81cfdb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4014444102017196, guid: 7859fcf583aa14246a13ae615c81cfdb, type: 3}
       propertyPath: m_LocalPosition.y

@@ -121,18 +121,6 @@ public class Grind : MonoBehaviour
             switchcheck.SwitchToCharacter();
             playeranimator.SetTrigger("StartEnerbeam"); 
         }
-        //if(other.CompareTag("StartRail"))
-        //{
-        //    switchcheck.SwitchToCharacter();
-        //    progress = 0;
-        //    playeranimator.SetBool("Grind", true);
-        //    playeranimator.SetTrigger("StartGrind");
-        //    splineContain = other.gameObject.transform.parent.gameObject.GetComponentInChildren<SplineContainer>();
-        //    israil = true;
-        //    splines.Add(checkRoad.RoadLspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-        //    splines.Add(checkRoad.RoadMspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-        //    splines.Add(checkRoad.RoadRspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-        //}
         if(other.CompareTag("EndRail"))
         {
             splines.Clear();
@@ -161,7 +149,6 @@ public class Grind : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("StartRail"))
         {
-            Debug.Log(collision.gameObject);
             israil = true;
             switchcheck.SwitchToCharacter();
             progress = 0;

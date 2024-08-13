@@ -15,6 +15,7 @@ public class SpawnMap : MonoBehaviour
     [SerializeField] private Transform Mspawnpos;
     [SerializeField] private Transform Rspawnpos;
     [SerializeField] private Transform Lspawnpos;
+    private int RoadLength = 8;
     private int a;
 
     public GameObject[] RoadMspawn { get => roadMspawn; set => roadMspawn = value; }
@@ -24,9 +25,10 @@ public class SpawnMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roadMspawn = new GameObject[8];
-        roadLspawn = new GameObject[8];
-        roadRspawn = new GameObject[8];
+        roadMspawn = new GameObject[RoadLength];
+        roadLspawn = new GameObject[RoadLength];
+        roadRspawn = new GameObject[RoadLength];
+        //Spawn();
         SpawnRoad(roadMspawn, roadM, Mspawnpos);
         SpawnRoad(roadLspawn, roadL, Lspawnpos);
         SpawnRoad(roadRspawn, roadR, Rspawnpos);
@@ -41,12 +43,45 @@ public class SpawnMap : MonoBehaviour
         
     }
 
-    private void SpawnRoad(GameObject[] road,GameObject[] roadspawn,Transform pos)
+    //private void Spawn()
+    //{
+    //    for (int i = 0; i < RoadLength; i++)
+    //    {
+
+    //        if(i == RoadLength -1)
+    //        {
+    //            SpawnRoad(RoadLspawn[i], roadL, roadLspawn[i - 1].transform);
+    //            SpawnRoad(RoadMspawn[i], roadM, roadMspawn[i - 1].transform);
+    //            SpawnRoad(RoadRspawn[i], roadR, roadRspawn[i - 1].transform);
+    //        }
+
+    //    }
+    //}
+
+    //private GameObject SpawnRoad(GameObject road, Transform pos)
+    //{
+    //    GameObject roadspawn = Instantiate(road, pos.position, Quaternion.Euler(-90, 0, 0));
+    //    return roadspawn;
+    //}
+
+    //private void SpawnRoad(GameObject road, GameObject[] roadspawn, Transform pos)
+    //{
+    //    int r = Random.Range(0, 100);
+    //    if (r >= 90)
+    //    {
+    //        road = SpawnRoad(roadspawn[1], pos);
+    //    }
+    //    else
+    //    {
+    //        road = SpawnRoad(roadspawn[0], pos);
+    //    }
+    //}
+    private void SpawnRoad(GameObject[] road, GameObject[] roadspawn, Transform pos)
     {
         for (int i = 0; i < road.Length; i++)
         {
             int r = Random.Range(0, 100);
-            if (i == road.Length-1)
+            if (i == road.Length - 1)
             {
                 if (r >= 90)
                 {
@@ -55,9 +90,9 @@ public class SpawnMap : MonoBehaviour
                 else
                 {
                     a = 0;
-                }    
+                }
             }
-            else if ( i > 0)
+            else if (i > 0)
             {
                 if (r >= 97)
                 {
@@ -101,7 +136,7 @@ public class SpawnMap : MonoBehaviour
                 road[i] = Instantiate(roadspawn[a], pos.position, Quaternion.Euler(-90, 0, 0));
             }
             else if (road[i - 1].GetComponent<RoadType>().type == TypeRoad.Hillup)
-            {   
+            {
                 road[i] = Instantiate(roadspawn[3], road[i - 1].transform.GetChild(0).position, Quaternion.Euler(-90, 0, 0));
             }
             else
@@ -111,13 +146,13 @@ public class SpawnMap : MonoBehaviour
         }
     }
 
-    private void CheckRailRoad(GameObject[] roadListcheck, GameObject[] listroad1, GameObject[] listroad2,GameObject[] road1, GameObject[] road2)
+    private void CheckRailRoad(GameObject[] roadListcheck, GameObject[] listroad1, GameObject[] listroad2, GameObject[] road1, GameObject[] road2)
     {
         int a;
         int b;
-        for (int i = 0;i < roadMspawn.Length;i++)
+        for (int i = 0; i < roadMspawn.Length; i++)
         {
-            if(roadListcheck[i].GetComponent<RoadType>().type == TypeRoad.Rail)
+            if (roadListcheck[i].GetComponent<RoadType>().type == TypeRoad.Rail)
             {
                 a = Random.Range(4, 7);
                 b = Random.Range(4, 7);
@@ -145,7 +180,7 @@ public class SpawnMap : MonoBehaviour
                         Destroy(listroad2[i]);
                         listroad2[i] = Instantiate(road2[b], pos2, Quaternion.Euler(-90, 0, 0));
                     }
-                }    
+                }
             }
         }
     }

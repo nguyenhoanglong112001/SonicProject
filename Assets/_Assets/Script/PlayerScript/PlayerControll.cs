@@ -10,6 +10,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private SwitchBall ballcheck;
     [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
+    [SerializeField] private SwitchBall change;
     [SerializeField] private int playerlayer;
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
@@ -43,6 +44,7 @@ public class PlayerControll : MonoBehaviour
 
     private void Death(string parameter)
     {
+        change.SwitchToCharacter();
         playeranimator.SetTrigger(parameter);
         playerrigi.velocity = Vector3.forward * knock * -1 * Time.deltaTime;
         isalive = false;

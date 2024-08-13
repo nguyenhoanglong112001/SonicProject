@@ -6,27 +6,40 @@ public class SpringCollect : MonoBehaviour
 {
     [SerializeField] private Rigidbody rig;
     [SerializeField] private float force;
+    [SerializeField] private float fouceUpRail;
     [SerializeField] private Animator anim;
     [SerializeField] private CollectManager checkCollect;
     [SerializeField] private Transform startpoint;
     [SerializeField] private Transform endpoint;
     [SerializeField] private float speedtoeb;
+    private Vector3 currentpos;
+    private Vector3 lastpos;
 
     public Transform Endpoint { get => endpoint; set => endpoint = value; }
 
     private void Start()
     {
+
     }
 
     private void Update()
     {
-        if (endpoint != null && checkCollect.IsSpring)
+        currentpos = transform.position;
+        if (currentpos.y >= lastpos.y)
         {
-            anim.SetBool("Spring", true);
-            transform.position = Vector3.MoveTowards(startpoint.position, endpoint.position, speedtoeb * Time.deltaTime);
-            if(Vector3.Distance(transform.position,endpoint.position) < 0.1f)
+            lastpos = currentpos;
+        }
+        else
+        {
+            startpoint = gameObject.transform;
+            if (endpoint != null && checkCollect.IsSpring)
             {
-                anim.SetBool("Spring", false);
+                anim.SetBool("Spring", true);
+                transform.position = Vector3.MoveTowards(startpoint.position, endpoint.position, speedtoeb * Time.deltaTime);
+                if (Vector3.Distance(transform.position, endpoint.position) < 0.1f)
+                {
+                    anim.SetBool("Spring", false);
+                }
             }
         }
     }
@@ -42,7 +55,10 @@ public class SpringCollect : MonoBehaviour
             }
             else if (other.gameObject.GetComponent<SpringObject>().Springeb && checkCollect.IsSpring)
             {
-                startpoint = gameObject.transform;
+                lastpos = transform.position;
+                anim.SetBool("Spring", true);
+                rig.AddForce(Vector3.up * fouceUpRail * Time.deltaTime, ForceMode.Impulse);
+
             }
             Destroy(other.gameObject);
         }

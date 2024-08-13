@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private DashPad checkpad;
     [SerializeField] private PlayerControll checkground;
+    [SerializeField] private float tospringspeed;
 
     [SerializeField] private SpawnMap GetRoad;
     public int indexroad;
@@ -47,11 +48,17 @@ public class InputManager : MonoBehaviour
     {
         if(!check.Isfalling && !checkcollect.Isenerbeam)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }    
+            if(checkcollect.IsSpring)
+            {
+                transform.Translate(Vector3.forward * tospringspeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            }
+        }
         else if ((check.Isfalling && !checkcollect.Isenerbeam) || ((check.Isfalling && !checkcollect.IsSpring)))
         {
-            Debug.Log("Falling");
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
@@ -158,7 +165,8 @@ public class InputManager : MonoBehaviour
         {
             if (lanetarget == 1)
             {
-                if (GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                if (GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
+                    || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
                 {
                     return false;
                 }
@@ -169,7 +177,8 @@ public class InputManager : MonoBehaviour
             }
             else if (lanetarget == 0)
             {
-                if (GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                if (GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
+                    || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
                 {
                     return false;
                 }
@@ -180,7 +189,8 @@ public class InputManager : MonoBehaviour
             }
             else if (lanetarget == -1)
             {
-                if (GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown)
+                if (GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
+                    || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
                 {
                     return false;
                 }
