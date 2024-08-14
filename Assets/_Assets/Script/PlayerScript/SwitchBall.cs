@@ -45,11 +45,13 @@ public class SwitchBall : MonoBehaviour
     public void ChangeBall()
     {
         Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
+        isball = true;
     }
 
     public void SwitchToCharacter()
     {
         Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
+        isball = false;
     }
     private void OnCollisionEnter(Collision collision)
     {

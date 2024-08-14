@@ -14,6 +14,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private int playerlayer;
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
+    [SerializeField] private EnemyAttackIdentify setEnemyAttack;
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
@@ -81,15 +82,21 @@ public class PlayerControll : MonoBehaviour
             }
             else
             {
-                if (checkcollect.GetRing() > 0 && !checkcollect.CheckShield())
+                if (checkcollect.GetRing() > 0)
                 {
                     checkcollect.SetRing(-checkcollect.GetRing());
                     Physics.IgnoreLayerCollision(playerlayer, enemylayer);
                     Physics.IgnoreLayerCollision(playerlayer, blockerlayer);
                     playeranimator.SetTrigger("Stumble");
                 }
-                else if (checkcollect.GetRing() < 0 && !checkcollect.CheckShield())
+                else if (checkcollect.GetRing() <= 0)
                 {
+                    Debug.Log(collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>());
+                    if (collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>() != null)
+                    {
+                        setEnemyAttack = collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>();
+                        setEnemyAttack.AttackOn = false;
+                    }
                     Death("Death1");
                 }
             }
