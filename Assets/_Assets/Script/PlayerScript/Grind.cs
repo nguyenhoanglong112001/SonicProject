@@ -166,7 +166,6 @@ public class Grind : MonoBehaviour
         if(Array.IndexOf(roadcheck,rail) >= 0)
         {
             int index = Array.IndexOf(roadcheck, rail);
-            Debug.Log(roadcheck[index + 1].transform.position);
             transform.position = new Vector3(roadcheck[index + 1].transform.position.x, roadcheck[index + 1].transform.position.y + offset, roadcheck[index + 1].transform.position.z + offset);
             Debug.Log("playerPos: " + transform.position);
         }

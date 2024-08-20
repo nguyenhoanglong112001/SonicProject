@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4772298153730399}
   - component: {fileID: 95314644029413998}
-  - component: {fileID: 1773510237}
+  - component: {fileID: 3649126486586181446}
   m_Layer: 8
   m_Name: Motobug
   m_TagString: Enemy
@@ -59,7 +59,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &1773510237
+--- !u!65 &3649126486586181446
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,8 +70,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0.31, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1112863279424078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,6 +2528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4345536716986878}
   - component: {fileID: 54353707117416551}
+  - component: {fileID: 687997357}
   m_Layer: 8
   m_Name: EnemyMotoBug
   m_TagString: Enemy
@@ -2568,6 +2569,23 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &687997357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253069472833631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d51bdd3adc0945419e00d2e39111b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkplayer: {fileID: 233379440413354534}
+  motorbugAttack: {fileID: 95314644029413998}
+  bugPos: {fileID: 1065319669814694}
+  speed: 10
+  attackRange: {fileID: 9037991934112877020}
 --- !u!1 &1283805360975773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,7 +2865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3194235064249244455}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.449, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2865,8 +2883,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8323992, y: 1, z: 21.914171}
-  m_Center: {x: 0.006195545, y: 0, z: -10.45708}
+  m_Size: {x: 3.8549812, y: 1, z: 21.914173}
+  m_Center: {x: 0.07080164, y: 0, z: -10.45708}
 --- !u!114 &233379440413354534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2879,4 +2897,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c4f17e44308c945ae9770c756c7b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bugAttack: {fileID: 0}
+  bugAttack: {fileID: 687997357}
