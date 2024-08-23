@@ -51,7 +51,7 @@ public class SpawnCollectable : MonoBehaviour
                 CollectableSpawn(orb);
             }
         }
-        else if (r>85)
+        else if (r>85 && r<98)
         {
             for (int i = 0; i < spawnPosList.Length; i++)
             {
