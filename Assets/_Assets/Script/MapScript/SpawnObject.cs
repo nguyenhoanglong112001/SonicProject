@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Lean.Pool;
 
 public class SpawnObject : MonoBehaviour
 {
@@ -10,23 +11,19 @@ public class SpawnObject : MonoBehaviour
     [SerializeField] private GameObject[] spawnObjList;
     [SerializeField] private List<GameObject> spawnlist;
     [SerializeField] private float spawnDistance;
-    [SerializeField] private int numberofBlock;
     [SerializeField] private MeshRenderer meshref;
     [SerializeField] private float lane;
     [SerializeField]
     private int a;
     [SerializeField] private Vector3 spawnPos;
-    [SerializeField] private SpawnMap getRoadindex;
-    [SerializeField] private int roadIndex;
-    [SerializeField] private GameObject laneObject;
+    private LeanGameObjectPool blockPool;
     void Start()
     {
+        blockPool = GameObject.FindWithTag("BlockPool").GetComponent<LeanGameObjectPool>();
         foreach (Transform child in gameObject.transform)
         {
             Destroy(child.gameObject);
         }
-        GameObject road = gameObject.transform.parent.gameObject.transform.parent.gameObject.transform.parent.transform.parent.gameObject;
-        getRoadindex = road.GetComponent<SpawnMap>();
         Spawn();
     }
 
@@ -45,24 +42,10 @@ public class SpawnObject : MonoBehaviour
             if(r > 60)
             {
                 a = Random.Range(0, spawnObjList.Length);
-                if(lane == 0)
-                {
-                    if (a == spawnObjList.Length - 1)
-                    {
-                        if(CanSpawnTriple())
-                        {
-                            GameObject block = Instantiate(spawnObjList[a], transform.position, spawnObjList[a].transform.rotation, gameObject.transform);
-                            spawnlist.Add(block);
-                            i++;
-                        }
-                    }
-                }
-                else
-                {
-                    GameObject block = Instantiate(spawnObjList[a], transform.position, spawnObjList[a].transform.rotation, gameObject.transform);
-                    spawnlist.Add(block);
-                    i++;
-                }
+                blockPool.Prefab = spawnObjList[a];
+                GameObject block = blockPool.Spawn(transform.position, spawnObjList[a].transform.rotation, gameObject.transform);
+                spawnlist.Add(block);
+                i++;
             }
             spawnPos = transform.position;
         }
@@ -75,43 +58,12 @@ public class SpawnObject : MonoBehaviour
                 r = Random.Range(0, 100);
                 if(r > 60)
                 {
-                    a = Random.Range(0, spawnObjList.Length);
-                    if (lane == 0)
-                    {
-                        if (a == spawnObjList.Length - 1)
-                        {
-                            if(CanSpawnTriple())
-                            {
-                                GameObject block = Instantiate(spawnObjList[a], transform.position, spawnObjList[a].transform.rotation, gameObject.transform);
-                                spawnlist.Add(block);
-                                i++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        GameObject block = Instantiate(spawnObjList[a], spawnPos, spawnObjList[a].transform.rotation);
-                        spawnlist.Add(block);
-                        i++;
-                    }
+                    blockPool.Prefab = spawnObjList[a];
+                    GameObject block = blockPool.Spawn(spawnPos, spawnObjList[a].transform.rotation, gameObject.transform);
+                    spawnlist.Add(block);
+                    i++;
                 }
             }
-        }
-    }
-
-    private bool CanSpawnTriple()
-    {
-        roadIndex = Array.IndexOf(getRoadindex.RoadMspawn, laneObject);
-        if (getRoadindex.RoadMspawn[roadIndex].GetComponent<RoadType>().type != TypeRoad.Hillup ||
-            getRoadindex.RoadMspawn[roadIndex].GetComponent<RoadType>().type != TypeRoad.HillDown ||
-            getRoadindex.RoadMspawn[roadIndex].GetComponent<RoadType>().type != TypeRoad.Hillup ||
-            getRoadindex.RoadMspawn[roadIndex].GetComponent<RoadType>().type != TypeRoad.HillDown)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }

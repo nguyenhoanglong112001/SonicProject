@@ -6995,6 +6995,7 @@ GameObject:
   - component: {fileID: 7211785523169872918}
   - component: {fileID: 7227692694637785821}
   - component: {fileID: 2167771323178623951}
+  - component: {fileID: -6464414475845164211}
   m_Layer: 8
   m_Name: EnemyCrab
   m_TagString: Enemy
@@ -7062,6 +7063,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!114 &-6464414475845164211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7274515631563245838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 2
 --- !u!1 &7274559667007157635
 GameObject:
   m_ObjectHideFlags: 0

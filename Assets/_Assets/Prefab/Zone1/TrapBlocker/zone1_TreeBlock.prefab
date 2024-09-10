@@ -126,6 +126,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9087479619388452592}
   - component: {fileID: 3148604912418941236}
+  - component: {fileID: 7780206835461888749}
+  - component: {fileID: -3692485476032317330}
   m_Layer: 0
   m_Name: zone1_TreeBlock
   m_TagString: Blocker
@@ -163,6 +165,34 @@ CapsuleCollider:
   m_Height: 4.6812563
   m_Direction: 1
   m_Center: {x: 0, y: 1.8406279, z: 0}
+--- !u!114 &7780206835461888749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085703861445067173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abea2e72c920ec449e0a14d648f681a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 0
+--- !u!114 &-3692485476032317330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085703861445067173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 1
 --- !u!1 &9085875793357699796
 GameObject:
   m_ObjectHideFlags: 0

@@ -4743,6 +4743,8 @@ GameObject:
   - component: {fileID: 520439804439028023}
   - component: {fileID: -6068782058152026848}
   - component: {fileID: 4695316543808168137}
+  - component: {fileID: 7304812877807293203}
+  - component: {fileID: 2783375473328952957}
   m_Layer: 17
   m_Name: shield
   m_TagString: Untagged
@@ -4876,3 +4878,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   check: {fileID: 0}
+  objectPool: {fileID: 0}
+  pooltag: 3
+--- !u!114 &7304812877807293203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425571814023937232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b5f2424c8d49947b2f96167b522eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 0
+--- !u!114 &2783375473328952957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425571814023937232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 3

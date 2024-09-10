@@ -2463,6 +2463,8 @@ GameObject:
   - component: {fileID: 3815950316992468268}
   - component: {fileID: 3926441206881429199}
   - component: {fileID: 5452208860916177401}
+  - component: {fileID: 99139441460415481}
+  - component: {fileID: -2968622806655341902}
   m_Layer: 17
   m_Name: rings10_model
   m_TagString: Untagged
@@ -2598,6 +2600,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 10
+  collectPool: {fileID: 0}
+--- !u!114 &99139441460415481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792542367761125046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b5f2424c8d49947b2f96167b522eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 5
+--- !u!114 &-2968622806655341902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792542367761125046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 3
 --- !u!1 &3793086009731795062
 GameObject:
   m_ObjectHideFlags: 0

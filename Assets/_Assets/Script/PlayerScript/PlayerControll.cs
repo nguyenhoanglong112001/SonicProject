@@ -15,6 +15,9 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
     [SerializeField] private EnemyAttackIdentify setEnemyAttack;
+    [SerializeField] private ScoreScript updateScore;
+    [SerializeField] private int enemyScore;
+    [SerializeField] private MutiplyerScript mutiply;
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
@@ -79,6 +82,10 @@ public class PlayerControll : MonoBehaviour
                 {
                     checkcollect.SetShield(false);
                 }
+                else
+                {
+                    updateScore.UpdateScore(enemyScore);
+                }    
             }
             else
             {
@@ -91,7 +98,6 @@ public class PlayerControll : MonoBehaviour
                 }
                 else if (checkcollect.GetRing() <= 0)
                 {
-                    Debug.Log(collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>());
                     if (collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>() != null)
                     {
                         setEnemyAttack = collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>();
@@ -111,4 +117,19 @@ public class PlayerControll : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("DoubleMutiply"))
+        {
+            StartCoroutine(MutiplyerCountDown());
+        }    
+    }
+
+    IEnumerator MutiplyerCountDown()
+    {
+        mutiply.Mutiplyer *= 2;
+        yield return new WaitForSeconds(5.0f);
+        mutiply.Mutiplyer /= 2;
+    }    
 }

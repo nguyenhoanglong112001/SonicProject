@@ -58,8 +58,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159703011114686438}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.9}
+  m_LocalPosition: {x: 0, y: -0.0031, z: -0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.92223}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8772026748531908764}
@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 1
+  collectPool: {fileID: 0}
 --- !u!1 &2233941401908633124
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 1
+  collectPool: {fileID: 0}
 --- !u!1 &3952851557273943401
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,8 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 6885532955116038599}
   - {fileID: 1717915603671933465}
@@ -475,6 +477,7 @@ MonoBehaviour:
   - {fileID: 2233941401908633124}
   - {fileID: 5066062702757470054}
   typeCheck: {fileID: 8772026748531908759}
+  collectablePool: {fileID: 0}
 --- !u!1 &4833287916443136609
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,8 +528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 5258541459379761110}
   - {fileID: 7390807961963963659}
@@ -535,6 +538,7 @@ MonoBehaviour:
   - {fileID: 460619854767149540}
   - {fileID: 3978696787866959254}
   typeCheck: {fileID: 8772026748531908759}
+  collectablePool: {fileID: 0}
 --- !u!1 &5066062702757470054
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 1
+  collectPool: {fileID: 0}
 --- !u!1 &5258541459379761110
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 1
+  collectPool: {fileID: 0}
 --- !u!1 &7247606957333714899
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   check: {fileID: 0}
   ringsup: 1
+  collectPool: {fileID: 0}
 --- !u!1 &7390807961963963659
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 0
 --- !u!1 &8772026749485874955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,8 +1024,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772026750281810309}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: -29.875984, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 0.9}
+  m_LocalPosition: {x: 0, y: -30.617054, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 0.92223}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8772026748531908764}

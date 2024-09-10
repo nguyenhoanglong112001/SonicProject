@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4144987450699864}
+  - component: {fileID: 3113356742072264055}
+  - component: {fileID: -4222806912587352894}
   m_Layer: 0
   m_Name: ob_zone1_triple_jump1
   m_TagString: Blocker
@@ -34,6 +36,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &3113356742072264055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220932949790444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abea2e72c920ec449e0a14d648f681a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 2
+--- !u!114 &-4222806912587352894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220932949790444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 1
 --- !u!1 &1229539904935411
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +402,9 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
   changeSpawn: 50
+  getRoadindex: {fileID: 0}
+  roadIndex: 0
+  lane: {fileID: 0}
 --- !u!1 &7403935722429783844
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +486,9 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
   changeSpawn: 50
+  getRoadindex: {fileID: 0}
+  roadIndex: 0
+  lane: {fileID: 0}
 --- !u!1 &8504537538619123374
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,3 +536,6 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
   changeSpawn: 50
+  getRoadindex: {fileID: 0}
+  roadIndex: 0
+  lane: {fileID: 0}

@@ -1,3 +1,4 @@
+using Lean.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,13 @@ public class EnerBeamPickUp : MonoBehaviour
     [SerializeField] private GameObject railprefab;
     [SerializeField] private Transform spawnpoint;
     private GameObject enerbeamRail;
+    [SerializeField] private LeanGameObjectPool objPool;
+    [SerializeField] private PoolTag pooltag;
     // Start is called before the first frame update
     void Start()
     {
         checkcollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
+        objPool = GameObject.FindWithTag(pooltag.ToString()).GetComponent<LeanGameObjectPool>();
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class EnerBeamPickUp : MonoBehaviour
             {
                 enerbeamRail = Instantiate(railprefab, spawnpoint.position,railprefab.transform.rotation);
             }
-            Destroy(gameObject);
+            objPool.Despawn(gameObject);
         }
     }
 

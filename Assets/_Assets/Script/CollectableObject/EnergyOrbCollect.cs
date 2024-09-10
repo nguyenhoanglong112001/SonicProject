@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class EnergyOrbCollect : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class EnergyOrbCollect : MonoBehaviour
     [SerializeField] private float dashenergy;
     [SerializeField] private DashPower checkdash;
     [SerializeField] private GameObject ring;
-    private GameObject collectableObj;
+    [SerializeField] private LeanGameObjectPool collectPool;
     void Start()
     {
+        collectPool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         checkdash = GameObject.FindWithTag("Player").GetComponent<DashPower>();
     }
@@ -25,11 +27,11 @@ public class EnergyOrbCollect : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            if (check.Energydash < 100 && checkdash.isdashing)
+            if (check.Energydash < 100 && !checkdash.isdashing)
             {
                 check.Energydash += dashenergy;
             }    
-            Destroy(gameObject);
+            collectPool.Despawn(gameObject);
         }
     }
 }

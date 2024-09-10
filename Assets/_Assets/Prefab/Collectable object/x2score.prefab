@@ -4574,9 +4574,12 @@ GameObject:
   - component: {fileID: 4022778349300940374}
   - component: {fileID: 3844760335595303973}
   - component: {fileID: 1916010252133964514}
+  - component: {fileID: 4674903982388311313}
+  - component: {fileID: -994432446350108671}
+  - component: {fileID: -9050701096222360912}
   m_Layer: 17
   m_Name: x2score
-  m_TagString: Untagged
+  m_TagString: DoubleMutiply
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4694,6 +4697,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4674903982388311313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000766467081016615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b5f2424c8d49947b2f96167b522eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 1
+--- !u!114 &-994432446350108671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000766467081016615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 3
+--- !u!114 &-9050701096222360912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000766467081016615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347e3d419a1fc094da05a24f28c08de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mutiply: {fileID: 0}
+  timeCD: 5
+  objectPool: {fileID: 0}
+  pooltag: 3
 --- !u!1 &4000843875051898050
 GameObject:
   m_ObjectHideFlags: 0

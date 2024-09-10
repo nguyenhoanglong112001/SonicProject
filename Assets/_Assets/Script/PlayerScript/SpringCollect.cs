@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class SpringCollect : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SpringCollect : MonoBehaviour
     [SerializeField] private Transform startpoint;
     [SerializeField] private Transform endpoint;
     [SerializeField] private float speedtoeb;
+    [SerializeField] private LeanGameObjectPool pool;
+    [SerializeField] private SwitchBall checkBall;
     private Vector3 currentpos;
     private Vector3 lastpos;
 
@@ -48,6 +51,10 @@ public class SpringCollect : MonoBehaviour
         if(other.CompareTag("Spring"))
         {
             checkCollect.IsSpring = true;
+            //if (checkBall.isball)
+            //{
+            //    checkBall.SwitchToCharacter();
+            //}
             if (other.gameObject.GetComponent<SpringObject>().SpringGap && checkCollect.IsSpring)
             {
                 anim.SetBool("Spring", true);
@@ -55,12 +62,12 @@ public class SpringCollect : MonoBehaviour
             }
             else if (other.gameObject.GetComponent<SpringObject>().Springeb && checkCollect.IsSpring)
             {
+
                 lastpos = transform.position;
                 anim.SetBool("Spring", true);
                 rig.AddForce(Vector3.up * fouceUpRail * Time.deltaTime, ForceMode.Impulse);
-
             }
-            Destroy(other.gameObject);
+            pool.Despawn(other.gameObject);
         }
     }
 

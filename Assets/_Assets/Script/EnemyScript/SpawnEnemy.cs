@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Lean.Pool;
 
 public class SpawnEnemy : MonoBehaviour
 {
@@ -11,14 +12,12 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private SpawnMap getRoadindex;
     [SerializeField] private int roadIndex;
     [SerializeField] private GameObject lane;
+    private LeanGameObjectPool enemyPool;
     private GameObject roadToCheck; 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform child in gameObject.transform)
-        {
-            Destroy(child.gameObject);
-        }    
+        enemyPool = GameObject.FindWithTag("EnemyPool").GetComponent<LeanGameObjectPool>();
         EnemySpawn();
     }
     // Update is called once per frame
@@ -38,7 +37,8 @@ public class SpawnEnemy : MonoBehaviour
                     {
                         if(CanSpawnMotorBug())
                         {
-                            Instantiate(enemyPrefab[a], transform.position, enemyPrefab[a].transform.rotation, gameObject.transform);
+                            enemyPool.Prefab = enemyPrefab[a];
+                            enemyPool.Spawn(transform.position, enemyPrefab[a].transform.rotation);
                         }
                         else
                         {
@@ -46,7 +46,8 @@ public class SpawnEnemy : MonoBehaviour
                             {
                                 a = Random.Range(0, enemyPrefab.Length);
                             }
-                            Instantiate(enemyPrefab[a], transform.position, enemyPrefab[a].transform.rotation, gameObject.transform);
+                            enemyPool.Prefab = enemyPrefab[a];
+                            enemyPool.Spawn(transform.position, enemyPrefab[a].transform.rotation);
                         }
                     }
                 }

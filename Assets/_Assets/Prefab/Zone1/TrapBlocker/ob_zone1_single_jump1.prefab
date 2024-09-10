@@ -271,6 +271,8 @@ GameObject:
   - component: {fileID: 6021453302332988125}
   - component: {fileID: 122566095159209162}
   - component: {fileID: 7346273266837932016}
+  - component: {fileID: 7219619373149314477}
+  - component: {fileID: -3380824683053913743}
   m_Layer: 0
   m_Name: ob_zone1_single_jump1
   m_TagString: Blocker
@@ -325,6 +327,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7219619373149314477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024557395586320584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5abea2e72c920ec449e0a14d648f681a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 1
+--- !u!114 &-3380824683053913743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6024557395586320584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 1
 --- !u!1 &8001899720565509001
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,3 +402,6 @@ MonoBehaviour:
   enemyPrefab:
   - {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
   changeSpawn: 50
+  getRoadindex: {fileID: 0}
+  roadIndex: 0
+  lane: {fileID: 0}

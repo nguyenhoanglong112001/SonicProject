@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 8018761406919438343}
   - {fileID: 6902574323108865170}
@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 632209699897427412}
   - {fileID: 7515819941002818108}
   typeCheck: {fileID: 2371463001199008830}
+  collectablePool: {fileID: 0}
 --- !u!1 &2124722987496153706
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 0
 --- !u!1 &2371520700511915254
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,8 +582,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 6329470866811304680}
   - {fileID: 9209551121015653070}
@@ -588,6 +591,7 @@ MonoBehaviour:
   - {fileID: 3804772962174174901}
   - {fileID: 5014114856290027716}
   typeCheck: {fileID: 2371463001199008830}
+  collectablePool: {fileID: 0}
 --- !u!1 &5014114856290027716
 GameObject:
   m_ObjectHideFlags: 0

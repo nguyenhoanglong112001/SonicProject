@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4222853015332230}
   - component: {fileID: 205114398084217808}
-  - component: {fileID: 1041560707352173761}
+  - component: {fileID: 7889779241842353520}
   m_Layer: 13
   m_Name: Mesh
   m_TagString: Ground
@@ -61,8 +61,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 0}
   m_Enabled: 0
---- !u!64 &1041560707352173761
-MeshCollider:
+--- !u!65 &7889779241842353520
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -71,10 +71,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: -1
-  m_Mesh: {fileID: 4300000, guid: 2d2962f789ecf7e4ab270caf3e630c4a, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 1.7246552, y: 30.652767, z: 0.17939799}
+  m_Center: {x: 0.12944031, y: -14.826387, z: -0.05}
 --- !u!1 &1325554411980891
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 0
 --- !u!114 &3226130491571379703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +489,8 @@ MonoBehaviour:
   - {fileID: 700445936155767122, guid: cfaaf394fdef1634ca1c163cd4db9513, type: 3}
   - {fileID: 4686023603133257956, guid: 5f244d48eda43634fa39de68b02a9fcb, type: 3}
   - {fileID: 1417916253589185, guid: 7859fcf583aa14246a13ae615c81cfdb, type: 3}
+  spawnList: []
+  checkCollect: {fileID: 0}
 --- !u!1 &2490216820839628556
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,8 +572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 9127640014496914220}
   - {fileID: 6167074341795830734}
@@ -579,6 +582,7 @@ MonoBehaviour:
   - {fileID: 9140550507923719857}
   - {fileID: 923301268116705878}
   typeCheck: {fileID: 1629115696941409}
+  collectablePool: {fileID: 0}
 --- !u!1 &3971044614681261531
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,14 +689,10 @@ MonoBehaviour:
   - {fileID: 9085703861445067173, guid: cae5dfdf304e6f44babef712cf7ed7c7, type: 3}
   spawnlist: []
   spawnDistance: 10
-  numberofBlock: 0
   meshref: {fileID: 23535932460064669}
   lane: -1.6
   a: 0
   spawnPos: {x: 0, y: 0, z: 0}
-  getRoadindex: {fileID: 0}
-  roadIndex: 0
-  laneObject: {fileID: 1629115696941409}
 --- !u!1 &5560926644863114175
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,8 +918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca53a09f9733f7949a18f95f3eeaf876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 3513177437914828479, guid: 4c53456ecd9d1174c9e087fb3e6e3982, type: 3}
-  orb: {fileID: 4160636507538914450, guid: 4e9cf08d0ec41714088427b416c3f2ef, type: 3}
+  ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
+  orb: {fileID: 3300697731327550554, guid: 0b6247015b8a6fd4ea0e71475c0b0e86, type: 3}
   spawnPosList:
   - {fileID: 6952726751827283373}
   - {fileID: 716438922190918097}
@@ -927,6 +927,7 @@ MonoBehaviour:
   - {fileID: 2490216820839628556}
   - {fileID: 7529355397434006308}
   typeCheck: {fileID: 1629115696941409}
+  collectablePool: {fileID: 0}
 --- !u!1 &7529355397434006308
 GameObject:
   m_ObjectHideFlags: 0

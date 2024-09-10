@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class SpawnCollectable : MonoBehaviour
 {
@@ -8,20 +9,13 @@ public class SpawnCollectable : MonoBehaviour
     [SerializeField] private GameObject orb;
     [SerializeField] private GameObject[] spawnPosList;
     [SerializeField] private GameObject typeCheck;
+    [SerializeField] private LeanGameObjectPool collectablePool;
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform child in gameObject.transform)
-        {
-            foreach(Transform grandchild in child)
-            {
-                Destroy(grandchild.gameObject);
-            }    
-        }
-        Spawn();
+        collectablePool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
         if (typeCheck.GetComponent<RoadType>().type == TypeRoad.GapRoad)
         {
-            Debug.Log("GapRoad");
             SpawnStreak();
         }
         else
@@ -33,7 +27,6 @@ public class SpawnCollectable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void Spawn()
@@ -44,11 +37,17 @@ public class SpawnCollectable : MonoBehaviour
             int x = Random.Range(0, 100);
             if(x < 50)
             {
-                CollectableSpawn(ring);
+                for (int i =0;i < spawnPosList.Length;i++)
+                {
+                    CollectableSpawn(ring,spawnPosList[i].transform);
+                }    
             }
             else
             {
-                CollectableSpawn(orb);
+                for (int i = 0; i < spawnPosList.Length; i++)
+                {
+                    CollectableSpawn(orb, spawnPosList[i].transform);
+                }
             }
         }
         else if (r>85 && r<98)
@@ -57,11 +56,11 @@ public class SpawnCollectable : MonoBehaviour
             {
                 if(i%2 == 0)
                 {
-                    Instantiate(ring, spawnPosList[i].transform.position, ring.transform.rotation, gameObject.transform);
+                    CollectableSpawn(ring,spawnPosList[i].transform);
                 }
                 else
                 {
-                    Instantiate(orb, spawnPosList[i].transform.position, orb.transform.rotation, gameObject.transform);
+                    CollectableSpawn(orb, spawnPosList[i].transform);
                 }
             }
         }
@@ -72,15 +71,16 @@ public class SpawnCollectable : MonoBehaviour
         int r = Random.Range(0, 100);
         if (r >= 85)
         {
-            CollectableSpawn(ring);
+            for (int i = 0; i < spawnPosList.Length; i++)
+            {
+                CollectableSpawn(ring, spawnPosList[i].transform);
+            }
         }
     }
 
-    private void CollectableSpawn(GameObject obj)
+    private void CollectableSpawn(GameObject obj,Transform spawnPos)
     {
-        for (int i =0;i < spawnPosList.Length;i++)
-        {
-            Instantiate(obj, spawnPosList[i].transform.position, obj.transform.rotation, gameObject.transform);
-        }
+        collectablePool.Prefab = obj;
+        GameObject collectSpawn = collectablePool.Spawn(spawnPos.position, obj.transform.rotation);
     }
 }

@@ -3301,7 +3301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerrigi: {fileID: 853214710780529519}
-  speed: 15
+  speed: 8
   jumpforce: 300
   lanedistance: 1.6
   fallSpeed: 800
@@ -3388,9 +3388,11 @@ MonoBehaviour:
   ballcheck: {fileID: 7856080270845940547}
   checkdash: {fileID: 7408805255791538098}
   checkcollect: {fileID: 7408805256016576471}
+  change: {fileID: 7856080270845940547}
   playerlayer: 6
   enemylayer: 8
   blockerlayer: 7
+  setEnemyAttack: {fileID: 0}
   groundlayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -3443,7 +3445,7 @@ MonoBehaviour:
   switchcheck: {fileID: 7856080270845940547}
   isfalling: 0
   offset: 1
-  fallSpeed: 800
+  fallSpeed: 100
   checkRoad: {fileID: 0}
 --- !u!114 &7408805254435770488
 MonoBehaviour:
@@ -3545,6 +3547,8 @@ MonoBehaviour:
   startpoint: {fileID: 0}
   endpoint: {fileID: 0}
   speedtoeb: 1
+  pool: {fileID: 0}
+  checkBall: {fileID: 7856080270845940547}
 --- !u!1 &853214711134769660
 GameObject:
   m_ObjectHideFlags: 0

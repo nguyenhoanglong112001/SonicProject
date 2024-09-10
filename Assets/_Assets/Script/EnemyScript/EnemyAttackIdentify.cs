@@ -13,7 +13,6 @@ public class EnemyAttackIdentify : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Trigger");
             AttackOn = true;
             bugAttack.Playerpos = other.transform.position;
             gameObject.SetActive(false);

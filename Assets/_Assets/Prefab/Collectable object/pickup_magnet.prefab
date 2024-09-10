@@ -4743,6 +4743,8 @@ GameObject:
   - component: {fileID: 1317980295182572877}
   - component: {fileID: 8158033114081362695}
   - component: {fileID: 4315434434714350428}
+  - component: {fileID: 6676897106502351265}
+  - component: {fileID: -435167384184913614}
   m_Layer: 17
   m_Name: pickup_magnet
   m_TagString: Untagged
@@ -4877,3 +4879,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkmaget: {fileID: 0}
+  objPool: {fileID: 0}
+  pooltag: 3
+--- !u!114 &6676897106502351265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195120953986940634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b5f2424c8d49947b2f96167b522eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typed: 2
+--- !u!114 &-435167384184913614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195120953986940634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 3

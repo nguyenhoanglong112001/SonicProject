@@ -1,3 +1,4 @@
+using Lean.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     [SerializeField] private CollectManager check;
+    [SerializeField] private LeanGameObjectPool objectPool;
+    [SerializeField] private PoolTag pooltag;
     // Start is called before the first frame update
     void Start()
     {
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
+        objectPool = GameObject.FindWithTag(pooltag.ToString()).GetComponent<LeanGameObjectPool>();
     }
 
     // Update is called once per frame
@@ -22,7 +26,7 @@ public class Shield : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             check.SetShield(true);
-            Destroy(gameObject);
+            objectPool.Despawn(gameObject);
         }
     }
 }

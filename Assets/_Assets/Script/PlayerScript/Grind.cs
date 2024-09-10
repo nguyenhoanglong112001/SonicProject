@@ -35,7 +35,7 @@ public class Grind : MonoBehaviour
     void Update()
     {
         GrindRail();
-        if(israil)
+        if(israil && !check.Isenerbeam)
         {
             if (lane.CheckLane() == -1)
             {

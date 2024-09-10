@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 136823330822061234}
   - component: {fileID: 54283876732837637}
   - component: {fileID: 6276991270048609318}
+  - component: {fileID: -5015282152469168223}
   m_Layer: 8
   m_Name: EnemyBee
   m_TagString: Enemy
@@ -332,6 +333,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!114 &-5015282152469168223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304576850713913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53a9ba6e9043140807b7958369e29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 120
+  objPool: {fileID: 0}
+  pooltag: 2
 --- !u!1 &1433105395591836
 GameObject:
   m_ObjectHideFlags: 0

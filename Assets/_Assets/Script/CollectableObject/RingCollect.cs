@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class RingCollect : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private CollectManager check;
     [SerializeField] private int ringsup;
+    [SerializeField] private LeanGameObjectPool collectPool;
     void Start()
     {
+        if (gameObject.GetComponent<PowerType>() != null)
+        {
+            collectPool = GameObject.FindWithTag("PowerUpPool").GetComponent<LeanGameObjectPool>();
+        }
+        else
+        {
+            collectPool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
+        }    
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
     }
 
@@ -22,7 +32,7 @@ public class RingCollect : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             check.SetRing(ringsup);
-            Destroy(gameObject);
+            collectPool.Despawn(gameObject);
         }
     }
 }
