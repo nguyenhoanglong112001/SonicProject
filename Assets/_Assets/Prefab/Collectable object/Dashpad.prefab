@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4345975601667323}
   - component: {fileID: 65548038100761361}
   - component: {fileID: 205734938435386245}
-  - component: {fileID: 852122554}
   - component: {fileID: 6000232943255748417}
   m_Layer: 0
   m_Name: Dashpad
@@ -78,23 +77,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23099417694856559}
   m_Enabled: 1
---- !u!114 &852122554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1006289016796766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a392b2723bdec694b835e336d86e5c8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchball: {fileID: 0}
-  dashcheck: {fileID: 0}
-  dashdistance: 100
-  speed: {fileID: 0}
-  isdashpad: 0
 --- !u!114 &6000232943255748417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18861,7 +18843,7 @@ MeshRenderer:
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
+  m_ScaleInLightmap: 0.15634766
   m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0

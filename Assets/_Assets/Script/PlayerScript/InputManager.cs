@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private DashPad checkpad;
     [SerializeField] private PlayerControll checkground;
     [SerializeField] private float tospringspeed;
+    [SerializeField] private CheckLane getRoadDict;
 
     [SerializeField] private SpawnMap GetRoad;
     public int indexroad;
@@ -96,7 +97,7 @@ public class InputManager : MonoBehaviour
                     }
                     else
                     {
-                        if (lane > -1 && CheckChangeLane(lane-1))
+                        if (lane > -1 && CheckChangeLane(lane - 1))
                         {
                             lane--;
                         }
@@ -112,9 +113,9 @@ public class InputManager : MonoBehaviour
                         if (deltalY > 0 && checkground.GroundCheck())
                         {
                             Isjumping = true;
+                            isball = true;
                             playeranimator.SetTrigger("Roll");
                             playerrigi.AddForce(Vector3.up * jumpforce);
-                            isball = true;
                         }
                         else
                         {
@@ -160,43 +161,15 @@ public class InputManager : MonoBehaviour
 
     private bool CheckChangeLane(int lanetarget)
     {
-        if (GetRoad != null)
+        if (getRoadDict.RoadDict.ContainsKey(lanetarget))
         {
-            if (lanetarget == 1)
+            if(getRoadDict.RoadDict[lanetarget] == TypeRoad.Hillup || getRoadDict.RoadDict[lanetarget] == TypeRoad.HillDown || getRoadDict.RoadDict[lanetarget] == TypeRoad.GapRoad)
             {
-                if (GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
-                    || GetRoad.RoadRspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return false;
             }
-            else if (lanetarget == 0)
+            else
             {
-                if (GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
-                    || GetRoad.RoadMspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            else if (lanetarget == -1)
-            {
-                if (GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.Hillup || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.HillDown
-                    || GetRoad.RoadLspawn[indexroad].GetComponent<RoadType>().type == TypeRoad.GapRoad)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return true;
@@ -206,29 +179,29 @@ public class InputManager : MonoBehaviour
     {
         if (other.CompareTag("Road"))
         {
-            GetRoad = other.GetComponentInParent<SpawnMap>();
+            getRoadDict = other.GetComponentInParent<CheckLane>();
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (GetRoad != null)
-        {
-            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("StartRail"))
-            {
-                if (lane == 0)
-                {
-                    indexroad = Array.IndexOf(GetRoad.RoadMspawn, collision.gameObject.transform.parent.gameObject);
-                }
-                else if (lane == 1)
-                {
-                    indexroad = Array.IndexOf(GetRoad.RoadRspawn, collision.gameObject.transform.parent.gameObject);
-                }
-                else if (lane == -1)
-                {
-                    indexroad = Array.IndexOf(GetRoad.RoadLspawn, collision.gameObject.transform.parent.gameObject);
-                }
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (GetRoad != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("StartRail"))
+    //        {
+    //            if (lane == 0)
+    //            {
+    //                indexroad = Array.IndexOf(GetRoad.RoadMspawn, collision.gameObject.transform.parent.gameObject);
+    //            }
+    //            else if (lane == 1)
+    //            {
+    //                indexroad = Array.IndexOf(GetRoad.RoadRspawn, collision.gameObject.transform.parent.gameObject);
+    //            }
+    //            else if (lane == -1)
+    //            {
+    //                indexroad = Array.IndexOf(GetRoad.RoadLspawn, collision.gameObject.transform.parent.gameObject);
+    //            }
+    //        }
+    //    }
+    //}
 }

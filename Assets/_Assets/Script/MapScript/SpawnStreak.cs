@@ -35,7 +35,7 @@ public class SpawnStreak : MonoBehaviour
             else
             {
                 collectPool.Prefab = orb;
-                collectPool.Spawn(spawnPos, ring.transform.rotation, gameObject.transform);
+                collectPool.Spawn(spawnPos, ring.transform.rotation, gameObject.transform); 
             }
             spawnZ += 2;
             spawnPos = new Vector3(transform.position.x, transform.position.y, spawnZ);

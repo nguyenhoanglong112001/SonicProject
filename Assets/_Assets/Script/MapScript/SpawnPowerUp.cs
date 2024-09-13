@@ -6,14 +6,14 @@ using Lean.Pool;
 public class SpawnPowerUp : MonoBehaviour
 {
     [SerializeField] private GameObject[] powerList;
-    [SerializeField] private GameObject[] specialPowerUp;
-    [SerializeField] private List<GameObject> spawnList;
     [SerializeField] private CollectManager checkCollect;
-    private LeanGameObjectPool powerUpPool;
+    [SerializeField] private GameObject powerSpawn;
+
+    public GameObject PowerSpawn { get => powerSpawn; set => powerSpawn = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        powerUpPool = GameObject.FindWithTag("PowerUpPool").GetComponent<LeanGameObjectPool>();
         checkCollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         SpawnPower();
     }
@@ -28,38 +28,46 @@ public class SpawnPowerUp : MonoBehaviour
         int r = Random.Range(0, 100);
         if (r > 88 && r <98)
         {
-            int a = Random.Range(0, powerList.Length - 1);
+            int a = Random.Range(0, powerList.Length - 2);
             if(powerList[a].GetComponent<PowerType>().typed == TypePower.Shield)
             {
                 if(!checkCollect.CheckShield())
                 {
-                    powerUpPool.Prefab = powerList[a];
-                    GameObject power= powerUpPool.Spawn(transform.position, powerList[a].transform.rotation);
-                    spawnList.Add(power);
+                    ActivePowerPickUp(powerList[a]);
                 }
             }    
             else if (powerList[a].GetComponent<PowerType>().typed == TypePower.Magnet)
             {
                 if(!checkCollect.Ismaget)
                 {
-                    powerUpPool.Prefab = powerList[a];
-                    GameObject power = powerUpPool.Spawn(transform.position, powerList[a].transform.rotation);
-                    spawnList.Add(power);
+                    ActivePowerPickUp(powerList[a]);
                 }
             }
             else
             {
-                powerUpPool.Prefab = powerList[a];
-                GameObject power = powerUpPool.Spawn(transform.position, powerList[a].transform.rotation);
-                spawnList.Add(power);
-            }   
-        } 
-        else if (r >= 98)
+                ActivePowerPickUp(powerList[a]);
+            }
+            PowerSpawn = powerList[a];
+        }
+        else if (r > 98)
         {
-            int a = Random.Range(0, specialPowerUp.Length);
-            powerUpPool.Prefab = specialPowerUp[a];
-            GameObject power = powerUpPool.Spawn(transform.position, specialPowerUp[a].transform.rotation);
-            spawnList.Add(power);
+            ActivePowerPickUp(powerList[7]);
+            powerSpawn = powerList[7];
+        }
+    }
+    
+    private void ActivePowerPickUp(GameObject power)
+    {
+        foreach(GameObject obj in powerList)
+        {
+            if(obj != power)
+            {
+                obj.SetActive(false);
+            }
+            else
+            {
+                obj.SetActive(true);
+            }
         }
     }
 }

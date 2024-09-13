@@ -8,7 +8,7 @@ public class DashPad : MonoBehaviour
     [SerializeField] private DashPower dashcheck;
     [SerializeField] private float dashdistance;
     [SerializeField] private InputManager speed;
-    private Vector3 startpos;
+    [SerializeField] private Vector3 startpos;
     public bool isdashpad;
     private bool istrigger;
 
@@ -31,13 +31,14 @@ public class DashPad : MonoBehaviour
             if (Vector3.Distance(transform.position, startpos) > dashdistance && istrigger)
             {
                 isdashpad = false;
-                speed.SpeedUp(1/4);
+                speed.SpeedUp(1/2);
                 switchball.isball = false;
                 switchball.SwitchToCharacter();
                 dashcheck.isdashing = false;
                 istrigger = false;
             }
         }
+        Debug.Log(Vector3.Distance(transform.position, startpos));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +51,7 @@ public class DashPad : MonoBehaviour
             startpos = other.transform.position;
             if (Vector3.Distance(transform.position, startpos) < dashdistance)
             {
-                speed.SpeedUp(4);
+                speed.SpeedUp(2);
             }
             istrigger = true;
             isdashpad = true;

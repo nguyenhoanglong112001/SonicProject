@@ -6,6 +6,7 @@ public class AutoCollectRing : MonoBehaviour
 {
     [SerializeField] private CollectManager check;
     [SerializeField] private List<GameObject> Ring;
+    [SerializeField] private List<GameObject> Orb;
     [SerializeField] private Transform playerposition;
     [SerializeField] private float speed;
     // Start is called before the first frame update
@@ -17,24 +18,35 @@ public class AutoCollectRing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AutoCollect();
+        AutoCollect(Ring);
+        AutoCollect(Orb);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Ring"))
+        if(check.Ismaget)
         {
-            Ring.Add(other.gameObject);
+            if (other.CompareTag("Ring"))
+            {
+                Ring.Add(other.gameObject);
+            }
+        }
+        else if (check.IsOrbMaget)
+        {
+            if(other.CompareTag("Orb"))
+            {
+                Orb.Add(other.gameObject);
+            }
         }
     }
 
-    private void AutoCollect()
+    private void AutoCollect(List<GameObject> collectList)
     {
-        foreach(var ring in Ring)
+        foreach(var obj in collectList)
         {
-            if(ring!=null)
+            if(obj != null)
             {
-                ring.transform.position=Vector3.MoveTowards(ring.transform.position, playerposition.position, speed * Time.deltaTime);
+                obj.transform.position=Vector3.MoveTowards(obj.transform.position, playerposition.position, speed * Time.deltaTime);
             }
         }
     }

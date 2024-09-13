@@ -44,3 +44,4 @@ public class ScoreScript : MonoBehaviour
         scoreText.text = score.ToString();
     }
 }
+    
