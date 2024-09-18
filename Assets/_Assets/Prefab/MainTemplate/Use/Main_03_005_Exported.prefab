@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
+  objPrefab: {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
+  poolType: 2
 --- !u!1 &1056828643908584
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
+  objPrefab: {fileID: 1304576850713913, guid: 0ab0a4b3b1b76ad4fa2680050ed1fca9, type: 3}
+  poolType: 2
 --- !u!1 &1067387590411319
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4846547335139918}
-  - component: {fileID: 517661018877762329}
+  - component: {fileID: 4499527730637156423}
   m_Layer: 0
   m_Name: obj_debug_powerup
   m_TagString: Untagged
@@ -174,7 +176,7 @@ Transform:
   m_Father: {fileID: 4977864770697444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!114 &517661018877762329
+--- !u!114 &4499527730637156423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,18 +185,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100065185923644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf27310c0c758ca41b0bcabb43c52a72, type: 3}
+  m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerList:
-  - {fileID: 1195120953986940634, guid: 9797fa8da63b1ab449be284a7a9237e7, type: 3}
-  - {fileID: 700445936155767122, guid: cfaaf394fdef1634ca1c163cd4db9513, type: 3}
-  - {fileID: 3792542367761125046, guid: 545929b5ff1f11245a4ebc39636c730e, type: 3}
-  - {fileID: 5488194463139328266, guid: f5da625f133db3849bacb72bf279709b, type: 3}
-  - {fileID: 425571814023937232, guid: 05e69f0a1faa5e44c8a000e608ee1f35, type: 3}
-  - {fileID: 4000766467081016615, guid: a3af76793efd3d1498ebe9c607598fb0, type: 3}
-  spawnList: []
-  checkCollect: {fileID: 0}
+  objPrefab: {fileID: 1854025103104993, guid: 4a4e8b446a3e51a4ba9b82ee4bb05064, type: 3}
+  poolType: 3
 --- !u!1 &1119323126140100
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1313925017413947
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1596581242372910
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4893044090711102}
-  - component: {fileID: 249184297698183775}
+  - component: {fileID: 4504321060236570614}
   m_Layer: 0
   m_Name: obj_debug_powerup
   m_TagString: Untagged
@@ -844,7 +841,7 @@ Transform:
   m_Father: {fileID: 4796981853805166}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!114 &249184297698183775
+--- !u!114 &4504321060236570614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -853,18 +850,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1626039190792927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf27310c0c758ca41b0bcabb43c52a72, type: 3}
+  m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerList:
-  - {fileID: 1195120953986940634, guid: 9797fa8da63b1ab449be284a7a9237e7, type: 3}
-  - {fileID: 700445936155767122, guid: cfaaf394fdef1634ca1c163cd4db9513, type: 3}
-  - {fileID: 3792542367761125046, guid: 545929b5ff1f11245a4ebc39636c730e, type: 3}
-  - {fileID: 5488194463139328266, guid: f5da625f133db3849bacb72bf279709b, type: 3}
-  - {fileID: 425571814023937232, guid: 05e69f0a1faa5e44c8a000e608ee1f35, type: 3}
-  - {fileID: 4000766467081016615, guid: a3af76793efd3d1498ebe9c607598fb0, type: 3}
-  spawnList: []
-  checkCollect: {fileID: 0}
+  objPrefab: {fileID: 1854025103104993, guid: 4a4e8b446a3e51a4ba9b82ee4bb05064, type: 3}
+  poolType: 3
 --- !u!1 &1652980965395062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1767301096374139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595230566477589}
-  - component: {fileID: 355981622478601936}
+  - component: {fileID: 2283481558794056280}
   m_Layer: 0
   m_Name: obj_debug_powerup
   m_TagString: Untagged
@@ -1385,7 +1376,7 @@ Transform:
   m_Father: {fileID: 4414428409032312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
---- !u!114 &355981622478601936
+--- !u!114 &2283481558794056280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1394,18 +1385,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895616125118665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf27310c0c758ca41b0bcabb43c52a72, type: 3}
+  m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerList:
-  - {fileID: 1195120953986940634, guid: 9797fa8da63b1ab449be284a7a9237e7, type: 3}
-  - {fileID: 700445936155767122, guid: cfaaf394fdef1634ca1c163cd4db9513, type: 3}
-  - {fileID: 3792542367761125046, guid: 545929b5ff1f11245a4ebc39636c730e, type: 3}
-  - {fileID: 5488194463139328266, guid: f5da625f133db3849bacb72bf279709b, type: 3}
-  - {fileID: 425571814023937232, guid: 05e69f0a1faa5e44c8a000e608ee1f35, type: 3}
-  - {fileID: 4000766467081016615, guid: a3af76793efd3d1498ebe9c607598fb0, type: 3}
-  spawnList: []
-  checkCollect: {fileID: 0}
+  objPrefab: {fileID: 1854025103104993, guid: 4a4e8b446a3e51a4ba9b82ee4bb05064, type: 3}
+  poolType: 3
 --- !u!1 &1936355169801193
 GameObject:
   m_ObjectHideFlags: 0

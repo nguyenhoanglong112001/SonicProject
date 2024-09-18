@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1167182506380232
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1185241083890386
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1236534257232571
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4466281833191560}
+  - component: {fileID: 3102941115857889095}
   m_Layer: 0
   m_Name: obj_debug_powerup
   m_TagString: Untagged
@@ -401,6 +405,20 @@ Transform:
   m_Father: {fileID: 4139727126008253}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
+--- !u!114 &3102941115857889095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236534257232571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPrefab: {fileID: 1854025103104993, guid: 4a4e8b446a3e51a4ba9b82ee4bb05064, type: 3}
+  poolType: 3
 --- !u!1 &1241958917496471
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  objPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  poolType: 2
 --- !u!1 &1439862897389091
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +784,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  objPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  poolType: 2
 --- !u!1 &1445711040383544
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  objPrefab: {fileID: 7274515631563245838, guid: 2f11e1bf7fe64f34cb9b26bd423212de, type: 3}
+  poolType: 2
 --- !u!1 &1500290976302867
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +1011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  objPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  poolType: 2
 --- !u!1 &1532102311766843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d0f48903782a34885c552a827d08f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  objPrefab: {fileID: 1867135130405504, guid: 8cdc6aa7b8cca614a95dd99e5ddd733b, type: 3}
+  poolType: 2
 --- !u!1 &1675847693184574
 GameObject:
   m_ObjectHideFlags: 0
