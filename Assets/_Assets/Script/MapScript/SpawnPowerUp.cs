@@ -29,6 +29,7 @@ public class SpawnPowerUp : MonoBehaviour
         if (r > 88 && r <98)
         {
             int a = Random.Range(0, powerList.Length - 2);
+            Debug.Log(a);
             if(powerList[a].GetComponent<PowerType>().typed == TypePower.Shield)
             {
                 if(!checkCollect.CheckShield())
@@ -39,6 +40,13 @@ public class SpawnPowerUp : MonoBehaviour
             else if (powerList[a].GetComponent<PowerType>().typed == TypePower.Magnet)
             {
                 if(!checkCollect.Ismaget)
+                {
+                    ActivePowerPickUp(powerList[a]);
+                }
+            }
+            else if (powerList[a].GetComponent<PowerType>().typed == TypePower.OrbMagnet)
+            {
+                if(!checkCollect.IsOrbMaget)
                 {
                     ActivePowerPickUp(powerList[a]);
                 }

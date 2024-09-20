@@ -35,6 +35,7 @@ public enum TypePower
     Spring,
     Ring,
     RedRing,
+    OrbMagnet,
 }
 
 public enum PoolTag

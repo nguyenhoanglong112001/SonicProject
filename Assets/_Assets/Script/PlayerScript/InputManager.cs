@@ -21,8 +21,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] private PlayerControll checkground;
     [SerializeField] private float tospringspeed;
     [SerializeField] private CheckLane getRoadDict;
-
-    [SerializeField] private SpawnMap GetRoad;
     public int indexroad;
     private float minspeed;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
@@ -161,25 +159,29 @@ public class InputManager : MonoBehaviour
 
     private bool CheckChangeLane(int lanetarget)
     {
-        if (getRoadDict.RoadDict.ContainsKey(lanetarget))
+        if(getRoadDict != null)
         {
-            if(getRoadDict.RoadDict[lanetarget] == TypeRoad.Hillup || getRoadDict.RoadDict[lanetarget] == TypeRoad.HillDown || getRoadDict.RoadDict[lanetarget] == TypeRoad.GapRoad)
+            if (getRoadDict.Road.ContainsKey(lanetarget))
             {
-                return false;
-            }
-            else
-            {
-                return true;
+                if (getRoadDict.Road[lanetarget] == TypeRoad.Hillup || getRoadDict.Road[lanetarget] == TypeRoad.HillDown || getRoadDict.Road[lanetarget] == TypeRoad.GapRoad)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
         return true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Road"))
+        if(collision.gameObject.CompareTag("Ground"))
         {
-            getRoadDict = other.GetComponentInParent<CheckLane>();
+            GameObject objParent = collision.gameObject.transform.parent.gameObject;
+            getRoadDict = objParent.GetComponentInParent<CheckLane>();
         }
     }
 

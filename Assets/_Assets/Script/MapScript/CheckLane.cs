@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class CheckLane : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> listRoad;
-    [SerializeField] private Dictionary<int, TypeRoad> roadDict;
+    [SerializeField] private Dictionary<float, TypeRoad> road;
 
-    public List<GameObject> ListRoad { get => listRoad; set => listRoad = value; }
-    public Dictionary<int, TypeRoad> RoadDict { get => roadDict; set => roadDict = value; }
+    public Dictionary<float, TypeRoad> Road { get => road; set => road = value; }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Road = new Dictionary<float, TypeRoad>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public void AddValueToDict(float value, TypeRoad key)
+    {
+        Road.Add(value, key);
     }
 }

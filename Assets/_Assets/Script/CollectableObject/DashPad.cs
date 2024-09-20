@@ -38,7 +38,6 @@ public class DashPad : MonoBehaviour
                 istrigger = false;
             }
         }
-        Debug.Log(Vector3.Distance(transform.position, startpos));
     }
 
     private void OnTriggerEnter(Collider other)

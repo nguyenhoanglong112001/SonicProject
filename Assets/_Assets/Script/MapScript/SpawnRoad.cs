@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lean.Pool;
@@ -13,7 +13,7 @@ public class SpawnRoad : MonoBehaviour
     [SerializeField] private ZoneManager currentZone;
     [SerializeField] private Dictionary<Zone, GameObject> roadDict;
     [SerializeField] private CheckLane lane;
-    [SerializeField] private int laneKey;
+    [SerializeField] private float laneKey;
     private GameObject road;
     // Start is called before the first frame update
     void Start()
@@ -41,8 +41,11 @@ public class SpawnRoad : MonoBehaviour
         if(roadDict.ContainsKey(currentZone.currentZone))
         {
             roadPool.Prefab = roadDict[currentZone.currentZone];
-            road = roadPool.Spawn(transform.position, roadDict[currentZone.currentZone].transform.rotation, gameObject.transform);
-            lane.RoadDict.Add(laneKey, road.GetComponent<RoadType>().type);
+            road = roadPool.Spawn(transform.position, roadDict[currentZone.currentZone].transform.rotation,gameObject.transform);
+            if(road != null)
+            {
+                lane.AddValueToDict(laneKey, road.GetComponent<RoadType>().type);
+            }    
         }
     }
 }
