@@ -5,82 +5,76 @@ using Lean.Pool;
 
 public class SpawnCollectable : MonoBehaviour
 {
-    [SerializeField] private GameObject ring;
     [SerializeField] private GameObject orb;
-    [SerializeField] private GameObject[] spawnPosList;
-    [SerializeField] private GameObject typeCheck;
-    [SerializeField] private LeanGameObjectPool collectablePool;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject ring;
+    [SerializeField] private List<GameObject> spawnList;
+    [SerializeField] private LeanGameObjectPool pool;
+    [SerializeField] private Vector3 distanceSpawn;
+    [SerializeField] private int a;
+
+    private void Start()
     {
-        collectablePool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
-        if (typeCheck.GetComponent<RoadType>().type == TypeRoad.GapRoad)
+        foreach (Transform child in gameObject.transform)
         {
-            SpawnStreak();
+            if (child != null)
+            {
+                Destroy(child.gameObject);
+            }
         }
-        else
+        if(a == 0)
         {
-            Spawn();
+            a = Random.Range(4, 7);
         }
+        pool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
+        Spawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        
     }
 
     private void Spawn()
     {
         int r = Random.Range(0, 100);
-        if(r>=70 && r <85)
+        Vector3 pos = gameObject.transform.position;
+        if (r > 0 && r < 33)
         {
-            int x = Random.Range(0, 100);
-            if(x < 50)
+            for (int i = 0; i < a; i++)
             {
-                for (int i =0;i < spawnPosList.Length;i++)
-                {
-                    CollectableSpawn(ring,spawnPosList[i].transform);
-                }    
-            }
-            else
-            {
-                for (int i = 0; i < spawnPosList.Length; i++)
-                {
-                    CollectableSpawn(orb, spawnPosList[i].transform);
-                }
+                spawnList.Add(SpawnObject(ring, pos));
+                pos += distanceSpawn;
             }
         }
-        else if (r>85 && r<98)
+        else if (r >= 33 && r < 66)
         {
-            for (int i = 0; i < spawnPosList.Length; i++)
+            for (int i = 0; i < a; i++)
             {
-                if(i%2 == 0)
+                spawnList.Add(SpawnObject(orb, pos));
+                pos += distanceSpawn;
+            }
+        }
+        else if (r >= 66)
+        {
+            for (int i = 1; i < a; i++)
+            {
+                if(i % 2== 0)
                 {
-                    CollectableSpawn(ring,spawnPosList[i].transform);
+                    spawnList.Add(SpawnObject(ring,pos));
+                    pos += distanceSpawn;
                 }
                 else
                 {
-                    CollectableSpawn(orb, spawnPosList[i].transform);
+                    spawnList.Add(SpawnObject(orb, pos));
+                    pos += distanceSpawn;
                 }
             }
         }
     }
 
-    private void SpawnStreak()
+    private GameObject SpawnObject(GameObject objPrefab,Vector3 pos)
     {
-        int r = Random.Range(0, 100);
-        if (r >= 85)
-        {
-            for (int i = 0; i < spawnPosList.Length; i++)
-            {
-                CollectableSpawn(ring, spawnPosList[i].transform);
-            }
-        }
-    }
-
-    private void CollectableSpawn(GameObject obj,Transform spawnPos)
-    {
-        collectablePool.Prefab = obj;
-        GameObject collectSpawn = collectablePool.Spawn(spawnPos.position, obj.transform.rotation);
+        pool.Prefab = objPrefab;
+        return pool.Spawn(pos,objPrefab.transform.rotation,gameObject.transform);
     }
 }

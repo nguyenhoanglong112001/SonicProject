@@ -88,14 +88,14 @@ public class InputManager : MonoBehaviour
                 {
                     if (deltalX > 0)
                     {
-                        if (lane < 1 && CheckChangeLane(lane+1))
+                        if (lane < 1 && CheckChangeLane(lane+1,lane))
                         {
                             lane++;
                         }
                     }
                     else
                     {
-                        if (lane > -1 && CheckChangeLane(lane - 1))
+                        if (lane > -1 && CheckChangeLane(lane - 1,lane))
                         {
                             lane--;
                         }
@@ -157,19 +157,25 @@ public class InputManager : MonoBehaviour
         return lane;
     }
 
-    private bool CheckChangeLane(int lanetarget)
+    private bool CheckChangeLane(int lanetarget,int currentlane)
     {
         if(getRoadDict != null)
         {
-            if (getRoadDict.Road.ContainsKey(lanetarget))
+            if(getRoadDict.Road.ContainsKey(currentlane))
             {
-                if (getRoadDict.Road[lanetarget] == TypeRoad.Hillup || getRoadDict.Road[lanetarget] == TypeRoad.HillDown || getRoadDict.Road[lanetarget] == TypeRoad.GapRoad)
+                if (getRoadDict.Road[lanetarget] == TypeRoad.Road)
                 {
-                    return false;
-                }
-                else
-                {
-                    return true;
+                    if (getRoadDict.Road.ContainsKey(lanetarget))
+                    {
+                        if (getRoadDict.Road[lanetarget] == TypeRoad.Hillup || getRoadDict.Road[lanetarget] == TypeRoad.HillDown || getRoadDict.Road[lanetarget] == TypeRoad.GapRoad)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
         }

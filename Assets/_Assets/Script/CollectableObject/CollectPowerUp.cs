@@ -26,45 +26,48 @@ public class CollectPowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(currentPower.PowerSpawn != null)
         {
-            if(currentPower.PowerSpawn.CompareTag("Maget"))
+            if (other.CompareTag("Player"))
             {
-                check.Ismaget = true;
-            }
-            else if (currentPower.PowerSpawn.CompareTag("Shield"))
-            {
-                check.SetShield(true);
-            }
-            else if(currentPower.PowerSpawn.CompareTag("Ring10"))
-            {
-                check.SetRing(10);
-            }
-            else if (currentPower.PowerSpawn.CompareTag("Ring20"))
-            {
-                check.SetRing(20);
-            }
-            else if (currentPower.PowerSpawn.CompareTag("RedRing"))
-            {
-                check.SetRedStartRing(1);
-            }
-            else if(currentPower.PowerSpawn.CompareTag("EnerbeamPickUp"))
-            {
-                check.Isenerbeam = true;
-                if (enerbeamRail == null)
+                if (currentPower.PowerSpawn.CompareTag("Maget"))
                 {
-                    enerbeamRail = Instantiate(railprefab, spawnpoint.position, railprefab.transform.rotation);
+                    check.Ismaget = true;
                 }
+                else if (currentPower.PowerSpawn.CompareTag("Shield"))
+                {
+                    check.SetShield(true);
+                }
+                else if (currentPower.PowerSpawn.CompareTag("Ring10"))
+                {
+                    check.SetRing(10);
+                }
+                else if (currentPower.PowerSpawn.CompareTag("Ring20"))
+                {
+                    check.SetRing(20);
+                }
+                else if (currentPower.PowerSpawn.CompareTag("RedRing"))
+                {
+                    check.SetRedStartRing(1);
+                }
+                else if (currentPower.PowerSpawn.CompareTag("EnerbeamPickup"))
+                {
+                    check.Isenerbeam = true;
+                    if (enerbeamRail == null)
+                    {
+                        enerbeamRail = Instantiate(railprefab, spawnpoint.position, railprefab.transform.rotation);
+                    }
+                }
+                else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
+                {
+                    check.IsOrbMaget = true;
+                }
+                else if (currentPower.PowerSpawn.CompareTag("DoubleMutiply"))
+                {
+                    check.IsDouble = true;
+                }
+                powerPool.Despawn(gameObject);
             }
-            else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
-            {
-                check.IsOrbMaget = true;
-            }    
-            else if (currentPower.PowerSpawn.CompareTag("DoubleMutiply"))
-            {
-                check.IsDouble = true;
-            }
-            powerPool.Despawn(gameObject);
-        }    
+        }
     }
 }
