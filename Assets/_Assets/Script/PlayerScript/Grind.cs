@@ -20,6 +20,8 @@ public class Grind : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private float fallSpeed;
     [SerializeField] private SpawnMap checkRoad;
+    [SerializeField] private Vector3 newpos;
+    private Dictionary<float, GameObject> rail;
     private bool israil;
 
     public SplineContainer SplineContain { get => splineContain; set => splineContain = value; }
@@ -35,20 +37,9 @@ public class Grind : MonoBehaviour
     void Update()
     {
         GrindRail();
-        if(israil && !check.Isenerbeam)
+        if(israil)
         {
-            if (lane.CheckLane() == -1)
-            {
-                splineContain = splines[0];
-            }
-            else if (lane.CheckLane() == 0)
-            {
-                splineContain = splines[1];
-            }
-            else if (lane.CheckLane() == 1)
-            {
-                splineContain = splines[2];
-            }
+            ChangeRail(lane.CheckLane());
         }    
     }
 
@@ -72,18 +63,6 @@ public class Grind : MonoBehaviour
             {
                 israil = true;
                 playeranimator.SetBool("Grind", true);
-                if (lane.CheckLane() == -1)
-                {
-                    splineContain = splines[0];
-                }
-                else if (lane.CheckLane() == 0)
-                {
-                    splineContain = splines[1];
-                }
-                else if (lane.CheckLane() == 1)
-                {
-                    splineContain = splines[2];
-                }
             }
         }
     }
@@ -121,17 +100,34 @@ public class Grind : MonoBehaviour
             switchcheck.SwitchToCharacter();
             playeranimator.SetTrigger("StartEnerbeam"); 
         }
-        if(other.CompareTag("EndRail"))
+        if (other.CompareTag("EndRail"))
         {
-            splines.Clear();
-            splineContain = null;
-            playeranimator.SetBool("Grind", false);
-            israil = false;
-            //RailToRoad(checkRoad.RoadLspawn, other.transform.parent.gameObject);
-            //RailToRoad(checkRoad.RoadMspawn, other.transform.parent.gameObject);
-            //RailToRoad(checkRoad.RoadRspawn, other.transform.parent.gameObject);
+            if(israil)
+            {
+                Debug.Log("end");
+                splines.Clear();
+                splineContain = null;
+                gameObject.transform.position += newpos;
+                playeranimator.SetBool("Grind", false);
+                israil = false;
+            }    
         }
-        if(other.CompareTag("EndSpring") && check.IsSpring)
+        if (other.CompareTag("StartRail"))
+        {
+            if (!israil)
+            {
+                playeranimator.SetTrigger("StartGrind");
+            }
+            israil = true;
+            switchcheck.SwitchToCharacter();
+            progress = 0;
+            playeranimator.SetBool("Grind", true);
+            splineContain = other.gameObject.transform.parent.gameObject.GetComponentInChildren<SplineContainer>();
+            GameObject objparent = other.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+            Debug.Log(objparent);
+            rail = objparent.GetComponent<CheckLane>().Road;
+        }
+        if (other.CompareTag("EndSpring") && check.IsSpring)
         {
             splines.Clear();
             splineContain = null;
@@ -145,29 +141,8 @@ public class Grind : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void ChangeRail(int currentrail)
     {
-        if (collision.gameObject.CompareTag("StartRail"))
-        {
-            israil = true;
-            switchcheck.SwitchToCharacter();
-            progress = 0;
-            playeranimator.SetBool("Grind", true);
-            playeranimator.SetTrigger("StartGrind");
-            splineContain = collision.gameObject.transform.parent.gameObject.GetComponentInChildren<SplineContainer>();
-            //splines.Add(checkRoad.RoadLspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-            //splines.Add(checkRoad.RoadMspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-            //splines.Add(checkRoad.RoadRspawn[lane.indexroad].GetComponentInChildren<SplineContainer>());
-        }
-    }
-
-    private void RailToRoad(GameObject[] roadcheck,GameObject rail)
-    {
-        if(Array.IndexOf(roadcheck,rail) >= 0)
-        {
-            int index = Array.IndexOf(roadcheck, rail);
-            transform.position = new Vector3(roadcheck[index + 1].transform.position.x, roadcheck[index + 1].transform.position.y + offset, roadcheck[index + 1].transform.position.z + offset);
-            Debug.Log("playerPos: " + transform.position);
-        }
-    }
+        splineContain = rail[currentrail].GetComponent<SplineContainer>();
+    }    
 }

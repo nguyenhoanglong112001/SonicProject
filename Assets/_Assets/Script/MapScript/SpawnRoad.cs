@@ -44,7 +44,7 @@ public class SpawnRoad : MonoBehaviour
             road = roadPool.Spawn(transform.position, roadDict[currentZone.currentZone].transform.rotation,gameObject.transform);
             if(road != null)
             {
-                lane.AddValueToDict(laneKey, road.GetComponent<RoadType>().type);
+                lane.AddValueToDict(laneKey, road);
             }    
         }
     }

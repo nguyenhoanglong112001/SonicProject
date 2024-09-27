@@ -8,9 +8,11 @@ public class SpawnMap : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawnList;
     [SerializeField] private GameObject[] mapList;
+    [SerializeField] private GameObject[] railList;
     [SerializeField] private Transform spawnPos;
     [SerializeField] private LeanGameObjectPool roadPool;
     [SerializeField] private Transform objectParent;
+    private int a;
     private int lengthList = 3;
 
     // Start is called before the first frame update
@@ -38,17 +40,30 @@ public class SpawnMap : MonoBehaviour
     {
         for (int i =0;i<spawnList.Length;i++)
         {
-            int a = Random.Range(0, mapList.Length-1);
-            roadPool.Prefab = mapList[a];
+            int r = Random.Range(0, 100);
+            Transform objrotation;
+            if( r <=20)
+            {
+                a = Random.Range(0, mapList.Length - 1);
+                roadPool.Prefab = mapList[a];
+                objrotation = mapList[a].transform;
+            }
+            else
+            {
+                a = Random.Range(0, railList.Length - 1);
+                roadPool.Prefab = railList[a];
+                objrotation = railList[a].transform;
+            }
+
             if(i==0)
             {
-                spawnList[i] = roadPool.Spawn(spawnPos.position, mapList[a].transform.rotation,objectParent);
+                spawnList[i] = roadPool.Spawn(spawnPos.position, objrotation.rotation,objectParent);
                 spawnList[i].transform.localPosition =Vector3.zero ;
             }
             else
             {
                 Transform pos = spawnList[i-1].transform.GetChild(0);
-                spawnList[i] = roadPool.Spawn(pos.position, mapList[a].transform.rotation, objectParent);
+                spawnList[i] = roadPool.Spawn(pos.position, objrotation.rotation, objectParent);
             }
         }
     }    

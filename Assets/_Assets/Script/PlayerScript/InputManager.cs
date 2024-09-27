@@ -163,11 +163,11 @@ public class InputManager : MonoBehaviour
         {
             if(getRoadDict.Road.ContainsKey(currentlane))
             {
-                if (getRoadDict.Road[lanetarget] == TypeRoad.Road)
+                if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Road)
                 {
                     if (getRoadDict.Road.ContainsKey(lanetarget))
                     {
-                        if (getRoadDict.Road[lanetarget] == TypeRoad.Hillup || getRoadDict.Road[lanetarget] == TypeRoad.HillDown || getRoadDict.Road[lanetarget] == TypeRoad.GapRoad)
+                        if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Hillup || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.HillDown || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.GapRoad)
                         {
                             return false;
                         }
@@ -190,26 +190,4 @@ public class InputManager : MonoBehaviour
             getRoadDict = objParent.GetComponentInParent<CheckLane>();
         }
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (GetRoad != null)
-    //    {
-    //        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("StartRail"))
-    //        {
-    //            if (lane == 0)
-    //            {
-    //                indexroad = Array.IndexOf(GetRoad.RoadMspawn, collision.gameObject.transform.parent.gameObject);
-    //            }
-    //            else if (lane == 1)
-    //            {
-    //                indexroad = Array.IndexOf(GetRoad.RoadRspawn, collision.gameObject.transform.parent.gameObject);
-    //            }
-    //            else if (lane == -1)
-    //            {
-    //                indexroad = Array.IndexOf(GetRoad.RoadLspawn, collision.gameObject.transform.parent.gameObject);
-    //            }
-    //        }
-    //    }
-    //}
 }
