@@ -26,7 +26,7 @@ public class SpawnPowerUp : MonoBehaviour
     private void SpawnPower()
     {
         int r = Random.Range(0, 100);
-        if (r > 88 && r <98)
+        if (r > 0 && r <98)
         {
             int a = Random.Range(0, powerList.Length - 2);
             Debug.Log(a);

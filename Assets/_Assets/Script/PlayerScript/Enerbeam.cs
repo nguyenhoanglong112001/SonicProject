@@ -33,12 +33,10 @@ public class Enerbeam : MonoBehaviour
 
     private void MoveToRail()
     {
-        transform.position = Vector3.MoveTowards(startpoint.position, endpoint.transform.position, speedtorail * Time.deltaTime);
-        if (Vector3.Distance(transform.position,endpoint.transform.position) < 0.01f)
+        if (Vector3.Distance(transform.position,endpoint.transform.position) > 0.01f)
         {
-            playeranimator.SetBool("Enerbeam", true);
-            splines = endpoint.GetComponent<SplineContainer>();
-            checkrail.Israil = true;
+            playeranimator.SetTrigger("StartEnerbeam");
+            transform.position = Vector3.MoveTowards(startpoint.position, endpoint.transform.position, speedtorail * Time.deltaTime);
         }
     }
 
@@ -56,6 +54,13 @@ public class Enerbeam : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("StartRail"))
+        {
+            progress = 0;
+            playeranimator.SetBool("Enerbeam", true);
+            splines = other.gameObject.GetComponentInParent<SplineContainer>();
+            checkrail.Israil = true;
+        }    
         if(other.CompareTag("EndRail"))
         {
             splines = null;

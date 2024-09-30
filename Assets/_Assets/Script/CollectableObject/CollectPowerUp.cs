@@ -8,7 +8,7 @@ public class CollectPowerUp : MonoBehaviour
     [SerializeField] private CollectManager check;
     [SerializeField] private LeanGameObjectPool powerPool;
     [SerializeField] private SpawnPowerUp currentPower;
-    [SerializeField] private GameObject railprefab;
+    [SerializeField] private GameObject[] railprefab;
     [SerializeField] private Transform spawnpoint;
     private GameObject enerbeamRail;
     // Start is called before the first frame update
@@ -55,7 +55,8 @@ public class CollectPowerUp : MonoBehaviour
                     check.Isenerbeam = true;
                     if (enerbeamRail == null)
                     {
-                        enerbeamRail = Instantiate(railprefab, spawnpoint.position, railprefab.transform.rotation);
+                        int a = Random.Range(0, railprefab.Length - 1);
+                        enerbeamRail = Instantiate(railprefab[a], spawnpoint.position, railprefab[a].transform.rotation);
                     }
                 }
                 else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
