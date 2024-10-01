@@ -73,28 +73,6 @@ public class Grind : MonoBehaviour
         {
             checkRoad = other.GetComponentInParent<SpawnMap>();
         }
-        if (other.CompareTag("SpringRail"))
-        {
-            switchcheck.SwitchToCharacter();
-            progress = 0;
-            playeranimator.SetTrigger("StartGrind");
-            for (int i = 0; i < other.transform.childCount; i++)
-            {
-                splines.Add(other.transform.GetChild(i).GetComponentInChildren<SplineContainer>());
-            }
-            if (lane.CheckLane() == -1)
-            {
-                splineContain = splines[0];
-            }
-            else if (lane.CheckLane() == 0)
-            {
-                splineContain = splines[1];
-            }
-            else if (lane.CheckLane() == 1)
-            {
-                splineContain = splines[2];
-            }
-        }
         if(other.CompareTag("EnerbeamPickup"))
         {
             switchcheck.SwitchToCharacter();
@@ -104,13 +82,24 @@ public class Grind : MonoBehaviour
         {
             if(israil)
             {
-                Debug.Log("end");
                 splines.Clear();
                 splineContain = null;
                 gameObject.transform.position += newpos;
                 playeranimator.SetBool("Grind", false);
                 israil = false;
             }    
+            if(check.IsSpring)
+            {
+                splines.Clear();
+                splineContain = null;
+                playeranimator.SetBool("Grind", false);
+                israil = false;
+                isfalling = true;
+                playeranimator.SetBool("IsFalling", true);
+                playeranimator.SetBool("Spring", false);
+                check.IsSpring = false;
+                Destroy(other.gameObject.transform.parent.gameObject.transform.parent.gameObject, 1.0f);
+            }
         }
         if (other.CompareTag("StartRail"))
         {
@@ -126,18 +115,6 @@ public class Grind : MonoBehaviour
             GameObject objparent = other.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
             Debug.Log(objparent);
             rail = objparent.GetComponent<CheckLane>().Road;
-        }
-        if (other.CompareTag("EndSpring") && check.IsSpring)
-        {
-            splines.Clear();
-            splineContain = null;
-            playeranimator.SetBool("Grind", false);
-            israil = false;
-            isfalling = true;
-            playeranimator.SetBool("IsFalling", true);
-            playeranimator.SetBool("Spring", false);
-            check.IsSpring = false;
-            Destroy(other.gameObject.transform.parent.gameObject.transform.parent.gameObject, 1.0f);
         }
     }
 

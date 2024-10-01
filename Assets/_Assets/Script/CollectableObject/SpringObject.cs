@@ -7,10 +7,11 @@ public class SpringObject : MonoBehaviour
 {
     [SerializeField] private bool springGap;
     [SerializeField] private bool springeb;
-    [SerializeField] private GameObject ebRailPrefab;
+    [SerializeField] private GameObject[] ebRailPrefab;
     [SerializeField] private Transform pos;
     [SerializeField] private SpringCollect setendpoint;
     private GameObject ebrail;
+    private int a;
 
     public bool SpringGap { get => springGap; set => springGap = value; }
     public bool Springeb { get => springeb; set => springeb = value; }
@@ -19,6 +20,7 @@ public class SpringObject : MonoBehaviour
     {
         setendpoint = GameObject.FindWithTag("Player").GetComponent<SpringCollect>();
         pos.position = new Vector3(0, pos.position.y, pos.position.z);
+        a = Random.Range(0, ebRailPrefab.Length - 1);
     }
 
     private void OnTriggerStay(Collider other)
@@ -42,7 +44,7 @@ public class SpringObject : MonoBehaviour
             {
                 if (ebrail == null)
                 {
-                    ebrail = Instantiate(ebRailPrefab, pos.position, ebRailPrefab.transform.rotation);
+                    ebrail = Instantiate(ebRailPrefab[a], pos.position, ebRailPrefab[a].transform.rotation);
                     setendpoint.Endpoint = ebrail.gameObject.GetComponent<Transform>();
                 }
             }
