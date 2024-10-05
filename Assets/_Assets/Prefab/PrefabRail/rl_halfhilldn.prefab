@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4025793221835886}
   - component: {fileID: 33848869390173654}
   - component: {fileID: 23644531449159731}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: rl_halfhill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,9 +95,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4375756509307019}
   - component: {fileID: 205171679568645159}
-  - component: {fileID: 579537109671586069}
-  - component: {fileID: 905929360918001312}
-  m_Layer: 14
+  - component: {fileID: 2024719676855394556}
+  m_Layer: 0
   m_Name: rl_halfhilldn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 4025793221835886}
   - {fileID: 4980141744541389}
-  - {fileID: 5623366453735893116}
+  - {fileID: 823406765493626822}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
@@ -149,7 +148,7 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23740708941703473}
   m_Enabled: 1
---- !u!114 &579537109671586069
+--- !u!114 &2024719676855394556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,72 +183,92 @@ MonoBehaviour:
       TangentIn:
         x: -0
         y: -0
-        z: -0.26000002
+        z: -0.5141644
       TangentOut:
         x: 0
         y: 0
-        z: 0.26000002
+        z: 0.5141644
       Rotation:
         value:
-          x: 0
+          x: 0.012642882
           y: 0
           z: 0
-          w: 1
+          w: 0.99992007
     - Position:
         x: 0
-        y: 0
-        z: 2.6000001
+        y: -0.13
+        z: 5.14
       TangentIn:
         x: -0
         y: -0
-        z: -1.2753694
+        z: -2.1905558
       TangentOut:
         x: 0
         y: 0
-        z: 3.5640054
+        z: 3.8840194
       Rotation:
         value:
-          x: 0.021325639
+          x: 0.028618613
           y: 0
           z: 0
-          w: 0.99977255
+          w: 0.99959034
     - Position:
         x: 0
-        y: -1.73
-        z: 22.83
+        y: -1.57
+        z: 21.24
       TangentIn:
         x: -0
         y: -0
-        z: -5.046155
+        z: -3.3388453
       TangentOut:
         x: 0
         y: 0
-        z: 3.0002732
+        z: 1.4990026
       Rotation:
         value:
-          x: 0.032819513
+          x: 0.039953113
           y: 0
           z: 0
-          w: 0.99946123
+          w: 0.9992016
     - Position:
         x: 0
-        y: -2.06
-        z: 30
+        y: -1.8
+        z: 24.49
       TangentIn:
         x: -0
         y: -0
-        z: -0.717759
+        z: -1.227765
       TangentOut:
         x: 0
         y: 0
-        z: 0.717759
+        z: 1.5971924
       Rotation:
         value:
-          x: 0.022994291
-          y: 0
-          z: 0
-          w: 0.9997356
+          x: 0.02422334
+          y: 0.00008505787
+          z: 0.0000017161209
+          w: 0.99970657
+    - Position:
+        x: 0.0018758774
+        y: -1.9447289
+        z: 30.001915
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.5513815
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.5513815
+      Rotation:
+        value:
+          x: 0.01312534
+          y: 0.00017011048
+          z: 0.00000085410767
+          w: 0.99991393
     m_MetaData:
+    - Mode: 0
+      Tension: 0.5
     - Mode: 0
       Tension: 0.5
     - Mode: 0
@@ -269,19 +288,6 @@ MonoBehaviour:
       m_Data: []
   m_Knots:
     m_KnotsLink: []
---- !u!114 &905929360918001312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283949355420525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a25b189f9469c4ca938a903889dbdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 4
 --- !u!1 &1385419168432121
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +299,7 @@ GameObject:
   - component: {fileID: 4980141744541389}
   - component: {fileID: 33644098640205045}
   - component: {fileID: 23740708941703473}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: rl_halfhill_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +372,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7375781325671182284
+--- !u!1 &5421187486579630010
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,22 +380,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5623366453735893116}
-  - component: {fileID: 1866740113367730975}
-  m_Layer: 14
+  - component: {fileID: 823406765493626822}
+  - component: {fileID: 2784145290446712005}
+  m_Layer: 0
   m_Name: Start
   m_TagString: StartRail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5623366453735893116
+--- !u!4 &823406765493626822
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375781325671182284}
+  m_GameObject: {fileID: 5421187486579630010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -398,13 +404,13 @@ Transform:
   m_Father: {fileID: 4375756509307019}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1866740113367730975
+--- !u!65 &2784145290446712005
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7375781325671182284}
+  m_GameObject: {fileID: 5421187486579630010}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

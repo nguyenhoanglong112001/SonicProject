@@ -88,14 +88,14 @@ public class InputManager : MonoBehaviour
                 {
                     if (deltalX > 0)
                     {
-                        if (lane < 1 && CheckChangeLane(lane+1,lane))
+                        if (lane < 1 && CheckChangeLane(lane+1,lane) && !checkcollect.Isenerbeam)
                         {
                             lane++;
                         }
                     }
                     else
                     {
-                        if (lane > -1 && CheckChangeLane(lane - 1,lane))
+                        if (lane > -1 && CheckChangeLane(lane - 1,lane) && !checkcollect.Isenerbeam)
                         {
                             lane--;
                         }
@@ -106,7 +106,7 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    if(!checkdash.isdashing && !check.Israil)
+                    if(!checkdash.isdashing && !check.Israil && !checkcollect.Isenerbeam)
                     {
                         if (deltalY > 0 && checkground.GroundCheck())
                         {

@@ -21,6 +21,7 @@ public class SpringObject : MonoBehaviour
         setendpoint = GameObject.FindWithTag("Player").GetComponent<SpringCollect>();
         pos.position = new Vector3(0, pos.position.y, pos.position.z);
         a = Random.Range(0, ebRailPrefab.Length - 1);
+        Debug.Log(ebrail);
     }
 
     private void OnTriggerStay(Collider other)
@@ -38,12 +39,17 @@ public class SpringObject : MonoBehaviour
                 springeb = false;
             }
         }
-        if(other.CompareTag("Player"))
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            if(springeb)
+            if (springeb)
             {
                 if (ebrail == null)
                 {
+                    Debug.Log("SpawnRail");
                     ebrail = Instantiate(ebRailPrefab[a], pos.position, ebRailPrefab[a].transform.rotation);
                     setendpoint.Endpoint = ebrail.gameObject.GetComponent<Transform>();
                 }

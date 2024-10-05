@@ -33,6 +33,7 @@ public class CollectPowerUp : MonoBehaviour
                 if (currentPower.PowerSpawn.CompareTag("Maget"))
                 {
                     check.Ismaget = true;
+                    Debug.Log(check.Ismaget);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Shield"))
                 {

@@ -38,8 +38,7 @@ public class CollectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Maget(Ismaget);
-        Maget(IsOrbMaget);
+        Maget();
         Shield();
         if(Energydash <= 100)
         {
@@ -77,16 +76,19 @@ public class CollectManager : MonoBehaviour
     }
 
     public void SetRedStartRing(int redrings) => redstartring += redrings;
-    private void Maget(bool maget)
+    private void Maget()
     {
-        if(maget)
+        if(Ismaget || IsOrbMaget)
         {
             magetlimit.SetActive(true);
-            StartCoroutine(PowerCountDow(maget));
-        }
-        else
-        {
-            magetlimit.SetActive(false);
+            if(Ismaget)
+            {
+                StartCoroutine(PowerCountDow(Ismaget));
+            }
+            else if (IsOrbMaget)
+            {
+                StartCoroutine(PowerCountDow(IsOrbMaget));
+            }
         }
     }
 
@@ -99,7 +101,9 @@ public class CollectManager : MonoBehaviour
     }
     IEnumerator PowerCountDow(bool checkPara)
     {
+        magetlimit.SetActive(true);
         yield return new WaitForSeconds(timeCD);
+        magetlimit.SetActive(false);
         checkPara = false;
     }   
 

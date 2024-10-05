@@ -80,12 +80,15 @@ public class Grind : MonoBehaviour
         }
         if (other.CompareTag("EndRail"))
         {
+            
             if(israil)
             {
+                Debug.Log("end rail");
                 splines.Clear();
                 splineContain = null;
-                gameObject.transform.position += newpos;
                 playeranimator.SetBool("Grind", false);
+                rb.isKinematic = false;
+                gameObject.transform.position += newpos;
                 israil = false;
             }    
             if(check.IsSpring)
@@ -98,6 +101,7 @@ public class Grind : MonoBehaviour
                 playeranimator.SetBool("IsFalling", true);
                 playeranimator.SetBool("Spring", false);
                 check.IsSpring = false;
+                rb.isKinematic = false;
                 Destroy(other.gameObject.transform.parent.gameObject.transform.parent.gameObject, 1.0f);
             }
         }
@@ -107,13 +111,13 @@ public class Grind : MonoBehaviour
             {
                 playeranimator.SetTrigger("StartGrind");
             }
+            rb.isKinematic = true;
             israil = true;
             switchcheck.SwitchToCharacter();
             progress = 0;
             playeranimator.SetBool("Grind", true);
             splineContain = other.gameObject.transform.parent.gameObject.GetComponentInChildren<SplineContainer>();
             GameObject objparent = other.transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-            Debug.Log(objparent);
             rail = objparent.GetComponent<CheckLane>().Road;
         }
     }

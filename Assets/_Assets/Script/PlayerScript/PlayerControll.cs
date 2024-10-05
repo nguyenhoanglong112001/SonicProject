@@ -18,6 +18,9 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private ScoreScript updateScore;
     [SerializeField] private int enemyScore;
     [SerializeField] private MutiplyerScript mutiply;
+    [SerializeField] private float duration;
+    [SerializeField] private float fadeTime;
+    [SerializeField] private Material characterMat;
 
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
@@ -31,7 +34,6 @@ public class PlayerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public bool GroundCheck()
@@ -72,12 +74,10 @@ public class PlayerControll : MonoBehaviour
                 checkcollect.SetShield(false);
             }
         }
-
         if(collision.gameObject.CompareTag("Enemy"))
         {
             if(ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())
             {
-                Destroy(collision.gameObject);
                 if(checkcollect.CheckShield())
                 {
                     checkcollect.SetShield(false);
@@ -85,26 +85,12 @@ public class PlayerControll : MonoBehaviour
                 else
                 {
                     updateScore.UpdateScore(enemyScore);
-                }    
+                }
+                Destroy(collision.gameObject);
             }
             else
             {
-                if (checkcollect.GetRing() > 0)
-                {
-                    checkcollect.SetRing(-checkcollect.GetRing());
-                    Physics.IgnoreLayerCollision(playerlayer, enemylayer);
-                    Physics.IgnoreLayerCollision(playerlayer, blockerlayer);
-                    playeranimator.SetTrigger("Stumble");
-                }
-                else if (checkcollect.GetRing() <= 0)
-                {
-                    if (collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>() != null)
-                    {
-                        setEnemyAttack = collision.gameObject.GetComponentInChildren<EnemyAttackIdentify>();
-                        setEnemyAttack.AttackOn = false;
-                    }
-                    Death("Death1");
-                }
+                HitEnemy(collision.gameObject);
             }
         }
         if (collision.gameObject.CompareTag("NonGround"))
@@ -126,10 +112,57 @@ public class PlayerControll : MonoBehaviour
         }    
     }
 
+    private void HitEnemy(GameObject enemy)
+    {
+        if (checkcollect.GetRing() > 0)
+        {
+            Physics.IgnoreLayerCollision(playerlayer, enemylayer, true);
+            Physics.IgnoreLayerCollision(playerlayer, blockerlayer, true);
+            StartCoroutine(Ignore());
+            playeranimator.SetTrigger("Stumble");
+            checkcollect.SetRing(-checkcollect.GetRing());
+        }
+        else if (checkcollect.GetRing() <= 0)
+        {
+            if (enemy.GetComponentInChildren<EnemyAttackIdentify>() != null)
+            {
+                setEnemyAttack = enemy.gameObject.GetComponentInChildren<EnemyAttackIdentify>();
+                setEnemyAttack.AttackOn = false;
+            }
+            Death("Death1");
+        }
+    }
+
+    IEnumerator Ignore()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Physics.IgnoreLayerCollision(playerlayer, enemylayer, false);
+        Physics.IgnoreLayerCollision(playerlayer, blockerlayer, false);
+    }
+
     IEnumerator MutiplyerCountDown()
     {
         mutiply.Mutiplyer *= 2;
         yield return new WaitForSeconds(5.0f);
         mutiply.Mutiplyer /= 2;
+    }  
+    
+    IEnumerator CharacterFade()
+    {
+        for (int i = 0; i <fadeTime;i++)
+        {
+            SetAlpha(0f);
+            yield return new WaitForSeconds(duration);
+
+            SetAlpha(1f);
+            yield return new WaitForSeconds(duration);
+        }
+    } 
+    
+    private void SetAlpha(float alpha)
+    {
+        Color color = characterMat.color;
+        color.a = alpha;
+        characterMat.color = color;
     }    
 }
