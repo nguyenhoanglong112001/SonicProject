@@ -16,6 +16,7 @@ public class CollectManager : MonoBehaviour
     [SerializeField] private bool isSpring;
     [SerializeField] private bool isDouble;
     [SerializeField] private bool isOrbMaget;
+    [SerializeField] private bool isGrindSpeedUp;
     [SerializeField] private Image fillbar;
     [SerializeField] private Text textcoin;
     [SerializeField] private Text textRedRing;
@@ -26,6 +27,7 @@ public class CollectManager : MonoBehaviour
     public bool Ismaget { get => ismaget; set => ismaget = value; }
     public bool IsDouble { get => isDouble; set => isDouble = value; }
     public bool IsOrbMaget { get => isOrbMaget; set => isOrbMaget = value; }
+    public bool IsGrindSpeedUp { get => isGrindSpeedUp; set => isGrindSpeedUp = value; }
 
     // Start is called before the first frame update
     void Start()

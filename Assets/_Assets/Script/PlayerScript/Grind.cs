@@ -21,16 +21,19 @@ public class Grind : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] private SpawnMap checkRoad;
     [SerializeField] private Vector3 newpos;
+    private float ogSpeed;
     private Dictionary<float, GameObject> rail;
     private bool israil;
 
     public SplineContainer SplineContain { get => splineContain; set => splineContain = value; }
     public bool Isfalling { get => isfalling; set => isfalling = value; }
     public bool Israil { get => israil; set => israil = value; }
+    public float Speed { get => speed; set => speed = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        ogSpeed = Speed;
     }
 
     // Update is called once per frame
@@ -47,7 +50,7 @@ public class Grind : MonoBehaviour
     {
         if (splineContain != null && israil)
         {
-            progress += speed * Time.deltaTime;
+            progress += Speed * Time.deltaTime;
             progress = Mathf.Clamp01(progress);
             Vector3 pos = splineContain.EvaluatePosition(progress);
             pos.y += offset;
@@ -79,11 +82,13 @@ public class Grind : MonoBehaviour
             playeranimator.SetTrigger("StartEnerbeam"); 
         }
         if (other.CompareTag("EndRail"))
-        {
-            
+        {   
+            if(ogSpeed > Speed || ogSpeed < Speed)
+            {
+                Speed = ogSpeed;
+            }
             if(israil)
             {
-                Debug.Log("end rail");
                 splines.Clear();
                 splineContain = null;
                 playeranimator.SetBool("Grind", false);
@@ -91,7 +96,7 @@ public class Grind : MonoBehaviour
                 gameObject.transform.position += newpos;
                 israil = false;
             }    
-            if(check.IsSpring)
+            else if(check.IsSpring)
             {
                 splines.Clear();
                 splineContain = null;
@@ -125,5 +130,5 @@ public class Grind : MonoBehaviour
     private void ChangeRail(int currentrail)
     {
         splineContain = rail[currentrail].GetComponent<SplineContainer>();
-    }    
+    }  
 }
