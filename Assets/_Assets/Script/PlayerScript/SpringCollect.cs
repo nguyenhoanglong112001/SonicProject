@@ -15,6 +15,8 @@ public class SpringCollect : MonoBehaviour
     [SerializeField] private float speedtoeb;
     [SerializeField] private LeanGameObjectPool pool;
     [SerializeField] private SwitchBall checkBall;
+    [SerializeField] private ComboManager combo;
+    [SerializeField] private ComboUI comboType;
     private Vector3 currentpos;
     private Vector3 lastpos;
 
@@ -50,6 +52,8 @@ public class SpringCollect : MonoBehaviour
     {
         if(other.CompareTag("Spring"))
         {
+            combo.UpdateCombo();
+            comboType.ShowCombotype("Spring");
             checkCollect.IsSpring = true;
             //if (checkBall.isball)
             //{

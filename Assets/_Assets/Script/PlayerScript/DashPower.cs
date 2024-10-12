@@ -13,6 +13,9 @@ public class DashPower : MonoBehaviour
 
     [SerializeField] private float timeclick;
     [SerializeField] private float lastclicktime = -1;
+
+    [SerializeField] private int playerlayer;
+    [SerializeField] private int blockerlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class DashPower : MonoBehaviour
             {
                 if(Time.time - lastclicktime < timeclick && !isdashing)
                 {
+                    Physics.IgnoreLayerCollision(playerlayer, blockerlayer, true);
                     isdashing = true;
                     playeranimator.SetBool("Dash", true);
                     speed.SpeedUp(1.5f);
@@ -55,6 +59,7 @@ public class DashPower : MonoBehaviour
             yield return null;
         }
         playeranimator.SetBool("Dash", false);
+        Physics.IgnoreLayerCollision(playerlayer, blockerlayer, false);
         speed.SpeedUp(1 / 1.5f);
         isdashing = false;
     }

@@ -46,6 +46,17 @@ public enum PoolTag
     PowerUpPool,
     CollectablePool,
 }
+
+public enum ComboType
+{
+    Enemy,
+    Dodge,
+    Hoop,
+    Spring,
+    DashPad,
+    Smash,
+    TouchDown,
+}
 public class ObjectTypeList
 {
 }

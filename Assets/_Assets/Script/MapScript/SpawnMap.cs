@@ -42,7 +42,7 @@ public class SpawnMap : MonoBehaviour
         {
             int r = Random.Range(0, 100);
             Transform objrotation;
-            if( r <=50)
+            if( r <=90)
             {
                 a = Random.Range(0, mapList.Length - 1);
                 roadPool.Prefab = mapList[a];

@@ -15,7 +15,9 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
     [SerializeField] private EnemyAttackIdentify setEnemyAttack;
-    [SerializeField] private ScoreScript updateScore;
+    [SerializeField] private ScoreManager updateScore;
+    [SerializeField] private ComboManager comboUpdate;
+    [SerializeField] private ComboUI typeChange;
     [SerializeField] private int enemyScore;
     [SerializeField] private MutiplyerScript mutiply;
     [SerializeField] private float duration;
@@ -76,22 +78,7 @@ public class PlayerControll : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            if(ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())
-            {
-                if(checkcollect.CheckShield())
-                {
-                    checkcollect.SetShield(false);
-                }
-                else
-                {
-                    updateScore.UpdateScore(enemyScore);
-                }
-                Destroy(collision.gameObject);
-            }
-            else
-            {
-                HitEnemy(collision.gameObject);
-            }
+            KillEnemy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("NonGround"))
         {
@@ -110,6 +97,10 @@ public class PlayerControll : MonoBehaviour
         {
             StartCoroutine(MutiplyerCountDown());
         }    
+        if(other.CompareTag("Hoop"))
+        {
+            CollectHoop(other.gameObject);
+        }
     }
 
     private void HitEnemy(GameObject enemy)
@@ -131,6 +122,40 @@ public class PlayerControll : MonoBehaviour
             }
             Death("Death1");
         }
+    }
+
+    private void KillEnemy(GameObject enemyHit)
+    {
+        if (ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())
+        {
+            if (checkcollect.CheckShield())
+            {
+                checkcollect.SetShield(false);
+                typeChange.ShowCombotype("Enemy");
+            }
+            if(checkdash.isdashing)
+            {
+                comboUpdate.UpdateCombo();
+                typeChange.ShowCombotype("Smash");
+            }
+            else
+            {
+                updateScore.UpdateScore(enemyScore);
+                comboUpdate.UpdateCombo();
+                typeChange.ShowCombotype("Enemy");
+            }
+            Destroy(enemyHit);
+        }
+        else
+        {
+            HitEnemy(enemyHit);
+        }
+    }
+
+    private void CollectHoop(GameObject hoop)
+    {
+        comboUpdate.UpdateCombo();
+        typeChange.ShowCombotype("Hoop");
     }
 
     IEnumerator Ignore()
