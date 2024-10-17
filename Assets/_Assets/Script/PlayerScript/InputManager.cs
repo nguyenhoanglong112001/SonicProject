@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private DashPad checkpad;
-    [SerializeField] private PlayerControll checkground;
+    [SerializeField] private PlayerControll checkCondition;
     [SerializeField] private float tospringspeed;
     [SerializeField] private CheckLane getRoadDict;
     public int indexroad;
@@ -60,7 +60,7 @@ public class InputManager : MonoBehaviour
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
-        if(checkground.GroundCheck() && check.Isfalling)
+        if(checkCondition.GroundCheck() && check.Isfalling)
         {
             playeranimator.SetBool("IsFalling", false);
             check.Isfalling = false;
@@ -90,6 +90,12 @@ public class InputManager : MonoBehaviour
                     {
                         if (lane < 1 && CheckChangeLane(lane+1,lane) && !checkcollect.Isenerbeam)
                         {
+                            if(checkCondition._canDodge)
+                            {
+                                checkCondition.ComboUpdate("Dodge");
+                                checkCondition._canDodge = false;
+
+                            }
                             lane++;
                         }
                     }
@@ -97,6 +103,12 @@ public class InputManager : MonoBehaviour
                     {
                         if (lane > -1 && CheckChangeLane(lane - 1,lane) && !checkcollect.Isenerbeam)
                         {
+                            if (checkCondition._canDodge)
+                            {
+                                checkCondition.ComboUpdate("Dodge");
+                                checkCondition._canDodge = false;
+
+                            }
                             lane--;
                         }
                     }
@@ -108,7 +120,7 @@ public class InputManager : MonoBehaviour
                 {
                     if(!checkdash.isdashing && !check.Israil && !checkcollect.Isenerbeam)
                     {
-                        if (deltalY > 0 && checkground.GroundCheck())
+                        if (deltalY > 0 && checkCondition.GroundCheck())
                         {
                             Isjumping = true;
                             isball = true;

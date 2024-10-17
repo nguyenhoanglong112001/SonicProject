@@ -27,6 +27,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
     public bool isalive;
+    public bool _canDodge;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +100,11 @@ public class PlayerControll : MonoBehaviour
         }    
         if(other.CompareTag("Hoop"))
         {
-            CollectHoop(other.gameObject);
+            ComboUpdate("Hoop");
+        }
+        if(other.CompareTag("Dodge"))
+        {
+            _canDodge = true;
         }
     }
 
@@ -152,10 +157,10 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
-    private void CollectHoop(GameObject hoop)
+    public void ComboUpdate(string comboType)
     {
         comboUpdate.UpdateCombo();
-        typeChange.ShowCombotype("Hoop");
+        typeChange.ShowCombotype(comboType);
     }
 
     IEnumerator Ignore()
@@ -189,5 +194,5 @@ public class PlayerControll : MonoBehaviour
         Color color = characterMat.color;
         color.a = alpha;
         characterMat.color = color;
-    }    
+    }   
 }
