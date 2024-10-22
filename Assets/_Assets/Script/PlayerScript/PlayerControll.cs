@@ -80,6 +80,10 @@ public class PlayerControll : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             KillEnemy(collision.gameObject);
+            if(_canDodge)
+            {
+                _canDodge = false;
+            }
         }
         if (collision.gameObject.CompareTag("NonGround"))
         {
@@ -108,6 +112,17 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Dodge"))
+        {
+            if(_canDodge)
+            {
+                _canDodge = false;
+            }
+        }
+    }
+
     private void HitEnemy(GameObject enemy)
     {
         if (checkcollect.GetRing() > 0)
@@ -126,14 +141,6 @@ public class PlayerControll : MonoBehaviour
                 setEnemyAttack.AttackOn = false;
             }
             Death("Death1");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(_canDodge)
-        {
-            ComboUpdate("Dodge");
         }
     }
 

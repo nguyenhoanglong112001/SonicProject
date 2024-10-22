@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07204712, g: 0.46750873, b: 0.6597296, a: 1}
+  m_IndirectSpecularColor: {r: 0.07192973, g: 0.4683693, b: 0.66065204, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -281,6 +281,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &435579216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7016257087083828509, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+  m_PrefabInstance: {fileID: 1511108552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &545007729 stripped
@@ -558,8 +569,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   score: {fileID: 1077768835}
-  comboTime: 0
+  comboTime: 5
   comboAdd: 1
+  comboUI: {fileID: 1931353358}
   bonusScore: 10
 --- !u!4 &883011132
 Transform:
@@ -997,6 +1009,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1323306952, guid: cb58a99d90464254b903e006fd5f0f5e, type: 3}
+    - target: {fileID: 1296239980, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296239980, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.400002
+      objectReference: {fileID: 0}
     - target: {fileID: 1296239981, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1041,6 +1061,14 @@ PrefabInstance:
       propertyPath: comboType
       value: 
       objectReference: {fileID: 1931353360}
+    - target: {fileID: 1803907750, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803907750, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28.900002
+      objectReference: {fileID: 0}
     - target: {fileID: 1803907751, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1148,6 +1176,22 @@ PrefabInstance:
     - target: {fileID: 3703743934475207351, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016257087083828509, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016257087083828509, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016257087083828509, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016257087083828509, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7408805254484506772, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1436,6 +1480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboText: {fileID: 545007729}
   comboTypeText: {fileID: 109293333}
+  comboCountDown: {fileID: 435579216}
   combo: {fileID: 883011131}
 --- !u!1001 &6604317259017517889
 PrefabInstance:

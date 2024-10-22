@@ -9,6 +9,7 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private ScoreManager score;
     [SerializeField] private float comboTime;
     [SerializeField] private int comboAdd;
+    [SerializeField] private GameObject comboUI;
     private float remainTime;
     private int comboCount;
     [SerializeField] private int bonusScore;
@@ -22,11 +23,15 @@ public class ComboManager : MonoBehaviour
         }
     }
 
+    public float RemainTime { get => remainTime; set => remainTime = value; }
+    public float ComboTime { get => comboTime; set => comboTime = value; }
+
     // Start is called before the first frame update
     void Start()
     {
-        remainTime = comboTime;
+        RemainTime = ComboTime;
         ComboCount = 0;
+        OnComboChange.AddListener(CountDown);
     }
 
     // Update is called once per frame
@@ -38,8 +43,29 @@ public class ComboManager : MonoBehaviour
     public void UpdateCombo()
     {
         comboCount += comboAdd;
-        remainTime = comboTime;
+        if(comboCount %10 ==0 && comboCount >0)
+        {
+            bonusScore += 10;
+        }
         score.UpdateScore(bonusScore);
         OnComboChange.Invoke();
+    }
+
+    IEnumerator ComboCountDown()
+    {
+        RemainTime = ComboTime;
+        while (RemainTime > 0)
+        {
+            RemainTime -= Time.deltaTime;
+            yield return null;
+        }
+        comboUI.SetActive(false);
+        comboCount = 0;
+    }
+
+    public void CountDown()
+    {
+        StopCoroutine(ComboCountDown());
+        StartCoroutine(ComboCountDown());
     }
 }

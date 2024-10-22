@@ -7,6 +7,7 @@ public class ComboUI : MonoBehaviour
 {
     [SerializeField] private Text comboText;
     [SerializeField] private Text comboTypeText;
+    [SerializeField] private Image comboCountDown;
     [SerializeField] private ComboManager combo;
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +19,7 @@ public class ComboUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CountDownCombo();
     }
 
     public void ShowCombo()
@@ -32,4 +33,9 @@ public class ComboUI : MonoBehaviour
     {
         comboTypeText.text = comboType +  "!";
     }
+
+    public void CountDownCombo()
+    {
+        comboCountDown.fillAmount = combo.RemainTime / combo.ComboTime;
+    }    
 }

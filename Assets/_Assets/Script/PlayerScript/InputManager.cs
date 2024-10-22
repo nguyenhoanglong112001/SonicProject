@@ -93,7 +93,6 @@ public class InputManager : MonoBehaviour
                             if(checkCondition._canDodge)
                             {
                                 checkCondition.ComboUpdate("Dodge");
-                                checkCondition._canDodge = false;
 
                             }
                             lane++;
@@ -106,7 +105,6 @@ public class InputManager : MonoBehaviour
                             if (checkCondition._canDodge)
                             {
                                 checkCondition.ComboUpdate("Dodge");
-                                checkCondition._canDodge = false;
 
                             }
                             lane--;
