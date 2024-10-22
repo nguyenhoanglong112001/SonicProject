@@ -129,6 +129,14 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if(_canDodge)
+        {
+            ComboUpdate("Dodge");
+        }
+    }
+
     private void KillEnemy(GameObject enemyHit)
     {
         if (ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())

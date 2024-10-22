@@ -11,7 +11,7 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private int comboAdd;
     private float remainTime;
     private int comboCount;
-    private int bonusScore;
+    [SerializeField] private int bonusScore;
 
     public int ComboCount
     { 
@@ -19,7 +19,6 @@ public class ComboManager : MonoBehaviour
         set
         {
             comboCount = value;
-            score.UpdateScore(bonusScore);
         }
     }
 
@@ -40,6 +39,7 @@ public class ComboManager : MonoBehaviour
     {
         comboCount += comboAdd;
         remainTime = comboTime;
+        score.UpdateScore(bonusScore);
         OnComboChange.Invoke();
     }
 }
