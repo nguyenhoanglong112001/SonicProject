@@ -185,7 +185,8 @@ public class InputManager : MonoBehaviour
                 {
                     if (getRoadDict.Road.ContainsKey(lanetarget))
                     {
-                        if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Hillup || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.HillDown || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.GapRoad)
+                        if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Hillup || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.HillDown || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.GapRoad
+                            || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.TurnRoadL || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.TurnRoadR)
                         {
                             return false;
                         }
@@ -227,9 +228,9 @@ public class InputManager : MonoBehaviour
                 .SetLookAt(0.01f)
                 .OnComplete(() =>
                 {
-                    checkCondition.isTurn = false;
                     path = null;
                 });
+            checkCondition.isTurn = false;
         }
     }
 }
