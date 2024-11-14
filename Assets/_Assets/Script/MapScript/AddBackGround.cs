@@ -5,16 +5,12 @@ using UnityEngine;
 public class AddBackGround : MonoBehaviour
 {
     [SerializeField] private GameObject BackGround;
-    [SerializeField] private Transform pos;
-    private GameObject back;
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] private CheckLane checkEnd;
+    private void Start()
     {
-        if(other.CompareTag("Player"))
+        if(!checkEnd.isEndZone)
         {
-            if(back == null)
-            {
-                back = Instantiate(BackGround, pos.position, BackGround.transform.rotation);
-            }
+            Instantiate(BackGround, transform.position, BackGround.transform.rotation);
         }
     }
 }

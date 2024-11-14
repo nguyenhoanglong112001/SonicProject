@@ -66,5 +66,5 @@ public class SpawnMap : MonoBehaviour
                 spawnList[i] = roadPool.Spawn(pos.position, objrotation.rotation, objectParent);
             }
         }
-    }    
+    }   
 }

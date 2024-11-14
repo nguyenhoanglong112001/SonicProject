@@ -24,7 +24,9 @@ public class EndLessMap : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             if(mapspawn == null)
+            {
                 mapspawn = Instantiate(map, point.position, transform.rotation);
+            }
         }
     }
 }

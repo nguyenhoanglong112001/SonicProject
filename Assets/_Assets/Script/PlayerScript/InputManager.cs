@@ -1,7 +1,9 @@
+﻿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class InputManager : MonoBehaviour
 {
@@ -21,14 +23,19 @@ public class InputManager : MonoBehaviour
     [SerializeField] private PlayerControll checkCondition;
     [SerializeField] private float tospringspeed;
     [SerializeField] private CheckLane getRoadDict;
+    [SerializeField] private TypeRoad laneType;
     public int indexroad;
     private float minspeed;
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
-    private Vector3 startpoint;
-    private Vector3 endpoint;
+    private Vector3 startMousepoint;
+    private Vector3 endMousepoint;
     private bool iscrouching;
     private bool isjumping;
     private bool isball;
+
+    [Header("Dotween")]
+    public Transform[] path;
+    public float moveduration;
 
 
     public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
@@ -64,7 +71,8 @@ public class InputManager : MonoBehaviour
         {
             playeranimator.SetBool("IsFalling", false);
             check.Isfalling = false;
-        }    
+        }
+        TurnMoveMent();
         InputMove();
     }
 
@@ -72,18 +80,18 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            startpoint = Input.mousePosition;
+            startMousepoint = Input.mousePosition;
         }
         if(Input.GetMouseButton(0))
         {
-            endpoint = Input.mousePosition;
+            endMousepoint = Input.mousePosition;
         }
         if(Input.GetMouseButtonUp(0))
         {
-            if(distancetouch < Vector3.Distance(endpoint,startpoint))
+            if(distancetouch < Vector3.Distance(endMousepoint,startMousepoint))
             {
-                float deltalX = endpoint.x - startpoint.x;
-                float deltalY = endpoint.y - startpoint.y;
+                float deltalX = endMousepoint.x - startMousepoint.x;
+                float deltalY = endMousepoint.y - startMousepoint.y;
                 if (Mathf.Abs(deltalX) > Mathf.Abs(deltalY))
                 {
                     if (deltalX > 0)
@@ -198,6 +206,30 @@ public class InputManager : MonoBehaviour
         {
             GameObject objParent = collision.gameObject.transform.parent.gameObject;
             getRoadDict = objParent.GetComponentInParent<CheckLane>();
+            laneType = collision.gameObject.GetComponentInParent<RoadType>().type;
+        }
+    }
+
+    private void TurnMoveMent()
+    {
+        if(checkCondition.isTurn && checkCondition.wayPoints != null)
+        {
+            path = checkCondition.wayPoints;
+            Vector3[] pointPath = System.Array.ConvertAll(path, t => t.position);
+            if (pointPath[0] == transform.position)
+            {
+                List<Vector3> tempPath = new List<Vector3>(pointPath);
+                tempPath.RemoveAt(0);
+                pointPath = tempPath.ToArray();
+            }
+            transform.DOPath(pointPath, moveduration, PathType.CatmullRom, PathMode.Full3D)
+                .SetEase(Ease.Linear)
+                .SetLookAt(0.01f)
+                .OnComplete(() =>
+                {
+                    checkCondition.isTurn = false;
+                    path = null;
+                });
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -23,9 +24,10 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float fadeTime;
     [SerializeField] private Material characterMat;
-
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
+    public Transform[] wayPoints;
+    public bool isTurn;
     public bool isalive;
     public bool _canDodge;
     // Start is called before the first frame update
@@ -109,6 +111,11 @@ public class PlayerControll : MonoBehaviour
         if(other.CompareTag("Dodge"))
         {
             _canDodge = true;
+        }
+        if(other.CompareTag("StartTurn") && isTurn == false)
+        {
+            isTurn = true;
+            wayPoints = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
         }
     }
 
