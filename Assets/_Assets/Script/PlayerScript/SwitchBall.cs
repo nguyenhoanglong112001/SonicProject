@@ -16,7 +16,8 @@ public class SwitchBall : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController characteranimator;
     [SerializeField] private CapsuleCollider charactercollider;
     [SerializeField] private SphereCollider ballcollider;
-    [SerializeField] private InputManager checkcondition;
+    //[SerializeField] private InputManager checkcondition;
+    [SerializeField] private PlayerStateManager checkcondition;
     [SerializeField] private Grind checkrail;
     [SerializeField] private CollectManager checkcollect;
 
@@ -55,12 +56,12 @@ public class SwitchBall : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(checkcondition.Isjumping)
+        if(checkcondition.isjump)
         {
             if(collision.gameObject.CompareTag("Ground"))
             {
                 SwitchToCharacter();
-                checkcondition.Isjumping = false;
+                checkcondition.isjump = false;
             }
         }
     }
