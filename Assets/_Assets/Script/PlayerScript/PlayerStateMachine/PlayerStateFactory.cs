@@ -30,4 +30,10 @@ public class PlayerStateFactory
     {
         return new TurnState();
     }
+
+    public RollState Roll()
+    {
+        return new RollState();
+    }
+
 }

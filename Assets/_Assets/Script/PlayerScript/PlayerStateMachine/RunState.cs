@@ -9,19 +9,16 @@ public class RunState : PlayerBaseState
 
     }
 
-    public override void OnCollisionEnter(PlayerStateManager player)
+    public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
     {
     }
 
-    public override void OnTriggerEnter(PlayerStateManager player)
+    public override void OnTriggerEnter(PlayerStateManager player, Collision collision)
     {
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        //player.transform.Translate(Vector3.forward * player.speed * Time.deltaTime);
-        //player.playerrigi.velocity = Vector3.forward * player.speed * Time.deltaTime;
-        Vector3 forwardMovement = Vector3.forward * player.speed * Time.deltaTime;
-        player.playerrigi.MovePosition(player.playerrigi.position + forwardMovement);
+        player.MoveForward();
     }
 }

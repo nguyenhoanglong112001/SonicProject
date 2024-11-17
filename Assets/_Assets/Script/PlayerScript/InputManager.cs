@@ -29,7 +29,6 @@ public class InputManager : MonoBehaviour
     private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
     private Vector3 startMousepoint;
     private Vector3 endMousepoint;
-    private bool iscrouching;
     private bool isjumping;
     private bool isball;
 
@@ -38,7 +37,6 @@ public class InputManager : MonoBehaviour
     public float moveduration;
 
 
-    public bool Iscrouching { get => iscrouching; set => iscrouching = value; }
     public bool Isball { get => isball; set => isball = value; }
     public bool Isjumping { get => isjumping; set => isjumping = value; }
 
@@ -75,6 +73,7 @@ public class InputManager : MonoBehaviour
         TurnMoveMent();
         InputMove();
     }
+
 
     private void InputMove()
     {
@@ -149,11 +148,8 @@ public class InputManager : MonoBehaviour
     IEnumerator ChangeCrouch()
     {
         switchcheck.ChangeBall();
-        iscrouching = true;
         yield return new WaitForSeconds(timeroll);
         switchcheck.SwitchToCharacter();
-        iscrouching = false;
-        isball = false;
     }
 
     private void Crouch()

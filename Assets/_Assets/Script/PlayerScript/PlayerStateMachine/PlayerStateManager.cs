@@ -11,6 +11,9 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] public PlayerControll checkCondition;
     [SerializeField] public Animator playeranimator;
     [SerializeField] public SwitchBall switchcheck;
+    [SerializeField] public CollectManager check;
+    public float minspeed;
+    public Coroutine crouchCoroutine;
     public Rigidbody playerrigi;
     [Header("Chi so chay")]
     public float speed;
@@ -24,9 +27,22 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Chi so nhay")]
     public float jumpforce;
 
+    [Header("chi so roll")]
+    public float landSpeed;
+    public float timeroll;
+
+    [Header("Chi so dash")]
+    public float duration;
+    public float timeclick;
+    public float lastclicktime = -1;
+    public int playerlayer;
+    public int blockerlayer;
+
     [Header("bien bool chung")]
     public bool isball;
     public bool isjump;
+    public bool isDash;
+
 
     private void Awake()
     {
@@ -43,7 +59,14 @@ public class PlayerStateManager : MonoBehaviour
     void Update()
     {
         InputMove();
+        Dash();
         currentState.UpdateState(this);
+        Debug.Log(currentState);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentState.OnCollisionEnter(this, collision);
     }
 
     public void SwitchState(PlayerBaseState state)
@@ -72,7 +95,7 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     if (deltalX > 0)
                     {
-                        if (lane < 1 && CheckChangeLane(lane + 1, lane) /*&& !checkcollect.Isenerbeam*/)
+                        if (lane < 1 && CheckChangeLane(lane + 1, lane) /*&& /*!checkcollect.Isenerbeam*/)
                         {
                             //if (checkCondition._canDodge)
                             //{
@@ -99,16 +122,18 @@ public class PlayerStateManager : MonoBehaviour
                 }
                 else
                 {
-                    if (deltalY > 0 && checkCondition.GroundCheck())
+                    if(!isDash)
                     {
-                        currentState = state.Jump();
-                        SwitchState(currentState);
-                    }
-                    else
-                    {
-                        playeranimator.SetTrigger("Roll");
-                        playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
-                        //Crouch();
+                        if (deltalY > 0 && checkCondition.GroundCheck())
+                        {
+                            currentState = state.Jump();
+                            SwitchState(currentState);
+                        }
+                        else
+                        {
+                            currentState = state.Roll();
+                            SwitchState(currentState);
+                        }
                     }
                 }
             }
@@ -139,6 +164,71 @@ public class PlayerStateManager : MonoBehaviour
         }
         return true;
     }
+
+    public IEnumerator ChangeCrouch()
+    {
+        Debug.Log("Roll");
+        switchcheck.ChangeBall();
+        yield return new WaitForSeconds(timeroll);
+        switchcheck.SwitchToCharacter();
+        currentState = state.Run();
+        SwitchState(currentState);
+    }
+
+    public void Crouch()
+    {
+        crouchCoroutine = StartCoroutine(ChangeCrouch());
+    }
+
+    public void MoveForward()
+    {
+        Vector3 forwardMovement = Vector3.forward * speed * Time.deltaTime;
+        playerrigi.MovePosition(playerrigi.position + forwardMovement);
+    }
+
+    private void Dash()
+    {
+        if (check.Energydash == 100)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Time.time - lastclicktime < timeclick)
+                {
+                    currentState = state.Dash();
+                    SwitchState(currentState);
+                }
+                lastclicktime = Time.time;
+            }
+        }
+    }
+
+    public IEnumerator DashTime()
+    {
+        float energy = check.Energydash;
+        float eslapedTime = 0;
+        while (eslapedTime < duration)
+        {
+            eslapedTime += Time.deltaTime;
+            check.Energydash = Mathf.Lerp(energy, 0, eslapedTime / duration);
+            yield return null;
+        }
+        isDash = false;
+        playeranimator.SetBool("Dash", false);
+        Physics.IgnoreLayerCollision(playerlayer, blockerlayer, false);
+        SpeedUp(1 / 1.5f);
+        currentState = state.Run();
+        SwitchState(currentState);
+    }
+
+    public void SpeedUp(float mutilpl)
+    {
+        speed *= mutilpl;
+        if (speed < minspeed)
+        {
+            speed = minspeed;
+        }
+    }
 }
+
 
 

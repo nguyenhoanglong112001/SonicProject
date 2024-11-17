@@ -446,8 +446,11 @@ MonoBehaviour:
   distancetouch: 100
   lanedistance: 1.6
   getRoadDict: {fileID: 0}
-  jumpforce: 10
+  jumpforce: 8
   isball: 0
+  isjump: 0
+  landSpeed: 1000
+  timeroll: 2
 --- !u!1 &391291555
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1361431833539416854, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
+      propertyPath: checkcondition
+      value: 
+      objectReference: {fileID: 374099801}
     - target: {fileID: 1816073562056212354, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
       propertyPath: fillbar
       value: 

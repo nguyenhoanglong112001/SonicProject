@@ -2,23 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollState : PlayerBaseState
+public class DashState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        if(player.isjump == true)
-        {
-            Debug.Log("land");
-            player.isjump = false;
-            player.playerrigi.velocity = Vector3.down * player.landSpeed * Time.deltaTime;
-        }
-        player.playeranimator.SetTrigger("Roll");
-        player.Crouch();
+        player.isDash = true;
+        Physics.IgnoreLayerCollision(player.playerlayer, player.blockerlayer, true);
+        player.playeranimator.SetBool("Dash", true);
+        player.SpeedUp(1.5f);
+        player.StartCoroutine(player.DashTime());
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
     {
-
     }
 
     public override void OnTriggerEnter(PlayerStateManager player, Collision collision)
