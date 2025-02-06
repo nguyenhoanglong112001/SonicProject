@@ -10,7 +10,9 @@ public class UIIngameManager : MonoBehaviour
     public Button quitBt;
     public Button SettingBt;
     public Button ResumeBt;
+    public Button exitBt;
     public GameObject pauseUI;
+    public GameObject endUI;
     public float delaytime;
 
     private void Awake()
@@ -26,6 +28,7 @@ public class UIIngameManager : MonoBehaviour
         pauseBt.onClick.AddListener(OnPauseBtPress);
         ResumeBt.onClick.AddListener(OnResumeBtPress);
         quitBt.onClick.AddListener(OnQuitBtPress);
+        exitBt.onClick.AddListener(ExitEndGame);
     }
 
     private void OnPauseBtPress()
@@ -42,6 +45,12 @@ public class UIIngameManager : MonoBehaviour
 
     private void OnQuitBtPress()
     {
+        GameManager.instance.ChangeGameState(GameState.Menu);
+    }
+
+    private void ExitEndGame()
+    {
+        endUI.SetActive(false);
         GameManager.instance.ChangeGameState(GameState.Menu);
     }
     IEnumerator ResumeGame()

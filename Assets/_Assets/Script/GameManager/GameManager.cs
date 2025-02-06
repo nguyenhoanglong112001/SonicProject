@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         if(state == GameState.EndGame)
         {
             playerState.currentState = null;
+            UIIngameManager.instance.endUI.SetActive(true);
         }
         if(state == GameState.InGame)
         {
