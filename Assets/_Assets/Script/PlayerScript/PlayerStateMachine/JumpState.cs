@@ -16,21 +16,17 @@ public class JumpState : PlayerBaseState
         player.isjump = true;
     }
 
-    public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
-    {
-    }
-
-    public override void OnTriggerEnter(PlayerStateManager player, Collision collision)
-    {
-    }
-
     public override void UpdateState(PlayerStateManager player)
     {
         player.MoveForward();
-        if (player.isjump != true)
+        if(!player.isjump)
         {
-            player.currentState = player.state.Run();
-            player.SwitchState(player.currentState);
+            player.newState = player.state.Run();
+            player.SwitchState(player.newState);
         }
+    }
+    public override void ExitState(PlayerStateManager player)
+    {
+
     }
 }

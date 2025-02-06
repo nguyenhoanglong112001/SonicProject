@@ -43,7 +43,7 @@ public class ScoreManager : MonoBehaviour
         currentpos = player.transform.position;
         if(checkalive.isalive)
         {
-            //UpdateScoreByDistance();
+            UpdateScoreByDistance();
         }
     }
 

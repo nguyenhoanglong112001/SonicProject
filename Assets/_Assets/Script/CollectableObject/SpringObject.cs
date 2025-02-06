@@ -21,7 +21,6 @@ public class SpringObject : MonoBehaviour
         setendpoint = GameObject.FindWithTag("Player").GetComponent<SpringCollect>();
         pos.position = new Vector3(0, pos.position.y, pos.position.z);
         a = Random.Range(0, ebRailPrefab.Length - 1);
-        Debug.Log(ebrail);
     }
 
     private void OnTriggerStay(Collider other)

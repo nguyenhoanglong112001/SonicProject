@@ -5,6 +5,7 @@ using UnityEngine.Splines;
 
 public class PlayerControll : MonoBehaviour
 {
+    [SerializeField] private PlayerStateManager player;
     [SerializeField] private Animator playeranimator;
     [SerializeField] private Rigidbody playerrigi;
     [SerializeField] private float knock;
@@ -59,12 +60,13 @@ public class PlayerControll : MonoBehaviour
         playeranimator.SetTrigger(parameter);
         playerrigi.velocity = Vector3.forward * knock * -1 * Time.deltaTime;
         isalive = false;
+        GameManager.instance.ChangeGameState(GameState.EndGame);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Blocker"))
         {
-            if(!checkdash.isdashing && !checkcollect.CheckShield())
+            if(player.currentState is not DashState && !checkcollect.CheckShield())
             {
                 if (ballcheck.isball)
                 {
@@ -73,7 +75,7 @@ public class PlayerControll : MonoBehaviour
                 }
                 Death("Death1");
             }
-            else if (!checkdash.isdashing || checkcollect.CheckShield())
+            else if (player.currentState is not DashState || checkcollect.CheckShield())
             {
                 Destroy(collision.gameObject);
                 checkcollect.SetShield(false);
@@ -89,11 +91,12 @@ public class PlayerControll : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("NonGround"))
         {
-            if (!checkdash.isdashing)
+            if (player.currentState is not DashState)
             {
                 ballcheck.SwitchToCharacter();
                 playeranimator.SetTrigger("DeathFall");
                 isalive = false;
+                GameManager.instance.ChangeGameState(GameState.EndGame);
             }
         }
     }
@@ -157,14 +160,14 @@ public class PlayerControll : MonoBehaviour
 
     private void KillEnemy(GameObject enemyHit)
     {
-        if (ballcheck.isball || checkdash.isdashing || checkcollect.CheckShield())
+        if (ballcheck.isball || player.currentState is DashState || checkcollect.CheckShield())
         {
             if (checkcollect.CheckShield())
             {
                 checkcollect.SetShield(false);
                 typeChange.ShowCombotype("Enemy");
             }
-            if(checkdash.isdashing)
+            if(player.currentState is DashState)
             {
                 comboUpdate.UpdateCombo();
                 typeChange.ShowCombotype("Smash");

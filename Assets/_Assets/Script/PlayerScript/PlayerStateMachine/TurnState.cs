@@ -6,17 +6,15 @@ public class TurnState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-    }
-
-    public override void OnCollisionEnter(PlayerStateManager player)
-    {
-    }
-
-    public override void OnTriggerEnter(PlayerStateManager player)
-    {
+        player.isTurn = true;
+        player.MoveWayPoint();
     }
 
     public override void UpdateState(PlayerStateManager player)
+    {
+    }
+
+    public override void ExitState(PlayerStateManager player)
     {
     }
 }

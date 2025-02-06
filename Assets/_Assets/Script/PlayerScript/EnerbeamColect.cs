@@ -24,7 +24,6 @@ public class EnerbeamColect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnerbeamRide();
         if(grappoint != null)
         {
             transform.position = grappoint.transform.position;

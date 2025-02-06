@@ -3007,7 +3007,6 @@ GameObject:
   - component: {fileID: 8373768588947524409}
   - component: {fileID: 8373768588947524411}
   - component: {fileID: 8373768588947524412}
-  - component: {fileID: 1816073562574614503}
   - component: {fileID: 1816073562574614504}
   - component: {fileID: 1816073562056212354}
   - component: {fileID: 1816073562056212363}
@@ -3145,7 +3144,7 @@ MonoBehaviour:
   timeroll: 2
   distancetouch: 100
   check: {fileID: 1816073562056212363}
-  checkdash: {fileID: 1816073562574614503}
+  checkdash: {fileID: 0}
   checkcollect: {fileID: 1816073562056212354}
   checkpad: {fileID: 1361431833539416936}
   checkCondition: {fileID: 1816073562574614504}
@@ -3189,27 +3188,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2711562
   m_Center: {x: 0, y: -0.35973993, z: 0.015730098}
---- !u!114 &1816073562574614503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8373768588947524355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c41e07fab87deb4b8d9cb4d7ac362a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playeranimator: {fileID: 8373768588947524411}
-  speed: {fileID: 8373768588947524409}
-  isdashing: 0
-  duration: 10
-  check: {fileID: 1816073562056212354}
-  timeclick: 0.3
-  lastclicktime: -1
-  playerlayer: 6
-  blockerlayer: 7
 --- !u!114 &1816073562574614504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,7 +3204,7 @@ MonoBehaviour:
   playerrigi: {fileID: 8373768588947524410}
   knock: 275
   ballcheck: {fileID: 1361431833539416854}
-  checkdash: {fileID: 1816073562574614503}
+  checkdash: {fileID: 0}
   checkcollect: {fileID: 1816073562056212354}
   change: {fileID: 1361431833539416854}
   playerlayer: 6
@@ -3353,7 +3331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchball: {fileID: 1361431833539416854}
-  dashcheck: {fileID: 1816073562574614503}
+  dashcheck: {fileID: 0}
   dashdistance: 50
   speed: {fileID: 8373768588947524409}
   startpos: {x: 0, y: 0, z: 0}
@@ -3384,7 +3362,7 @@ MonoBehaviour:
   characteranimator: {fileID: 9100000, guid: 09fc672b06d44084dbf5201d0d2a328c, type: 2}
   charactercollider: {fileID: 8373768588947524356}
   ballcollider: {fileID: 8373768588947524412}
-  checkcondition: {fileID: 8373768588947524409}
+  checkcondition: {fileID: 0}
   checkrail: {fileID: 1816073562056212363}
   checkcollect: {fileID: 1816073562056212354}
   isball: 0

@@ -2568,9 +2568,8 @@ GameObject:
   - component: {fileID: 5167995253366785704}
   - component: {fileID: 4785554495802474381}
   - component: {fileID: 8929101160424354721}
-  - component: {fileID: 7051203370294348730}
-  - component: {fileID: 1331426388547143402}
   - component: {fileID: 6004084509582335010}
+  - component: {fileID: 7165281028505531945}
   m_Layer: 0
   m_Name: Enerbeam
   m_TagString: Untagged
@@ -2673,47 +2672,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7051203370294348730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6224373718343450414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e1ba394dcd12549b5009ae1032b8c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitive: 0.2
-  checkrail: {fileID: 0}
-  check: {fileID: 0}
-  playeranima: {fileID: 0}
-  tiltthreshold: 0
-  AngleRotate: 10
-  maxrotate: 75
-  minrorate: -75
---- !u!114 &1331426388547143402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6224373718343450414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f4a80015932b7d42bebddaeae252f97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startpoint: {fileID: 0}
-  endpoint: {fileID: 0}
-  splines: {fileID: 0}
-  checkrail: {fileID: 0}
-  checkcollect: {fileID: 0}
-  speedtorail: 30
-  progress: 0
-  speed: 1
-  playeranimator: {fileID: 0}
 --- !u!65 &6004084509582335010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2727,6 +2685,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7165281028505531945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6224373718343450414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4a80015932b7d42bebddaeae252f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playeranimator: {fileID: 0}
+  moveduration: 5
+  rigi: {fileID: 8929101160424354721}
+  player: {fileID: 0}
+  path:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7692964417223831463
 GameObject:
   m_ObjectHideFlags: 0

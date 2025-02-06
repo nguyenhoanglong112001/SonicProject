@@ -8,14 +8,14 @@ public class EnergyOrbCollect : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private CollectManager check;
     [SerializeField] private float dashenergy;
-    [SerializeField] private DashPower checkdash;
+    [SerializeField] private PlayerStateManager checkdash;
     [SerializeField] private GameObject ring;
     [SerializeField] private LeanGameObjectPool collectPool;
     void Start()
     {
         collectPool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
-        checkdash = GameObject.FindWithTag("Player").GetComponent<DashPower>();
+        checkdash = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class EnergyOrbCollect : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            if (check.Energydash < 100 && !checkdash.isdashing)
+            if (check.Energydash < 100 && checkdash.currentState is not DashState)
             {
                 check.Energydash += dashenergy;
             }    

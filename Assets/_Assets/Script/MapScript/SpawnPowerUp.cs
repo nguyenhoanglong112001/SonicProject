@@ -28,7 +28,8 @@ public class SpawnPowerUp : MonoBehaviour
         int r = Random.Range(0, 100);
         if (r > 0 && r <98)
         {
-            int a = Random.Range(0, powerList.Length - 2);
+            //int a = Random.Range(0, powerList.Length - 2);
+            int a = 4;
             if(powerList[a].GetComponent<PowerType>().typed == TypePower.Shield)
             {
                 if(!checkCollect.CheckShield())

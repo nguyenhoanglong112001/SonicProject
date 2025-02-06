@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HoopObject : MonoBehaviour
 {
-    [SerializeField] private Grind speed;
+    [SerializeField] private PlayerStateManager player;
     [SerializeField] private float speedUp;
     // Start is called before the first frame update
     void Start()
     {
-        speed = GameObject.FindWithTag("Player").GetComponent<Grind>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class HoopObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            speed.Speed += speedUp;
+            player.enerbeamDuration -= 0.1f;
         }
     }
 }

@@ -36,4 +36,18 @@ public class PlayerStateFactory
         return new RollState();
     }
 
+    public DashState Dash()
+    {
+        return new DashState();
+    }
+
+    public EnerbeamState Enerbeam()
+    {
+        return new EnerbeamState();
+    }
+
+    public FallState Fall()
+    {
+        return new FallState();
+    }
 }

@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour
             playeranimator.SetBool("IsFalling", false);
             check.Isfalling = false;
         }
-        TurnMoveMent();
+        MoveWayPoint();
         InputMove();
     }
 
@@ -207,11 +207,11 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void TurnMoveMent()
+    private void MoveWayPoint()
     {
         if(checkCondition.isTurn && checkCondition.wayPoints != null)
         {
-            path = checkCondition.wayPoints;
+            //path = checkCondition.wayPoints;
             Vector3[] pointPath = System.Array.ConvertAll(path, t => t.position);
             if (pointPath[0] == transform.position)
             {

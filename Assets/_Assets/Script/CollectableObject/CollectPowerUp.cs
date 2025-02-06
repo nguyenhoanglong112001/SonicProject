@@ -10,12 +10,14 @@ public class CollectPowerUp : MonoBehaviour
     [SerializeField] private SpawnPowerUp currentPower;
     [SerializeField] private GameObject[] railprefab;
     [SerializeField] private Transform spawnpoint;
+    [SerializeField] private PlayerStateManager player;
     private GameObject enerbeamRail;
     // Start is called before the first frame update
     void Start()
     {
         check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         powerPool = GameObject.FindWithTag("PowerUpPool").GetComponent<LeanGameObjectPool>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
     }
 
     // Update is called once per frame
@@ -59,6 +61,8 @@ public class CollectPowerUp : MonoBehaviour
                         int a = Random.Range(0, railprefab.Length - 1);
                         enerbeamRail = Instantiate(railprefab[a], spawnpoint.position, railprefab[a].transform.rotation);
                     }
+                    player.newState = player.state.Enerbeam();
+                    player.SwitchState(player.newState);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
                 {

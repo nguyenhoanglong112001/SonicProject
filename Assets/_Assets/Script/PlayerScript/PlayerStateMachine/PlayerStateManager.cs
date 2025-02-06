@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class PlayerStateManager : MonoBehaviour
 {
     public PlayerBaseState currentState;
+    public PlayerBaseState newState;
     public PlayerStateFactory state;
 
     [Header("Chi so chung")]
@@ -12,8 +14,8 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] public Animator playeranimator;
     [SerializeField] public SwitchBall switchcheck;
     [SerializeField] public CollectManager check;
+    public TypeRoad laneType;
     public float minspeed;
-    public Coroutine crouchCoroutine;
     public Rigidbody playerrigi;
     [Header("Chi so chay")]
     public float speed;
@@ -30,6 +32,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("chi so roll")]
     public float landSpeed;
     public float timeroll;
+    public Coroutine crouchCoroutine;
 
     [Header("Chi so dash")]
     public float duration;
@@ -42,8 +45,30 @@ public class PlayerStateManager : MonoBehaviour
     public bool isball;
     public bool isjump;
     public bool isDash;
+    public bool israil;
+    public bool isTurn;
 
+    [Header("Dotween Rail")]
+    public Transform[] path;
+    public Tween currentTween;
+    public float moveduration;
+    public Vector3 newpos;
+    private Dictionary<float, GameObject> rail;
+    public Transform[] currentPath;
+    public float enerbeamDuration;
 
+    [Header("Enerbeam State")]
+    public GameObject enerbeamPrefab;
+    public Transform pos;
+    public Transform grappoint;
+    public GameObject ener;
+    private GameObject splinepos;
+    public GameObject enerbeamRail;
+    public Vector3 startPos;
+    public float speedToRail;
+
+    [Header("Fall State")]
+    public float fallspeed;
     private void Awake()
     {
         state = new PlayerStateFactory(this);
@@ -60,17 +85,84 @@ public class PlayerStateManager : MonoBehaviour
     {
         InputMove();
         Dash();
-        currentState.UpdateState(this);
-        Debug.Log(currentState);
+        if(currentState != null)
+        {
+            currentState.UpdateState(this);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("StartRail"))
+        {
+            israil = true;
+            path = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
+            currentPath = path;
+            GameObject objparent = other.transform.parent.transform.parent.transform.parent.gameObject;
+            rail = objparent.GetComponent<CheckLane>().Road;
+            if (currentPath != null)
+            {
+                if (Vector3.Distance(currentPath[0].position, transform.position) > 0.1f)
+                {
+                    currentPath[0] = transform;
+                }
+                if (currentState is not GrindState)
+                {
+                    newState = state.Grind();
+                    SwitchState(newState);
+                }
+                else
+                {
+                    MoveWayPoint();
+                }
+            }
+        }
+        if (currentState is GrindState)
+        {
+            if (other.CompareTag("EndRail"))
+            {
+                currentPath = null;
+            }
+        }
+        if(other.CompareTag("StartTurn"))
+        {
+            path = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
+            currentPath = path;
+            if (currentPath != null)
+            {
+                if (Vector3.Distance(currentPath[0].position, transform.position) > 0.1f)
+                {
+                    currentPath[0] = transform;
+                }
+                if(currentState is not TurnState)
+                {
+                    newState = state.Turn();
+                    SwitchState(newState);
+                }
+            }
+        }
+        if (other.CompareTag("EnerbeamPickup"))
+        {
+            splinepos = other.gameObject.transform.GetChild(0).gameObject;
+            playerrigi.velocity = Vector3.zero;
+            //newState = state.Enerbeam();
+            //SwitchState(newState);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        currentState.OnCollisionEnter(this, collision);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            GameObject objParent = collision.gameObject.transform.parent.gameObject;
+            getRoadDict = objParent.GetComponentInParent<CheckLane>();
+            laneType = collision.gameObject.GetComponentInParent<RoadType>().type;
+        }
     }
 
     public void SwitchState(PlayerBaseState state)
     {
+        currentState.ExitState(this);
         currentState = state;
         state.EnterState(this);
     }
@@ -126,19 +218,20 @@ public class PlayerStateManager : MonoBehaviour
                     {
                         if (deltalY > 0 && checkCondition.GroundCheck())
                         {
-                            currentState = state.Jump();
-                            SwitchState(currentState);
+                            newState = state.Jump();
+                            SwitchState(newState);
                         }
                         else
                         {
-                            currentState = state.Roll();
-                            SwitchState(currentState);
+                            newState = state.Roll();
+                            SwitchState(newState);
                         }
                     }
                 }
             }
         }
     }
+
     private bool CheckChangeLane(int lanetarget, int currentlane)
     {
         if (getRoadDict != null)
@@ -171,8 +264,8 @@ public class PlayerStateManager : MonoBehaviour
         switchcheck.ChangeBall();
         yield return new WaitForSeconds(timeroll);
         switchcheck.SwitchToCharacter();
-        currentState = state.Run();
-        SwitchState(currentState);
+        newState = state.Run();
+        SwitchState(newState);
     }
 
     public void Crouch()
@@ -194,8 +287,8 @@ public class PlayerStateManager : MonoBehaviour
             {
                 if (Time.time - lastclicktime < timeclick)
                 {
-                    currentState = state.Dash();
-                    SwitchState(currentState);
+                    newState = state.Dash();
+                    SwitchState(newState);
                 }
                 lastclicktime = Time.time;
             }
@@ -216,8 +309,8 @@ public class PlayerStateManager : MonoBehaviour
         playeranimator.SetBool("Dash", false);
         Physics.IgnoreLayerCollision(playerlayer, blockerlayer, false);
         SpeedUp(1 / 1.5f);
-        currentState = state.Run();
-        SwitchState(currentState);
+        newState = state.Run();
+        SwitchState(newState);
     }
 
     public void SpeedUp(float mutilpl)
@@ -227,6 +320,53 @@ public class PlayerStateManager : MonoBehaviour
         {
             speed = minspeed;
         }
+    }
+
+    public void MoveWayPoint()
+    {
+        if (currentPath != null)
+        {
+            Vector3[] pointPath = System.Array.ConvertAll(currentPath, t => t.position);
+            if (pointPath[0] == transform.position)
+            {
+                List<Vector3> tempPath = new List<Vector3>(pointPath);
+                tempPath.RemoveAt(0);
+                pointPath = tempPath.ToArray();
+            }
+            currentTween = transform.DOPath(pointPath, moveduration, PathType.CatmullRom, PathMode.Full3D)
+                .SetEase(Ease.Linear)
+                .SetLookAt(0.01f)
+                .OnComplete(() =>
+            {
+                if (currentPath == null && currentState is GrindState)
+                {
+                    Debug.Log("Complete");
+                    playerrigi.isKinematic = false;
+                    pointPath = null;
+                    newState = state.Run();
+                    SwitchState(newState);
+                }
+                if(currentState is TurnState)
+                {
+
+                }
+            });
+        }
+    }
+
+    public GameObject SpawnEnerbeam()
+    {
+        ener = Instantiate(enerbeamPrefab, pos.position, enerbeamPrefab.transform.rotation);
+        grappoint = ener.transform.GetChild(0).transform.GetChild(4);
+        playerrigi.useGravity = false;
+        gameObject.transform.SetParent(ener.transform);
+        return ener;
+    }
+
+    public void DestroyEnerbeam()
+    {
+        playerrigi.useGravity = true;
+        Destroy(ener);
     }
 }
 

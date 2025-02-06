@@ -16,17 +16,13 @@ public class RollState : PlayerBaseState
         player.Crouch();
     }
 
-    public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
-    {
-
-    }
-
-    public override void OnTriggerEnter(PlayerStateManager player, Collision collision)
-    {
-    }
-
     public override void UpdateState(PlayerStateManager player)
     {
         player.MoveForward();
+    }
+
+    public override void ExitState(PlayerStateManager player)
+    {
+
     }
 }
