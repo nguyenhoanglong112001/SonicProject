@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnEndZone : MonoBehaviour
 {
-    [SerializeField] private GameObject endZone;
     [SerializeField] private CheckLane checkLane;
     [SerializeField] private Vector3 localPos = new Vector3(0,0,-90);
     private GameObject endzone;
@@ -30,7 +29,7 @@ public class SpawnEndZone : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        endzone = Instantiate(endZone, transform.position, endZone.transform.rotation,gameObject.transform);
+        endzone = Instantiate(ZoneManager.instance.endZoneDict[ZoneManager.instance.currentZone], transform.position, ZoneManager.instance.endZoneDict[ZoneManager.instance.currentZone].transform.rotation,gameObject.transform);
         endzone.transform.localPosition = localPos;
     }
 

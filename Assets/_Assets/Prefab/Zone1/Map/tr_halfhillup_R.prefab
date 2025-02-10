@@ -140,8 +140,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4135365205435046}
   - component: {fileID: 9167059503946347135}
+  - component: {fileID: -6453440637403894227}
   m_Layer: 13
-  m_Name: tr_zone1_halfhillup_R
+  m_Name: tr_halfhillup_R
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,6 +175,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92a25b189f9469c4ca938a903889dbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roadMaterial: {fileID: 23158180696404286}
+  roadMesh: {fileID: 33680694491405585}
+  signMesh: {fileID: 0}
+  signMat: {fileID: 0}
+  zone1Mat: {fileID: 2100000, guid: 106ae69cbd72c084ca4c7051ddd18875, type: 2}
+  zone2Mat: {fileID: 2100000, guid: 9cb91092d624c9d4a9ee7f69c09a56a9, type: 2}
+  zone4Mat: {fileID: 2100000, guid: 76fc68efc537ec24d9d4044b831bcbde, type: 2}
+  zone1Mesh: {fileID: 4300000, guid: 15e8821c3de9b3f4cb03759ddba29f70, type: 2}
+  zone2Mesh: {fileID: 4300000, guid: 3ab0ef96106a8b04bb44aef1cd3e1cab, type: 2}
+  zone4Mesh: {fileID: 4300000, guid: b368153605b42af4bbde18b0693fa0fc, type: 2}
+  zone1MeshSign: {fileID: 0}
+  zone2MeshSign: {fileID: 0}
+  zone4MeshSign: {fileID: 0}
+--- !u!114 &-6453440637403894227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697543015258409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9700d6c5de9f7aa448e34af6860eb15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1

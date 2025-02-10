@@ -7,11 +7,6 @@ public class SpawnRoad : MonoBehaviour
 {
     [SerializeField] private LeanGameObjectPool roadPool;
     [SerializeField] private GameObject roadZone1;
-    [SerializeField] private GameObject roadZone2;
-    [SerializeField] private GameObject roadZone3;
-    [SerializeField] private GameObject roadZone4;
-    [SerializeField] private ZoneManager currentZone;
-    [SerializeField] private Dictionary<Zone, GameObject> roadDict;
     [SerializeField] private CheckLane lane;
     [SerializeField] private float laneKey;
     private GameObject road;
@@ -19,14 +14,6 @@ public class SpawnRoad : MonoBehaviour
     void Start()
     {
         roadPool = GameObject.FindWithTag("RoadPool").GetComponent<LeanGameObjectPool>();
-        currentZone = GameObject.FindWithTag("Zone").GetComponent<ZoneManager>();
-        roadDict = new Dictionary<Zone, GameObject>()
-        {
-            {Zone.Zone1,roadZone1 },
-            {Zone.Zone2,roadZone2 },
-            {Zone.Zone3,roadZone3 },
-            {Zone.Zone4,roadZone4 }
-        };
         Spawn();
     }
 
@@ -38,14 +25,11 @@ public class SpawnRoad : MonoBehaviour
 
     private void Spawn()
     {
-        if(roadDict.ContainsKey(currentZone.currentZone))
+        roadPool.Prefab = roadZone1;
+        road = roadPool.Spawn(transform.position, roadZone1.transform.rotation, gameObject.transform);
+        if (road != null)
         {
-            roadPool.Prefab = roadDict[currentZone.currentZone];
-            road = roadPool.Spawn(transform.position, roadDict[currentZone.currentZone].transform.rotation,gameObject.transform);
-            if(road != null)
-            {
-                lane.AddValueToDict(laneKey, road);
-            }    
+            lane.AddValueToDict(laneKey, road);
         }
     }
 }

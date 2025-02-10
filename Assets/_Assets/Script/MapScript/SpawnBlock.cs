@@ -12,7 +12,6 @@ public class SpawnBlock : MonoBehaviour
     [SerializeField] private GameObject blockZone2;
     [SerializeField] private GameObject blockZone3;
     [SerializeField] private GameObject blockZone4;
-    [SerializeField] private ZoneManager currentZone;
     [SerializeField] private Dictionary<Zone, GameObject> blockDict;
     List<int> listint;
     private LeanGameObjectPool blockPool;
@@ -23,12 +22,10 @@ public class SpawnBlock : MonoBehaviour
             Destroy(transform.gameObject);
         }    
         blockPool = GameObject.FindWithTag("BlockPool").GetComponent<LeanGameObjectPool>();
-        currentZone = GameObject.FindWithTag("Zone").GetComponent<ZoneManager>();
         blockDict = new Dictionary<Zone, GameObject>()
         {
             {Zone.Zone1,blockZone1 },
             {Zone.Zone2,blockZone2 },
-            {Zone.Zone3,blockZone3 },
             {Zone.Zone4,blockZone4 }
         };
         Spawn();
@@ -41,10 +38,10 @@ public class SpawnBlock : MonoBehaviour
 
     private void Spawn()
     {
-        if(blockDict.ContainsKey(currentZone.currentZone))
+        if(blockDict.ContainsKey(ZoneManager.instance.currentZone))
         {
-            blockPool.Prefab = blockDict[currentZone.currentZone];
-            blockPool.Spawn(transform.position, blockDict[currentZone.currentZone].transform.rotation, transform);
+            blockPool.Prefab = blockDict[ZoneManager.instance.currentZone];
+            blockPool.Spawn(transform.position, blockDict[ZoneManager.instance.currentZone].transform.rotation, transform);
         }    
     }
 }

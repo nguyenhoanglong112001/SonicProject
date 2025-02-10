@@ -27,12 +27,12 @@ public class SpringObject : MonoBehaviour
     {
         if (other.CompareTag("Ground"))
         {
-            if(other.gameObject.GetComponentInParent<RoadType>().type == TypeRoad.Road || other.gameObject.GetComponentInParent<RoadType>().type == TypeRoad.HillDown || other.gameObject.GetComponentInParent<RoadType>().type == TypeRoad.HillDown)
+            if(other.gameObject.GetComponentInParent<Road>().type == TypeRoad.Road || other.gameObject.GetComponentInParent<Road>().type == TypeRoad.HillDown || other.gameObject.GetComponentInParent<Road>().type == TypeRoad.HillDown)
             {
                 springeb = true;
                 springGap = false;
             }
-            else if (other.gameObject.GetComponentInParent<RoadType>().type == TypeRoad.GapRoad)
+            else if (other.gameObject.GetComponentInParent<Road>().type == TypeRoad.GapRoad)
             {
                 springGap = true;
                 springeb = false;

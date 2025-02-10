@@ -156,7 +156,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             GameObject objParent = collision.gameObject.transform.parent.gameObject;
             getRoadDict = objParent.GetComponentInParent<CheckLane>();
-            laneType = collision.gameObject.GetComponentInParent<RoadType>().type;
+            laneType = collision.gameObject.GetComponentInParent<Road>().type;
         }
     }
 
@@ -238,12 +238,12 @@ public class PlayerStateManager : MonoBehaviour
         {
             if (getRoadDict.Road.ContainsKey(currentlane))
             {
-                if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Road)
+                if (getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.Road)
                 {
                     if (getRoadDict.Road.ContainsKey(lanetarget))
                     {
-                        if (getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.Hillup || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.HillDown || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.GapRoad
-                            || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.TurnRoadL || getRoadDict.Road[lanetarget].GetComponent<RoadType>().type == TypeRoad.TurnRoadR)
+                        if (getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.Hillup || getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.HillDown || getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.GapRoad
+                            || getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.TurnRoadL || getRoadDict.Road[lanetarget].GetComponent<Road>().type == TypeRoad.TurnRoadR)
                         {
                             return false;
                         }
