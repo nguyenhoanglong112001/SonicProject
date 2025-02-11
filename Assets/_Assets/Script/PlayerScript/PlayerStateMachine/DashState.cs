@@ -15,7 +15,7 @@ public class DashState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.MoveForward();
+        //player.MoveForward();
     }
 
 

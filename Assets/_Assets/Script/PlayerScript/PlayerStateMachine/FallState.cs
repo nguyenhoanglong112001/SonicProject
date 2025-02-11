@@ -17,7 +17,7 @@ public class FallState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.MoveForward();
+        //player.MoveForward();
         if(player.checkCondition.GroundCheck())
         {
             player.newState = player.state.Run();

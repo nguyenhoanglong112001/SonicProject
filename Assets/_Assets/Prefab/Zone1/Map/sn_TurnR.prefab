@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2304202828859066349
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6621139347103458586}
-  m_Layer: 0
-  m_Name: WayPos1 (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6621139347103458586
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2304202828859066349}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.33, y: -17.72, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3979543110939830724}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4721214271197340020
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,11 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPoints:
-  - {fileID: 7174878589256932991}
-  - {fileID: 2483654617568104820}
-  - {fileID: 6621139347103458586}
-  - {fileID: 4212821078394577121}
-  - {fileID: 8216072436006787865}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1286547509835009803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,68 +259,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5913133055712422213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7174878589256932991}
-  m_Layer: 0
-  m_Name: WayPos1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7174878589256932991
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5913133055712422213}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.08, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3979543110939830724}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6130996301153277368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2483654617568104820}
-  m_Layer: 0
-  m_Name: WayPos1 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2483654617568104820
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130996301153277368}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: -8.9, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3979543110939830724}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6520615390522197264
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3979543110939830724}
   - component: {fileID: 6924867209171736155}
+  - component: {fileID: 6795898476928897691}
   m_Layer: 0
   m_Name: WayPoint
   m_TagString: StartTurn
@@ -380,12 +288,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7174878589256932991}
-  - {fileID: 2483654617568104820}
-  - {fileID: 6621139347103458586}
-  - {fileID: 4212821078394577121}
-  - {fileID: 8216072436006787865}
+  m_Children: []
   m_Father: {fileID: 5540125454331574290}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,65 +305,183 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.17944105, z: 0.5950547}
   m_Center: {x: 0, y: -0.5197204, z: 0.20247272}
---- !u!1 &7215507245574789578
-GameObject:
+--- !u!114 &6795898476928897691
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4212821078394577121}
-  m_Layer: 0
-  m_Name: WayPos1 (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4212821078394577121
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7215507245574789578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.17, y: -18.92, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3979543110939830724}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9011476182287335376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8216072436006787865}
-  m_Layer: 0
-  m_Name: WayPos1 (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8216072436006787865
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9011476182287335376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.02, y: -18.92, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3979543110939830724}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 6520615390522197264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: 0.15976608
+        y: -0.30927277
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.56795794
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.56795794
+      Rotation:
+        value:
+          x: 0.4695913
+          y: 0.5286625
+          z: -0.46959993
+          w: 0.5286548
+    - Position:
+        x: 0.8295015
+        y: -5.9492264
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -1.8869245
+      TangentOut:
+        x: 0
+        y: 0
+        z: 1.9424073
+      Rotation:
+        value:
+          x: 0.4179929
+          y: 0.570335
+          z: -0.41803718
+          w: 0.57030255
+    - Position:
+        x: 3.6800003
+        y: -11.249878
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -2.0588443
+      TangentOut:
+        x: 0
+        y: 0
+        z: 2.2287505
+      Rotation:
+        value:
+          x: 0.3129068
+          y: 0.6341052
+          z: -0.31293866
+          w: 0.6340894
+    - Position:
+        x: 8.809999
+        y: -16.089874
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -2.2980318
+      TangentOut:
+        x: 0
+        y: 0
+        z: 2.2814262
+      Rotation:
+        value:
+          x: 0.19584996
+          y: 0.679443
+          z: -0.19588207
+          w: 0.67943376
+    - Position:
+        x: 15.299999
+        y: -18.57988
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -2.9838674
+      TangentOut:
+        x: 0
+        y: 0
+        z: 5.625483
+      Rotation:
+        value:
+          x: 0.06894383
+          y: 0.7037377
+          z: -0.0689471
+          w: 0.7037374
+    - Position:
+        x: 40
+        y: -19.179878
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -9.238117
+      TangentOut:
+        x: 0
+        y: 0
+        z: 11.799441
+      Rotation:
+        value:
+          x: 0.005518669
+          y: 0.7070852
+          z: -0.0055186693
+          w: 0.7070852
+    - Position:
+        x: 80.30607
+        y: -19.459282
+        z: 0.7
+      TangentIn:
+        x: -0
+        y: -0
+        z: -4.0307035
+      TangentOut:
+        x: 0
+        y: 0
+        z: 4.0307035
+      Rotation:
+        value:
+          x: 0.002450808
+          y: 0.7071025
+          z: -0.0024508033
+          w: 0.7071025
+    m_MetaData:
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []

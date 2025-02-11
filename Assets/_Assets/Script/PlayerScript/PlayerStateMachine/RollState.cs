@@ -18,7 +18,7 @@ public class RollState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.MoveForward();
+        //player.MoveForward();
     }
 
     public override void ExitState(PlayerStateManager player)

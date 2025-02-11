@@ -18,7 +18,7 @@ public class JumpState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.MoveForward();
+        //player.MoveForward();
         if(!player.isjump)
         {
             player.newState = player.state.Run();

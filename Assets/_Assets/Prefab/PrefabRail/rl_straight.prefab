@@ -95,8 +95,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4497076603452608}
   - component: {fileID: 205088705198759322}
-  - component: {fileID: 5220725662595449111}
   - component: {fileID: 7900341904385730518}
+  - component: {fileID: -3014907940479931870}
   m_Layer: 14
   m_Name: rl_straight
   m_TagString: Untagged
@@ -150,19 +150,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23603152111299383}
   m_Enabled: 1
---- !u!114 &5220725662595449111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622309627298789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a25b189f9469c4ca938a903889dbdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 4
 --- !u!114 &7900341904385730518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +165,19 @@ MonoBehaviour:
   wayPoints:
   - {fileID: 5154515529242234721}
   - {fileID: 950585057531922300}
+--- !u!114 &-3014907940479931870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622309627298789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9700d6c5de9f7aa448e34af6860eb15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
 --- !u!1 &1742839263149409
 GameObject:
   m_ObjectHideFlags: 0

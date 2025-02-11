@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -14,17 +15,20 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] public Animator playeranimator;
     [SerializeField] public SwitchBall switchcheck;
     [SerializeField] public CollectManager check;
+    public CapsuleCollider playerCollider;
     public TypeRoad laneType;
     public float minspeed;
     public Rigidbody playerrigi;
+    public SplineAnimate splineAnimate;
     [Header("Chi so chay")]
     public float speed;
     private Vector3 startMousepoint;
     private Vector3 endMousepoint;
     public float distancetouch;
-    private int lane = 0; //0 = mid ; -1 = left ; 1 = right;
+    public int lane = 1; //1 = mid ; 0 = left ; 2 = right;
     public float lanedistance;
     public CheckLane getRoadDict;
+    public Vector3 moveDirection;
 
     [Header("Chi so nhay")]
     public float jumpforce;
@@ -69,6 +73,11 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Fall State")]
     public float fallspeed;
+
+    [Header("Turn State")]
+    public Vector3 posAfterTurn;
+    public SplineContainer contain;
+    public Vector3 offset;
     private void Awake()
     {
         state = new PlayerStateFactory(this);
@@ -89,6 +98,11 @@ public class PlayerStateManager : MonoBehaviour
         {
             currentState.UpdateState(this);
         }
+        Debug.Log("State: " + currentState);
+    }
+    private void FixedUpdate()
+    {
+        MoveForward();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -126,20 +140,9 @@ public class PlayerStateManager : MonoBehaviour
         }
         if(other.CompareTag("StartTurn"))
         {
-            path = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
-            currentPath = path;
-            if (currentPath != null)
-            {
-                if (Vector3.Distance(currentPath[0].position, transform.position) > 0.1f)
-                {
-                    currentPath[0] = transform;
-                }
-                if(currentState is not TurnState)
-                {
-                    newState = state.Turn();
-                    SwitchState(newState);
-                }
-            }
+            contain = other.gameObject.GetComponent<SplineContainer>();
+            newState = state.Turn();
+            SwitchState(newState);
         }
         if (other.CompareTag("EnerbeamPickup"))
         {
@@ -187,30 +190,32 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     if (deltalX > 0)
                     {
-                        if (lane < 1 && CheckChangeLane(lane + 1, lane) /*&& /*!checkcollect.Isenerbeam*/)
+                        if (lane < 2 && CheckChangeLane(lane + 1, lane) /*&& /*!checkcollect.Isenerbeam*/)
                         {
                             //if (checkCondition._canDodge)
                             //{
                             //    checkCondition.ComboUpdate("Dodge");
 
                             //}
+                            ChangeLane(1);
                             lane++;
                         }
                     }
                     else
                     {
-                        if (lane > -1 && CheckChangeLane(lane - 1, lane) /*&& !checkcollect.Isenerbeam*/)
+                        if (lane > 0 && CheckChangeLane(lane - 1, lane) /*&& !checkcollect.Isenerbeam*/)
                         {
                             //if (checkCondition._canDodge)
                             //{
                             //    checkCondition.ComboUpdate("Dodge");
                             //}
+                            ChangeLane(-1);
                             lane--;
                         }
                     }
-                    Vector3 targetPosition = transform.position;
-                    targetPosition.x = lane * lanedistance;
-                    transform.position = targetPosition;
+                    //Vector3 targetPosition = transform.position;
+                    //targetPosition.x = lane * lanedistance;
+                    //transform.position = targetPosition;
                 }
                 else
                 {
@@ -275,7 +280,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public void MoveForward()
     {
-        Vector3 forwardMovement = Vector3.forward * speed * Time.deltaTime;
+        moveDirection = transform.forward;
+        Vector3 forwardMovement = moveDirection * speed * Time.fixedDeltaTime;
         playerrigi.MovePosition(playerrigi.position + forwardMovement);
     }
 
@@ -346,12 +352,30 @@ public class PlayerStateManager : MonoBehaviour
                     newState = state.Run();
                     SwitchState(newState);
                 }
-                if(currentState is TurnState)
-                {
-
-                }
             });
         }
+    }
+
+
+    public void Turn()
+    {
+        splineAnimate.Container = contain;
+        splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
+        splineAnimate.MaxSpeed = speed;
+        splineAnimate.Play();
+        StartCoroutine(CheckCompleteSpline());
+    }
+
+    IEnumerator CheckCompleteSpline()
+    {
+        yield return new WaitUntil(() => splineAnimate.IsPlaying == false);
+        OnCompletedSpline();
+    }
+
+    public void OnCompletedSpline()
+    {
+        newState = state.Run();
+        SwitchState(newState);
     }
 
     public GameObject SpawnEnerbeam()
@@ -368,6 +392,33 @@ public class PlayerStateManager : MonoBehaviour
         playerrigi.useGravity = true;
         Destroy(ener);
     }
+
+    private void ChangeLane(int direction)
+    {
+        int targetLane = Mathf.Clamp(lane + direction, 0, 2);
+        if(targetLane != lane)
+        {
+            lane = targetLane;
+            Vector3 targetPos = transform.position + transform.right * direction * lanedistance;
+            StartCoroutine(MoveToLane(targetPos));
+        }
+    }
+
+    IEnumerator MoveToLane(Vector3 targetPos)
+    {
+        float elapsedTime = 0f;
+        float moveDuration = 0.2f;
+
+        Vector3 startPos = transform.position;
+        while (elapsedTime < moveDuration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPos;
+    }
+
 }
 
 

@@ -118,11 +118,7 @@ public class PlayerControll : MonoBehaviour
         if(other.CompareTag("StartTurn") && isTurn == false)
         {
             isTurn = true;
-            wayPoints = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
-            if (wayPoints[0].position != transform.position)
-            {
-                wayPoints[0] = transform;
-            }
+            player.splineAnimate.Container = other.gameObject.GetComponent<SplineContainer>();
         }
     }
 

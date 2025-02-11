@@ -6,13 +6,13 @@ public class RunState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        player.MoveForward();
+        //player.MoveForward();
     }
+
 
     public override void ExitState(PlayerStateManager player)
     {
