@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager instance;
     [SerializeField] private int score;
     [SerializeField] private GameObject player;
     private Vector3 currentpos;
@@ -15,7 +16,6 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public UnityEvent<int> OnScoreChange;
     private float distanceMove;
     [SerializeField] private float pointPerMove;
-
     public int Score 
     { 
         get => score; 
@@ -26,6 +26,13 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

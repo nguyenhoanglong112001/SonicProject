@@ -130,7 +130,6 @@ MonoBehaviour:
   blockZone2: {fileID: 0}
   blockZone3: {fileID: 0}
   blockZone4: {fileID: 0}
-  currentZone: {fileID: 0}
 --- !u!1 &1121458753483465
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,8 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65abd9e2b77e3840a590b8feb76478d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endZone: {fileID: 1821139965734056, guid: 7cd86f5acbcf1f64eba168d62e712cc2, type: 3}
   checkLane: {fileID: 0}
+  localPos: {x: 0, y: 0, z: -90}
 --- !u!1 &1208539929259423
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,12 +293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1408749746370395, guid: 7676239c46421d54893e83d6f0f8fffe, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 588622873957121755}
-  laneKey: 1
+  laneKey: 2
 --- !u!1 &1245862056857419
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,12 +341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1697543015258409, guid: f95114c409e421741b2293e01a374261, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 3035092007497705319}
-  laneKey: 1
+  laneKey: 2
 --- !u!1 &1249863593005017
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,12 +389,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1697543015258409, guid: f95114c409e421741b2293e01a374261, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 2270088559602924071}
-  laneKey: 1
+  laneKey: 2
 --- !u!1 &1251267305756965
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,12 +529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1864664768517932, guid: db206bb0925adb84f86c88907bda1dbc, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 8632984830670564344}
-  laneKey: 0
+  laneKey: 1
 --- !u!1 &1270151618366784
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,12 +924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1383291652636785, guid: 909c3512a3300bb4d9efc9a26cae18ec, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 2270088559602924071}
-  laneKey: 0
+  laneKey: 1
 --- !u!1 &1472961069490736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,12 +1164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1434048536830723, guid: 8d1873d577818414c8b6a5947548e64b, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 588622873957121755}
-  laneKey: -1
+  laneKey: 0
 --- !u!1 &1553474645914111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,12 +1212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1909519258690173, guid: cacf41283f05d8f4c8113ad42475868f, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 8632984830670564344}
-  laneKey: 1
+  laneKey: 2
 --- !u!1 &1555887145792912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,12 +1310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1876996517118788, guid: 6132081ffa1990046a0e440e7e84ca8d, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 3035092007497705319}
-  laneKey: -1
+  laneKey: 0
 --- !u!1 &1608413799220662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1360,6 @@ MonoBehaviour:
   blockZone2: {fileID: 0}
   blockZone3: {fileID: 0}
   blockZone4: {fileID: 0}
-  currentZone: {fileID: 0}
 --- !u!1 &1653058032520252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,12 +1456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1876996517118788, guid: 6132081ffa1990046a0e440e7e84ca8d, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 2270088559602924071}
-  laneKey: -1
+  laneKey: 0
 --- !u!1 &1691232845061136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,12 +1596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1805248581482444, guid: 61dadcaf375efc1468985f2a5ce299d1, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 8632984830670564344}
-  laneKey: -1
+  laneKey: 0
 --- !u!1 &1750688404934794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,12 +1790,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1383291652636785, guid: 909c3512a3300bb4d9efc9a26cae18ec, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 3035092007497705319}
-  laneKey: 0
+  laneKey: 1
 --- !u!1 &1856297904767012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1894,6 @@ MonoBehaviour:
   blockZone2: {fileID: 0}
   blockZone3: {fileID: 0}
   blockZone4: {fileID: 0}
-  currentZone: {fileID: 0}
 --- !u!1 &1930510452698368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,12 +1940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roadPool: {fileID: 0}
   roadZone1: {fileID: 1848734396261902, guid: b6d1d71cc2a4b9241adead1fbe033932, type: 3}
-  roadZone2: {fileID: 0}
-  roadZone3: {fileID: 0}
-  roadZone4: {fileID: 0}
-  currentZone: {fileID: 0}
   lane: {fileID: 588622873957121755}
-  laneKey: 0
+  laneKey: 1
 --- !u!1 &1937958242034937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2086,6 @@ MonoBehaviour:
   blockZone2: {fileID: 0}
   blockZone3: {fileID: 0}
   blockZone4: {fileID: 0}
-  currentZone: {fileID: 0}
 --- !u!1 &1087294279342233410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,5 +2161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba441e144f014742bc4c3b86a50af06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGround: {fileID: 1560845467935822, guid: e488ed7a449b2ac40a585579c6146fe1, type: 3}
   checkEnd: {fileID: 3035092007497705319}

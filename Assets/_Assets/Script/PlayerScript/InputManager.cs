@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
         else if ((check.Isfalling && !checkcollect.Isenerbeam) || ((check.Isfalling && !checkcollect.IsSpring)))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            playerrigi.velocity = Vector3.down * fallSpeed * Time.deltaTime;
+            playerrigi.linearVelocity = Vector3.down * fallSpeed * Time.deltaTime;
         }
         if(checkCondition.GroundCheck() && check.Isfalling)
         {
@@ -135,7 +135,7 @@ public class InputManager : MonoBehaviour
                         else
                         {
                             playeranimator.SetTrigger("Roll");
-                            playerrigi.velocity = Vector3.down * jumpforce * Time.deltaTime;
+                            playerrigi.linearVelocity = Vector3.down * jumpforce * Time.deltaTime;
                             Crouch();
                         }
                     }

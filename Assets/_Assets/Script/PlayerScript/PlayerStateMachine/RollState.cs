@@ -10,7 +10,7 @@ public class RollState : PlayerBaseState
         {
             Debug.Log("land");
             player.isjump = false;
-            player.playerrigi.velocity = Vector3.down * player.landSpeed * Time.deltaTime;
+            player.playerrigi.linearVelocity = Vector3.down * player.landSpeed * Time.deltaTime;
         }
         player.playeranimator.SetTrigger("Roll");
         player.Crouch();

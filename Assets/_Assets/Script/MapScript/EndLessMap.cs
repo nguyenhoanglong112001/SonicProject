@@ -10,7 +10,6 @@ public class EndLessMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -25,7 +24,7 @@ public class EndLessMap : MonoBehaviour
         {
             if(mapspawn == null)
             {
-                mapspawn = Instantiate(map, point.position, transform.rotation);
+                mapspawn = Instantiate(map, point.position,Quaternion.identity);
             }
         }
     }

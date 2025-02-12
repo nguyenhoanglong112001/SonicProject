@@ -7,8 +7,12 @@ public class SpawnTunnel : MonoBehaviour
     [SerializeField] private GameObject tunnel;
     [SerializeField] private Transform spawnPos;
     [SerializeField] private Vector3 rotation;
+    private GameObject tunnelSpawn;
     void Start()
     {
-        Instantiate(tunnel, spawnPos.position, Quaternion.Euler(rotation));
+        if(tunnelSpawn == null)
+        {
+            tunnelSpawn = Instantiate(tunnel, spawnPos.position, Quaternion.Euler(rotation));
+        }
     }
 }

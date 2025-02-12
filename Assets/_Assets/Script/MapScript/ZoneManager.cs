@@ -6,9 +6,9 @@ using UnityEngine;
 
 public enum Zone
 {
-    Zone1,
-    Zone2,
-    Zone4,
+    Zone1 = 1,
+    Zone2 = 2,
+    Zone4 = 3,
 }
 public class ZoneManager : MonoBehaviour
 {

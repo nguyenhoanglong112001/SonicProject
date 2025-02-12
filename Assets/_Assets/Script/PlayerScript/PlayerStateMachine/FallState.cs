@@ -7,7 +7,7 @@ public class FallState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         player.playeranimator.SetBool("IsFalling", true);
-        player.playerrigi.velocity = Vector3.down * player.fallspeed * Time.deltaTime;
+        player.playerrigi.linearVelocity = Vector3.down * player.fallspeed * Time.deltaTime;
     }
 
     public override void ExitState(PlayerStateManager player)

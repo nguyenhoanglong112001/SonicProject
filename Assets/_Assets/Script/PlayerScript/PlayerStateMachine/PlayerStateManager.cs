@@ -1,8 +1,8 @@
 using DG.Tweening;
+using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public TypeRoad laneType;
     public float minspeed;
     public Rigidbody playerrigi;
-    public SplineAnimate splineAnimate;
+    public SplineFollower follower;
     [Header("Chi so chay")]
     public float speed;
     private Vector3 startMousepoint;
@@ -76,8 +76,7 @@ public class PlayerStateManager : MonoBehaviour
 
     [Header("Turn State")]
     public Vector3 posAfterTurn;
-    public SplineContainer contain;
-    public Vector3 offset;
+    public float progress;
     private void Awake()
     {
         state = new PlayerStateFactory(this);
@@ -140,14 +139,14 @@ public class PlayerStateManager : MonoBehaviour
         }
         if(other.CompareTag("StartTurn"))
         {
-            contain = other.gameObject.GetComponent<SplineContainer>();
+            follower.spline = other.GetComponent<SplineComputer>();
             newState = state.Turn();
             SwitchState(newState);
         }
         if (other.CompareTag("EnerbeamPickup"))
         {
             splinepos = other.gameObject.transform.GetChild(0).gameObject;
-            playerrigi.velocity = Vector3.zero;
+            playerrigi.linearVelocity = Vector3.zero;
             //newState = state.Enerbeam();
             //SwitchState(newState);
         }
@@ -198,7 +197,7 @@ public class PlayerStateManager : MonoBehaviour
 
                             //}
                             ChangeLane(1);
-                            lane++;
+                            //lane++;
                         }
                     }
                     else
@@ -210,7 +209,7 @@ public class PlayerStateManager : MonoBehaviour
                             //    checkCondition.ComboUpdate("Dodge");
                             //}
                             ChangeLane(-1);
-                            lane--;
+                            //lane--;
                         }
                     }
                     //Vector3 targetPosition = transform.position;
@@ -359,21 +358,16 @@ public class PlayerStateManager : MonoBehaviour
 
     public void Turn()
     {
-        splineAnimate.Container = contain;
-        splineAnimate.AnimationMethod = SplineAnimate.Method.Speed;
-        splineAnimate.MaxSpeed = speed;
-        splineAnimate.Play();
-        StartCoroutine(CheckCompleteSpline());
+        follower.follow = true;
+        follower.SetPercent(0);
+        follower.followSpeed = speed;
+        follower.onEndReached += OnCompletedSpline;
     }
 
-    IEnumerator CheckCompleteSpline()
+    public void OnCompletedSpline(double value)
     {
-        yield return new WaitUntil(() => splineAnimate.IsPlaying == false);
-        OnCompletedSpline();
-    }
-
-    public void OnCompletedSpline()
-    {
+        follower.spline = null;
+        follower.follow = false;
         newState = state.Run();
         SwitchState(newState);
     }

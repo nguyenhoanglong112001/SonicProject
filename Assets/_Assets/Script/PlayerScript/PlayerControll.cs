@@ -1,3 +1,4 @@
+using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,7 +59,7 @@ public class PlayerControll : MonoBehaviour
     {
         change.SwitchToCharacter();
         playeranimator.SetTrigger(parameter);
-        playerrigi.velocity = Vector3.forward * knock * -1 * Time.deltaTime;
+        playerrigi.linearVelocity = Vector3.forward * knock * -1 * Time.deltaTime;
         isalive = false;
         GameManager.instance.ChangeGameState(GameState.EndGame);
     }
@@ -118,7 +119,7 @@ public class PlayerControll : MonoBehaviour
         if(other.CompareTag("StartTurn") && isTurn == false)
         {
             isTurn = true;
-            player.splineAnimate.Container = other.gameObject.GetComponent<SplineContainer>();
+            player.follower.spline = other.gameObject.GetComponent<SplineComputer>();
         }
     }
 

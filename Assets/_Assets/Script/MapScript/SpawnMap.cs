@@ -12,12 +12,14 @@ public class SpawnMap : MonoBehaviour
     [SerializeField] private Transform spawnPos;
     [SerializeField] private LeanGameObjectPool roadPool;
     [SerializeField] private Transform objectParent;
+    private GameObject player;
     private int a;
     private int lengthList = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         foreach (Transform child in objectParent)
         {
             if(child != null)
@@ -65,6 +67,13 @@ public class SpawnMap : MonoBehaviour
                 Transform pos = spawnList[i-1].transform.GetChild(0);
                 spawnList[i] = roadPool.Spawn(pos.position, objrotation.rotation, objectParent);
             }
+            StartCoroutine(RotateObject());
         }
     }   
+
+    IEnumerator RotateObject()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameObject.transform.rotation = player.transform.rotation;
+    }
 }

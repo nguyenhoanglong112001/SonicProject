@@ -53,7 +53,7 @@ public class EnerbeamColect : MonoBehaviour
         if(other.CompareTag("EnerbeamPickup"))
         {
             splinepos = other.gameObject.transform.GetChild(0).gameObject;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
         }
     }
 }
