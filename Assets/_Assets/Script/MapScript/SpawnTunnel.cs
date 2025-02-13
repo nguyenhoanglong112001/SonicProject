@@ -12,7 +12,7 @@ public class SpawnTunnel : MonoBehaviour
     {
         if(tunnelSpawn == null)
         {
-            tunnelSpawn = Instantiate(tunnel, spawnPos.position, Quaternion.Euler(rotation));
+            tunnelSpawn = Instantiate(tunnel, spawnPos.position, Quaternion.Euler(rotation),this.transform);
         }
     }
 }

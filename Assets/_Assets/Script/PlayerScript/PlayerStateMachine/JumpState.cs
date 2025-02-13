@@ -11,8 +11,11 @@ public class JumpState : PlayerBaseState
             player.StopCoroutine(player.crouchCoroutine);
             player.crouchCoroutine = null;
         }
-        player.playeranimator.SetTrigger("Roll");
-        player.playerrigi.AddForce(Vector3.up * player.jumpforce,ForceMode.Impulse);
+        if(!player.isball)
+        {
+            player.playeranimator.SetTrigger("Roll");
+        }
+        player.playerrigi.AddForce(player.transform.up * player.jumpforce,ForceMode.Impulse);
         player.isjump = true;
     }
 

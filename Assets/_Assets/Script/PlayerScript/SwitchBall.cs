@@ -5,11 +5,8 @@ using UnityEngine;
 public class SwitchBall : MonoBehaviour
 {
     [SerializeField] private Animator playeranimator;
-    [SerializeField] private SkinnedMeshRenderer mesh;
-    [SerializeField] private Material ballmaterial;
-    [SerializeField] private Material characterMaterial;
-    [SerializeField] private Mesh ballmesh;
-    [SerializeField] private Mesh charactermesh;
+    [SerializeField] private GameObject sonicObj;
+    [SerializeField] private GameObject ballObj;
     [SerializeField] private Avatar characterAvatar;
     [SerializeField] private Avatar ballAvatar;
     [SerializeField] private RuntimeAnimatorController ballanimator;
@@ -20,6 +17,8 @@ public class SwitchBall : MonoBehaviour
     [SerializeField] private PlayerStateManager checkcondition;
     [SerializeField] private Grind checkrail;
     [SerializeField] private CollectManager checkcollect;
+
+    [SerializeField] private Rigidbody playerrigil;
 
     public bool isball;
     // Start is called before the first frame update
@@ -33,25 +32,27 @@ public class SwitchBall : MonoBehaviour
     {
     }
 
-    private void Switch(Mesh meshchange, Material material, RuntimeAnimatorController animator, Avatar avatar, bool active1, bool active2)
+    private void Switch(bool ischangeBall,RuntimeAnimatorController animator, Avatar avatar, bool active1, bool active2)
     {
-        mesh.sharedMesh = meshchange;
-        mesh.material = material;
+        Vector3 currentPos = transform.position;
+        ballObj.SetActive(ischangeBall);
+        sonicObj.SetActive(!ischangeBall);
         playeranimator.runtimeAnimatorController = animator;
         playeranimator.avatar = avatar;
         ballcollider.enabled = active1;
         charactercollider.enabled = active2;
+        transform.position = currentPos;
     }
 
     public void ChangeBall()
     {
-        Switch(ballmesh, ballmaterial, ballanimator, ballAvatar, true, false);
+        Switch(true,ballanimator, ballAvatar, true, false);
         isball = true;
     }
 
     public void SwitchToCharacter()
     {
-        Switch(charactermesh, characterMaterial, characteranimator, characterAvatar, false, true);
+        Switch(false,characteranimator, characterAvatar, false, true);
         isball = false;
     }
     private void OnCollisionEnter(Collision collision)

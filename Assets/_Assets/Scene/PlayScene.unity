@@ -1060,7 +1060,7 @@ MonoBehaviour:
   laneType: 0
   minspeed: 0
   playerrigi: {fileID: 8373768588543429423}
-  follower: {fileID: 9215104157873605023}
+  follower: {fileID: 0}
   speed: 10
   distancetouch: 100
   lane: 1
@@ -3133,6 +3133,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &979547293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979547294}
+  - component: {fileID: 979547296}
+  - component: {fileID: 979547295}
+  m_Layer: 0
+  m_Name: Ball
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &979547294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979547293}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.252, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8375265076591061797}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &979547295
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979547293}
+  m_Mesh: {fileID: 4300000, guid: ea84d0f8a7191b74c87ddd56f0141a19, type: 2}
+--- !u!23 &979547296
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979547293}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 710a52653a2d3874a83cb9c17c7d49b4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1003103070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5540,11 +5626,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playeranimator: {fileID: 8373768588543429422}
-  mesh: {fileID: 8493692218863317359}
-  ballmaterial: {fileID: 2100000, guid: 710a52653a2d3874a83cb9c17c7d49b4, type: 2}
-  characterMaterial: {fileID: 2100000, guid: 77f329dd5d7884c448b232c39a5a8e9d, type: 2}
-  ballmesh: {fileID: 4300000, guid: ea84d0f8a7191b74c87ddd56f0141a19, type: 2}
-  charactermesh: {fileID: 4300000, guid: 5cdaaf0592f408e409b656e8f72b792c, type: 2}
+  sonicObj: {fileID: 8372448133008234354}
+  ballObj: {fileID: 979547293}
   characterAvatar: {fileID: 9000000, guid: 1fe190172967df14693e4cfeb91daeac, type: 2}
   ballAvatar: {fileID: 9000000, guid: 12be163adf2f56149a45f76af7d23673, type: 2}
   ballanimator: {fileID: 9100000, guid: 323e7d9445ce60342af5c15729028b32, type: 2}
@@ -5554,6 +5637,7 @@ MonoBehaviour:
   checkcondition: {fileID: 374099801}
   checkrail: {fileID: 1816073562056212363, guid: 29f2b253bfebc574ca0caeee097f4353, type: 3}
   checkcollect: {fileID: 1816073562464239511}
+  playerrigil: {fileID: 8373768588543429423}
   isball: 0
 --- !u!114 &1361431833152623485
 MonoBehaviour:
@@ -9248,6 +9332,7 @@ Transform:
   - {fileID: 8375294591251373086}
   - {fileID: 8375515783703160481}
   - {fileID: 8369228623416934338}
+  - {fileID: 979547294}
   - {fileID: 8375357963183210294}
   - {fileID: 8369032676266189490}
   - {fileID: 8369291177796033706}
@@ -9892,7 +9977,7 @@ MonoBehaviour:
   multithreaded: 0
   buildOnAwake: 1
   buildOnEnable: 0
-  applyDirectionRotation: 1
+  applyDirectionRotation: 0
   useTriggers: 0
   triggerGroup: 0
   _direction: 1
