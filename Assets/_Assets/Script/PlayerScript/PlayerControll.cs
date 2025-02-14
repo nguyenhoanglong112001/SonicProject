@@ -33,6 +33,12 @@ public class PlayerControll : MonoBehaviour
     public bool isTurn;
     public bool isalive;
     public bool _canDodge;
+
+    [Header("======For revive")]
+    public Vector3 deathPos;
+    public float spawnTime;
+    public float rangerCheck;
+    public LayerMask layerCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +68,7 @@ public class PlayerControll : MonoBehaviour
         playeranimator.SetTrigger(parameter);
         playerrigi.linearVelocity = Vector3.forward * knock * -1 * Time.deltaTime;
         isalive = false;
+        deathPos = transform.position;
         SaveManager.instance.Save(SaveKey.RedRing, checkcollect.GetRedRingCollect());
         GameManager.instance.ChangeGameState(GameState.EndGame);
     }
@@ -223,4 +230,36 @@ public class PlayerControll : MonoBehaviour
         color.a = alpha;
         characterMat.color = color;
     }   
+
+    public void playerRevive()
+    {
+        gameObject.transform.position = deathPos;
+        DisableObject();
+        StartCoroutine(delayTimeSpawn());
+    }
+
+    IEnumerator delayTimeSpawn()
+    {
+        Time.timeScale = 0f;
+        yield return new WaitForSeconds(spawnTime);
+        Time.timeScale = 1f;
+        playeranimator.SetTrigger("Revive");
+        player.currentState = player.state.Run();
+        player.currentState.EnterState(player);
+        isalive = true;
+    }
+
+    private void DisableObject()
+    {
+        Collider[] hitobj = Physics.OverlapSphere(transform.position, rangerCheck, layerCheck);
+        foreach (Collider col in hitobj)
+        {
+            Vector3 toObj = col.transform.position - transform.position;
+
+            if(Vector3.Dot(transform.forward,toObj.normalized) > 0 )
+            {
+                Destroy(col.gameObject);
+            }
+        }
+    }
 }

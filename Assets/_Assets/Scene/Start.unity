@@ -2909,7 +2909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -84.83545, y: -12.288}
+  m_AnchoredPosition: {x: -84.83546, y: -12.287987}
   m_SizeDelta: {x: 169.6709, y: 75.424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809448377
@@ -3371,6 +3371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startBt: {fileID: 458091961}
+  goldTxt: {fileID: 809448377}
+  redRingTxt: {fileID: 1704152379}
 --- !u!4 &969216856
 Transform:
   m_ObjectHideFlags: 0
@@ -5443,6 +5445,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1584243372}
   - component: {fileID: 1584243371}
+  - component: {fileID: 1584243373}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5462,8 +5465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302a4c60d29375a44b0944f366f9b260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerdeath: {fileID: 0}
+  currentState: 0
+  playerControll: {fileID: 0}
   playerState: {fileID: 0}
+  reviveCount: 0
 --- !u!4 &1584243372
 Transform:
   m_ObjectHideFlags: 0
@@ -5479,6 +5484,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584243373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584243370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedf6c5cf1bbed14ebf1cc29669262b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGold: 0
+  currentRedRing: 0
+  cost: {fileID: 11400000, guid: 8584093589ae2624487aa9aee4a217c0, type: 2}
+  OnUpdateGold:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUpdateRedRing:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1598881359
 GameObject:
   m_ObjectHideFlags: 0
@@ -7949,6 +7975,6 @@ SceneRoots:
   - {fileID: 215701424}
   - {fileID: 2102740791}
   - {fileID: 2092602983}
-  - {fileID: 969216856}
-  - {fileID: 1584243372}
   - {fileID: 602026374}
+  - {fileID: 1584243372}
+  - {fileID: 969216856}

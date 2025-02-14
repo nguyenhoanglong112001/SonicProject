@@ -268,7 +268,6 @@ public class PlayerStateManager : MonoBehaviour
 
     public IEnumerator ChangeCrouch()
     {
-        Debug.Log("Roll");
         switchcheck.ChangeBall();
         yield return new WaitForSeconds(timeroll);
         switchcheck.SwitchToCharacter();

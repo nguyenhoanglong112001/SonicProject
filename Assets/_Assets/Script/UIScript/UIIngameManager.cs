@@ -11,9 +11,14 @@ public class UIIngameManager : MonoBehaviour
     public Button SettingBt;
     public Button ResumeBt;
     public Button exitBt;
+    public Button ReviveBt;
     public GameObject pauseUI;
     public GameObject endUI;
     public float delaytime;
+    public Text currentRedRing;
+
+    public GameObject player;
+    public PlayerControll playerControll;
 
     private void Awake()
     {
@@ -29,6 +34,7 @@ public class UIIngameManager : MonoBehaviour
         ResumeBt.onClick.AddListener(OnResumeBtPress);
         quitBt.onClick.AddListener(OnQuitBtPress);
         exitBt.onClick.AddListener(ExitEndGame);
+        ReviveBt.onClick.AddListener(OnRevivePress);
     }
 
     private void OnPauseBtPress()
@@ -57,5 +63,17 @@ public class UIIngameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delaytime);
         Time.timeScale = 1f;
+    }
+
+    private void OnRevivePress()
+    {
+        int reviveCost = CurrencyManager.instance.cost.BaseReviveCost * (int)Mathf.Pow(2, GameManager.instance.reviveCount);
+        if (CurrencyManager.instance.currentRedRing > reviveCost)
+        {
+            playerControll.playerRevive();
+            reviveCost += 1;
+            CurrencyManager.instance.UpdateRedRing(-reviveCost);
+            GameManager.instance.ChangeGameState(GameState.InGame);
+        }
     }
 }

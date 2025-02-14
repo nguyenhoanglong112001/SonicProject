@@ -13,9 +13,10 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private GameState currentState;
+    public GameState currentState;
     [SerializeField] private PlayerControll playerControll;
     [SerializeField] private PlayerStateManager playerState;
+    public int reviveCount;
 
     private void Awake()
     {
@@ -56,14 +57,26 @@ public class GameManager : MonoBehaviour
         {
             playerState.currentState = null;
             UIIngameManager.instance.endUI.SetActive(true);
+            UIIngameManager.instance.currentRedRing.text = SaveManager.instance.GetIntData(SaveKey.CurrentRedRing, 0).ToString();
         }
         if(state == GameState.InGame)
         {
-            SceneManager.LoadScene(1);
+            if(currentState != GameState.EndGame)
+            {
+                SceneManager.LoadScene(1);
+            }
         }
         if(state == GameState.Menu)
         {
             SceneManager.LoadScene(0);
+            reviveCount = 0;
+            if (currentState == GameState.EndGame)
+            {
+                CurrencyManager.instance.UpdateGoldRing(SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0));
+                CurrencyManager.instance.UpdateRedRing(SaveManager.instance.GetIntData(SaveKey.RedRing, 0));
+                SaveManager.instance.Save(SaveKey.GoldRingBank, 0);
+                SaveManager.instance.Save(SaveKey.RedRing, 0);
+            }
         }
         currentState = state;
     }
