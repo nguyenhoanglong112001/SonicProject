@@ -1,6 +1,7 @@
 using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -61,6 +62,7 @@ public class PlayerControll : MonoBehaviour
         playeranimator.SetTrigger(parameter);
         playerrigi.linearVelocity = Vector3.forward * knock * -1 * Time.deltaTime;
         isalive = false;
+        SaveManager.instance.Save(SaveKey.RedRing, checkcollect.GetRedRingCollect());
         GameManager.instance.ChangeGameState(GameState.EndGame);
     }
     private void OnCollisionEnter(Collision collision)

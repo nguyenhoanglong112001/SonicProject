@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class TurnState : PlayerBaseState
 {
@@ -9,19 +10,20 @@ public class TurnState : PlayerBaseState
     {
         player.isTurn = true;
         player.playerrigi.isKinematic = true;
+        int totalGain = SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0);
+        SaveManager.instance.Save("Rings", totalGain+player.check.GetRing());
+        player.check.SetRing(-player.check.GetRing());
         player.Turn();
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
-        Vector3 newEuler = player.transform.eulerAngles;
-        newEuler.z = 0;
-        player.transform.eulerAngles = newEuler;
+
     }
 
     public override void ExitState(PlayerStateManager player)
     {
-        player.isTurn = false;
         player.lane = 1;
+        player.playerrigi.isKinematic = false;
     }
 }

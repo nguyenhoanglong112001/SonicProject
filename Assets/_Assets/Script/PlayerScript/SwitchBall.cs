@@ -35,6 +35,7 @@ public class SwitchBall : MonoBehaviour
     private void Switch(bool ischangeBall,RuntimeAnimatorController animator, Avatar avatar, bool active1, bool active2)
     {
         Vector3 currentPos = transform.position;
+        Quaternion currentRotate = transform.rotation;
         ballObj.SetActive(ischangeBall);
         sonicObj.SetActive(!ischangeBall);
         playeranimator.runtimeAnimatorController = animator;
@@ -42,6 +43,7 @@ public class SwitchBall : MonoBehaviour
         ballcollider.enabled = active1;
         charactercollider.enabled = active2;
         transform.position = currentPos;
+        transform.rotation = currentRotate;
     }
 
     public void ChangeBall()

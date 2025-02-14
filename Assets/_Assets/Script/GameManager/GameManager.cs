@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private GameState currentState;
-    [SerializeField] private PlayerControll playerdeath;
+    [SerializeField] private PlayerControll playerControll;
     [SerializeField] private PlayerStateManager playerState;
 
     private void Awake()
@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void GetCom()
     {
-        playerdeath = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
+        playerControll = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
         playerState = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
     }     
 
@@ -74,11 +73,11 @@ public class GameManager : MonoBehaviour
         if(scene.name == "PlayScene")
         {
             GetCom();
-            playerdeath.isalive = true;
+            playerControll.isalive = true;
         }
         else if (scene.name == "Start")
         {
-            playerdeath = null;
+            playerControll = null;
             playerState = null;
         }
     }

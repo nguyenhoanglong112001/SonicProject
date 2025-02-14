@@ -33,6 +33,6 @@ public class CheckLane : MonoBehaviour
     private void RandomEndZone()
     {
         int a = Random.Range(0, 100);
-        isEndZone = (a > 0) ? true : false;
+        isEndZone = (a > 90) ? true : false;
     }
 }

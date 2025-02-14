@@ -15,6 +15,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] public Animator playeranimator;
     [SerializeField] public SwitchBall switchcheck;
     [SerializeField] public CollectManager check;
+    [SerializeField] public PlayerControll controll;
     public CapsuleCollider playerCollider;
     public TypeRoad laneType;
     public float minspeed;
@@ -101,7 +102,10 @@ public class PlayerStateManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        MoveForward();
+        if (controll.isalive)
+        {
+            MoveForward();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -218,7 +222,7 @@ public class PlayerStateManager : MonoBehaviour
                 }
                 else
                 {
-                    if(!isDash)
+                    if(!isDash && currentState is not TurnState)
                     {
                         if (deltalY > 0 && checkCondition.GroundCheck())
                         {
@@ -370,6 +374,7 @@ public class PlayerStateManager : MonoBehaviour
         follower.follow = false;
         newState = state.Run();
         SwitchState(newState);
+        follower.onEndReached -= OnCompletedSpline;
     }
 
     public GameObject SpawnEnerbeam()

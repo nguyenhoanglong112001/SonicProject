@@ -78,6 +78,11 @@ public class CollectManager : MonoBehaviour
     }
 
     public void SetRedStartRing(int redrings) => redstartring += redrings;
+
+    public int GetRedRingCollect()
+    {
+        return redstartring;
+    }
     private void Maget()
     {
         if(Ismaget || IsOrbMaget)
