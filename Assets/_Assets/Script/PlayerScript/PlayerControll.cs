@@ -231,17 +231,17 @@ public class PlayerControll : MonoBehaviour
         characterMat.color = color;
     }   
 
-    public void playerRevive()
+    public void PlayerRevive()
     {
         gameObject.transform.position = deathPos;
         DisableObject();
-        StartCoroutine(delayTimeSpawn());
+        StartCoroutine(DelayTimeSpawn());
     }
 
-    IEnumerator delayTimeSpawn()
+    IEnumerator DelayTimeSpawn()
     {
         Time.timeScale = 0f;
-        yield return new WaitForSeconds(spawnTime);
+        yield return new WaitForSecondsRealtime(spawnTime);
         Time.timeScale = 1f;
         playeranimator.SetTrigger("Revive");
         player.currentState = player.state.Run();

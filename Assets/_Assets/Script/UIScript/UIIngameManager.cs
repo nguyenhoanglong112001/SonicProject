@@ -70,7 +70,8 @@ public class UIIngameManager : MonoBehaviour
         int reviveCost = CurrencyManager.instance.cost.BaseReviveCost * (int)Mathf.Pow(2, GameManager.instance.reviveCount);
         if (CurrencyManager.instance.currentRedRing > reviveCost)
         {
-            playerControll.playerRevive();
+            endUI.SetActive(false);
+            playerControll.PlayerRevive();
             reviveCost += 1;
             CurrencyManager.instance.UpdateRedRing(-reviveCost);
             GameManager.instance.ChangeGameState(GameState.InGame);

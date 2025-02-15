@@ -98,7 +98,6 @@ public class PlayerStateManager : MonoBehaviour
         {
             currentState.UpdateState(this);
         }
-        Debug.Log("State: " + currentState);
     }
     private void FixedUpdate()
     {
