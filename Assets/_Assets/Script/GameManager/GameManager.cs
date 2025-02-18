@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         {
             GetCom();
             playerControll.isalive = true;
+            //CharacterManager.instance.player = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
+            //CharacterManager.instance.playerControll = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
         }
         else if (scene.name == "Start")
         {

@@ -8,11 +8,9 @@ using UnityEngine.Splines;
 public class PlayerControll : MonoBehaviour
 {
     [SerializeField] private PlayerStateManager player;
-    [SerializeField] private Animator playeranimator;
     [SerializeField] private Rigidbody playerrigi;
     [SerializeField] private float knock;
     [SerializeField] private SwitchBall ballcheck;
-    [SerializeField] private DashPower checkdash;
     [SerializeField] private CollectManager checkcollect;
     [SerializeField] private SwitchBall change;
     [SerializeField] private int playerlayer;
@@ -24,9 +22,6 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private ComboUI typeChange;
     [SerializeField] private int enemyScore;
     [SerializeField] private MutiplyerScript mutiply;
-    [SerializeField] private float duration;
-    [SerializeField] private float fadeTime;
-    [SerializeField] private Material characterMat;
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
     public Transform[] wayPoints;
@@ -39,10 +34,16 @@ public class PlayerControll : MonoBehaviour
     public float spawnTime;
     public float rangerCheck;
     public LayerMask layerCheck;
+
+    [Header("For change Character")]
+    public Animator playeranimator;
+    public SkinnedMeshRenderer playerMesh;
+    public MeshRenderer playerBall;
+    public Transform mainPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        CharacterManager.instance.SetCharacter(mainPlayer,player,this);
     }
 
     // Update is called once per frame
@@ -212,24 +213,6 @@ public class PlayerControll : MonoBehaviour
         mutiply.Mutiplyer /= 2;
     }  
     
-    IEnumerator CharacterFade()
-    {
-        for (int i = 0; i <fadeTime;i++)
-        {
-            SetAlpha(0f);
-            yield return new WaitForSeconds(duration);
-
-            SetAlpha(1f);
-            yield return new WaitForSeconds(duration);
-        }
-    } 
-    
-    private void SetAlpha(float alpha)
-    {
-        Color color = characterMat.color;
-        color.a = alpha;
-        characterMat.color = color;
-    }   
 
     public void PlayerRevive()
     {

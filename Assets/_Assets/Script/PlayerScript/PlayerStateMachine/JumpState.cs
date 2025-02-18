@@ -6,7 +6,7 @@ public class JumpState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        if(player.crouchCoroutine != null)
+        if (player.crouchCoroutine != null)
         {
             player.StopCoroutine(player.crouchCoroutine);
             player.crouchCoroutine = null;
@@ -14,6 +14,7 @@ public class JumpState : PlayerBaseState
         if(!player.isball)
         {
             player.playeranimator.SetTrigger("Roll");
+            player.StartCoroutine(player.WaitToChangeBall());
         }
         player.playerrigi.AddForce(player.transform.up * player.jumpforce,ForceMode.Impulse);
         player.isjump = true;

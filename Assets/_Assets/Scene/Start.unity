@@ -5446,6 +5446,7 @@ GameObject:
   - component: {fileID: 1584243372}
   - component: {fileID: 1584243371}
   - component: {fileID: 1584243373}
+  - component: {fileID: 1584243374}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5505,6 +5506,20 @@ MonoBehaviour:
   OnUpdateRedRing:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1584243374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584243370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddeaaa1b02883a44a10c0033b092fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTable: {fileID: 11400000, guid: 8ca30f0858093d2458cebef297d239f7, type: 2}
+  idChoose: 0
 --- !u!1 &1598881359
 GameObject:
   m_ObjectHideFlags: 0

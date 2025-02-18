@@ -98,6 +98,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             currentState.UpdateState(this);
         }
+        Debug.Log("State: " + currentState);
     }
     private void FixedUpdate()
     {
@@ -272,6 +273,18 @@ public class PlayerStateManager : MonoBehaviour
         switchcheck.SwitchToCharacter();
         newState = state.Run();
         SwitchState(newState);
+    }
+
+    public IEnumerator WaitToChangeBall()
+    {
+        AnimatorStateInfo stateinfo = playeranimator.GetCurrentAnimatorStateInfo(0);
+
+        while (stateinfo.IsName("sonic_roll_in") && stateinfo.normalizedTime < 1.0f)
+        {
+            yield return null;
+            stateinfo = playeranimator.GetCurrentAnimatorStateInfo(0);
+        }
+        switchcheck.ChangeBall();
     }
 
     public void Crouch()
