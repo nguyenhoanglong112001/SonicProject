@@ -11,12 +11,10 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerStateFactory state;
 
     [Header("Chi so chung")]
-    [SerializeField] public PlayerControll checkCondition;
+    [SerializeField] public PlayerControll playControll;
     [SerializeField] public Animator playeranimator;
     [SerializeField] public SwitchBall switchcheck;
-    [SerializeField] public CollectManager check;
-    [SerializeField] public PlayerControll controll;
-    public CapsuleCollider playerCollider;
+    public Collider playerCollider;
     public TypeRoad laneType;
     public float minspeed;
     public Rigidbody playerrigi;
@@ -100,9 +98,10 @@ public class PlayerStateManager : MonoBehaviour
         }
         Debug.Log("State: " + currentState);
     }
+
     private void FixedUpdate()
     {
-        if (controll.isalive)
+        if(PlayerManager.instance.isAlive)
         {
             MoveForward();
         }
@@ -224,7 +223,7 @@ public class PlayerStateManager : MonoBehaviour
                 {
                     if(!isDash && currentState is not TurnState)
                     {
-                        if (deltalY > 0 && checkCondition.GroundCheck())
+                        if (deltalY > 0 && playControll.GroundCheck())
                         {
                             newState = state.Jump();
                             SwitchState(newState);
@@ -301,7 +300,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Dash()
     {
-        if (check.Energydash == 100)
+        if (CollectManager.instance.Energydash == 100)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -317,12 +316,12 @@ public class PlayerStateManager : MonoBehaviour
 
     public IEnumerator DashTime()
     {
-        float energy = check.Energydash;
+        float energy = CollectManager.instance.Energydash;
         float eslapedTime = 0;
         while (eslapedTime < duration)
         {
             eslapedTime += Time.deltaTime;
-            check.Energydash = Mathf.Lerp(energy, 0, eslapedTime / duration);
+            CollectManager.instance.Energydash = Mathf.Lerp(energy, 0, eslapedTime / duration);
             yield return null;
         }
         isDash = false;

@@ -11,22 +11,18 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private Rigidbody playerrigi;
     [SerializeField] private float knock;
     [SerializeField] private SwitchBall ballcheck;
-    [SerializeField] private CollectManager checkcollect;
     [SerializeField] private SwitchBall change;
     [SerializeField] private int playerlayer;
     [SerializeField] private int enemylayer;
     [SerializeField] private int blockerlayer;
     [SerializeField] private EnemyAttackIdentify setEnemyAttack;
-    [SerializeField] private ScoreManager updateScore;
-    [SerializeField] private ComboManager comboUpdate;
-    [SerializeField] private ComboUI typeChange;
     [SerializeField] private int enemyScore;
     [SerializeField] private MutiplyerScript mutiply;
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
     public Transform[] wayPoints;
     public bool isTurn;
-    public bool isalive;
+    //public bool isalive;
     public bool _canDodge;
 
     [Header("======For revive")]
@@ -35,15 +31,11 @@ public class PlayerControll : MonoBehaviour
     public float rangerCheck;
     public LayerMask layerCheck;
 
-    [Header("For change Character")]
     public Animator playeranimator;
-    public SkinnedMeshRenderer playerMesh;
-    public MeshRenderer playerBall;
-    public Transform mainPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        CharacterManager.instance.SetCharacter(mainPlayer,player,this);
+        
     }
 
     // Update is called once per frame
@@ -68,16 +60,16 @@ public class PlayerControll : MonoBehaviour
         change.SwitchToCharacter();
         playeranimator.SetTrigger(parameter);
         playerrigi.linearVelocity = Vector3.forward * knock * -1 * Time.deltaTime;
-        isalive = false;
+        PlayerManager.instance.isAlive = false;
         deathPos = transform.position;
-        SaveManager.instance.Save(SaveKey.RedRing, checkcollect.GetRedRingCollect());
+        SaveManager.instance.Save(SaveKey.RedRing, CollectManager.instance.GetRedRingCollect());
         GameManager.instance.ChangeGameState(GameState.EndGame);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Blocker"))
         {
-            if(player.currentState is not DashState && !checkcollect.CheckShield())
+            if(player.currentState is not DashState && !CollectManager.instance.CheckShield())
             {
                 if (ballcheck.isball)
                 {
@@ -86,10 +78,10 @@ public class PlayerControll : MonoBehaviour
                 }
                 Death("Death1");
             }
-            else if (player.currentState is not DashState || checkcollect.CheckShield())
+            else if (player.currentState is not DashState || CollectManager.instance.CheckShield())
             {
                 Destroy(collision.gameObject);
-                checkcollect.SetShield(false);
+                CollectManager.instance.SetShield(false);
             }
         }
         if(collision.gameObject.CompareTag("Enemy"))
@@ -106,7 +98,7 @@ public class PlayerControll : MonoBehaviour
             {
                 ballcheck.SwitchToCharacter();
                 playeranimator.SetTrigger("DeathFall");
-                isalive = false;
+                PlayerManager.instance.isAlive = false;
                 GameManager.instance.ChangeGameState(GameState.EndGame);
             }
         }
@@ -146,15 +138,15 @@ public class PlayerControll : MonoBehaviour
 
     private void HitEnemy(GameObject enemy)
     {
-        if (checkcollect.GetRing() > 0)
+        if (CollectManager.instance.GetRing() > 0)
         {
             Physics.IgnoreLayerCollision(playerlayer, enemylayer, true);
             Physics.IgnoreLayerCollision(playerlayer, blockerlayer, true);
             StartCoroutine(Ignore());
             playeranimator.SetTrigger("Stumble");
-            checkcollect.SetRing(-checkcollect.GetRing());
+            CollectManager.instance.SetRing(-CollectManager.instance.GetRing());
         }
-        else if (checkcollect.GetRing() <= 0)
+        else if (CollectManager.instance.GetRing() <= 0)
         {
             if (enemy.GetComponentInChildren<EnemyAttackIdentify>() != null)
             {
@@ -167,23 +159,23 @@ public class PlayerControll : MonoBehaviour
 
     private void KillEnemy(GameObject enemyHit)
     {
-        if (ballcheck.isball || player.currentState is DashState || checkcollect.CheckShield())
+        if (ballcheck.isball || player.currentState is DashState || CollectManager.instance.CheckShield())
         {
-            if (checkcollect.CheckShield())
+            if (CollectManager.instance.CheckShield())
             {
-                checkcollect.SetShield(false);
-                typeChange.ShowCombotype("Enemy");
+                CollectManager.instance.SetShield(false);
+                UIIngameManager.instance.ShowCombotype("Enemy");
             }
             if(player.currentState is DashState)
             {
-                comboUpdate.UpdateCombo();
-                typeChange.ShowCombotype("Smash");
+                ComboManager.instance.UpdateCombo();
+                UIIngameManager.instance.ShowCombotype("Smash");
             }
             else
             {
-                updateScore.UpdateScore(enemyScore);
-                comboUpdate.UpdateCombo();
-                typeChange.ShowCombotype("Enemy");
+                ScoreManager.instance.UpdateScore(enemyScore);
+                ComboManager.instance.UpdateCombo();
+                UIIngameManager.instance.ShowCombotype("Enemy");
             }
             Destroy(enemyHit);
         }
@@ -195,8 +187,8 @@ public class PlayerControll : MonoBehaviour
 
     public void ComboUpdate(string comboType)
     {
-        comboUpdate.UpdateCombo();
-        typeChange.ShowCombotype(comboType);
+        ComboManager.instance.UpdateCombo();
+        UIIngameManager.instance.ShowCombotype(comboType);
     }
 
     IEnumerator Ignore()
@@ -229,7 +221,7 @@ public class PlayerControll : MonoBehaviour
         playeranimator.SetTrigger("Revive");
         player.currentState = player.state.Run();
         player.currentState.EnterState(player);
-        isalive = true;
+        PlayerManager.instance.isAlive = true;
     }
 
     private void DisableObject()

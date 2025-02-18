@@ -6,7 +6,6 @@ using Lean.Pool;
 public class SpawnPowerUp : MonoBehaviour
 {
     [SerializeField] private GameObject[] powerList;
-    [SerializeField] private CollectManager checkCollect;
     [SerializeField] private GameObject powerSpawn;
 
     public GameObject PowerSpawn { get => powerSpawn; set => powerSpawn = value; }
@@ -14,7 +13,6 @@ public class SpawnPowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        checkCollect = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         SpawnPower();
     }
 
@@ -32,21 +30,21 @@ public class SpawnPowerUp : MonoBehaviour
             int a = 4;
             if(powerList[a].GetComponent<PowerType>().typed == TypePower.Shield)
             {
-                if(!checkCollect.CheckShield())
+                if(!CollectManager.instance.CheckShield())
                 {
                     ActivePowerPickUp(powerList[a]);
                 }
             }    
             else if (powerList[a].GetComponent<PowerType>().typed == TypePower.Magnet)
             {
-                if(!checkCollect.Ismaget)
+                if(!CollectManager.instance.Ismaget)
                 {
                     ActivePowerPickUp(powerList[a]);
                 }
             }
             else if (powerList[a].GetComponent<PowerType>().typed == TypePower.OrbMagnet)
             {
-                if(!checkCollect.IsOrbMaget)
+                if(!CollectManager.instance.IsOrbMaget)
                 {
                     ActivePowerPickUp(powerList[a]);
                 }

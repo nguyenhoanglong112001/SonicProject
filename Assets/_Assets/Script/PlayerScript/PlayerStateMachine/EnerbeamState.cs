@@ -24,6 +24,7 @@ public class EnerbeamState : PlayerBaseState
         player.transform.rotation = new Quaternion(0, 0, 0, 0);
         player.DestroyEnerbeam();
         player.playerrigi.isKinematic = false;
+        CollectManager.instance.Isenerbeam = false;
     }
 
     public override void UpdateState(PlayerStateManager player)

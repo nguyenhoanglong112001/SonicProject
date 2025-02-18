@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CollectManager : MonoBehaviour
 {
+    public static CollectManager instance;
     [SerializeField] private int coins;
     [SerializeField] private float energydash;
     [SerializeField] private int redstartring;
@@ -29,12 +30,20 @@ public class CollectManager : MonoBehaviour
     public bool IsOrbMaget { get => isOrbMaget; set => isOrbMaget = value; }
     public bool IsGrindSpeedUp { get => isGrindSpeedUp; set => isGrindSpeedUp = value; }
 
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         coins = 0;
         energydash = 0;
         redstartring = 0;
+        magetlimit = GameObject.FindWithTag("Maget");
     }
 
     // Update is called once per frame

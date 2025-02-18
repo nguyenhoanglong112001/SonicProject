@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
     [SerializeField] private int score;
-    [SerializeField] private GameObject player;
+    [SerializeField] public GameObject player;
     private Vector3 currentpos;
     private Vector3 lastPos;
     [SerializeField] private PlayerControll checkalive;
@@ -37,8 +37,6 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        checkalive = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
         lastPos = player.transform.position;
         Score = 0;
         OnScoreChange.Invoke(Score);
@@ -48,7 +46,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         currentpos = player.transform.position;
-        if(checkalive.isalive)
+        if(PlayerManager.instance.isAlive)
         {
             UpdateScoreByDistance();
         }

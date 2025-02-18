@@ -9,14 +9,11 @@ public class SpringCollect : MonoBehaviour
     [SerializeField] private float force;
     [SerializeField] private float fouceUpRail;
     [SerializeField] private Animator anim;
-    [SerializeField] private CollectManager checkCollect;
     [SerializeField] private Transform startpoint;
     [SerializeField] private Transform endpoint;
     [SerializeField] private float speedtoeb;
     [SerializeField] private LeanGameObjectPool pool;
     [SerializeField] private SwitchBall checkBall;
-    [SerializeField] private ComboManager combo;
-    [SerializeField] private ComboUI comboType;
     private Vector3 currentpos;
     private Vector3 lastpos;
 
@@ -24,7 +21,6 @@ public class SpringCollect : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     private void Update()
@@ -37,7 +33,7 @@ public class SpringCollect : MonoBehaviour
         else
         {
             startpoint = gameObject.transform;
-            if (endpoint != null && checkCollect.IsSpring)
+            if (endpoint != null && CollectManager.instance.IsSpring)
             {
                 anim.SetBool("Spring", true);
                 transform.position = Vector3.MoveTowards(startpoint.position, endpoint.position, speedtoeb * Time.deltaTime);
@@ -52,19 +48,19 @@ public class SpringCollect : MonoBehaviour
     {
         if(other.CompareTag("Spring"))
         {
-            combo.UpdateCombo();
-            comboType.ShowCombotype("Spring");
-            checkCollect.IsSpring = true;
+            ComboManager.instance.UpdateCombo();
+            UIIngameManager.instance.ShowCombotype("Spring");
+            CollectManager.instance.IsSpring = true;
             //if (checkBall.isball)
             //{
             //    checkBall.SwitchToCharacter();
             //}
-            if (other.gameObject.GetComponent<SpringObject>().SpringGap && checkCollect.IsSpring)
+            if (other.gameObject.GetComponent<SpringObject>().SpringGap && CollectManager.instance.IsSpring)
             {
                 anim.SetBool("Spring", true);
                 rig.AddForce(Vector3.up * force * Time.deltaTime, ForceMode.Impulse);
             }
-            else if (other.gameObject.GetComponent<SpringObject>().Springeb && checkCollect.IsSpring)
+            else if (other.gameObject.GetComponent<SpringObject>().Springeb && CollectManager.instance.IsSpring)
             {
 
                 lastpos = transform.position;
@@ -77,13 +73,13 @@ public class SpringCollect : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(checkCollect.IsSpring)
+        if(CollectManager.instance.IsSpring)
         {
             if(collision.gameObject.CompareTag("Ground"))
             {
                 anim.SetBool("Spring", false);
                 anim.SetBool("IsFalling", false);
-                checkCollect.IsSpring = false;
+                CollectManager.instance.IsSpring = false;
             }    
         }
     }

@@ -11,8 +11,8 @@ public class TurnState : PlayerBaseState
         player.isTurn = true;
         player.playerrigi.isKinematic = true;
         int totalGain = SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0);
-        SaveManager.instance.Save(SaveKey.GoldRingBank, totalGain+player.check.GetRing());
-        player.check.SetRing(-player.check.GetRing());
+        SaveManager.instance.Save(SaveKey.GoldRingBank, totalGain+CollectManager.instance.GetRing());
+        CollectManager.instance.SetRing(-CollectManager.instance.GetRing());
         player.Turn();
     }
 

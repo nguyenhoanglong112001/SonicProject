@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameState currentState;
-    [SerializeField] private PlayerControll playerControll;
-    [SerializeField] private PlayerStateManager playerState;
+    [SerializeField] public PlayerControll playerControll;
+    [SerializeField] public PlayerStateManager playerState;
     public int reviveCount;
 
     private void Awake()
@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void GetCom()
     {
-        playerControll = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
-        playerState = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
+        playerControll = PlayerManager.instance.playerControll;
+        playerState = PlayerManager.instance.playerState;
     }     
 
     private bool IsPointerOverUIObject(Vector2 position)
@@ -86,9 +86,7 @@ public class GameManager : MonoBehaviour
         if(scene.name == "PlayScene")
         {
             GetCom();
-            playerControll.isalive = true;
-            //CharacterManager.instance.player = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
-            //CharacterManager.instance.playerControll = GameObject.FindWithTag("Player").GetComponent<PlayerControll>();
+            PlayerManager.instance.isAlive = true;
         }
         else if (scene.name == "Start")
         {

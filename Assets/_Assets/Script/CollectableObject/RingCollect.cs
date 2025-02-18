@@ -6,7 +6,6 @@ using Lean.Pool;
 public class RingCollect : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private CollectManager check;
     [SerializeField] private int ringsup;
     [SerializeField] private LeanGameObjectPool collectPool;
     void Start()
@@ -19,7 +18,6 @@ public class RingCollect : MonoBehaviour
         {
             collectPool = GameObject.FindWithTag("CollectablePool").GetComponent<LeanGameObjectPool>();
         }    
-        check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
     }
 
     // Update is called once per frame
@@ -31,7 +29,7 @@ public class RingCollect : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            check.SetRing(ringsup);
+            CollectManager.instance.SetRing(ringsup);
             collectPool.Despawn(gameObject);
         }
     }

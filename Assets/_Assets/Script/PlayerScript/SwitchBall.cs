@@ -6,9 +6,8 @@ public class SwitchBall : MonoBehaviour
 {
     [SerializeField] private GameObject sonicObj;
     [SerializeField] private GameObject ballObj;
-    [SerializeField] private CapsuleCollider charactercollider;
+    [SerializeField] private SphereCollider charactercollider;
     [SerializeField] private SphereCollider ballcollider;
-    //[SerializeField] private InputManager checkcondition;
     [SerializeField] private PlayerStateManager checkcondition;
 
     public bool isball;
@@ -46,15 +45,15 @@ public class SwitchBall : MonoBehaviour
         Switch(false, false, true);
         isball = false;
     }
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if(checkcondition.isjump)
-    //    {
-    //        if(collision.gameObject.CompareTag("Ground") && checkcondition.currentState is not JumpState)
-    //        {
-    //            SwitchToCharacter();
-    //            checkcondition.isjump = false;
-    //        }
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(checkcondition.isjump)
+        {
+            if(collision.gameObject.CompareTag("Ground"))
+            {
+                SwitchToCharacter();
+                checkcondition.isjump = false;
+            }
+        }
+    }
 }

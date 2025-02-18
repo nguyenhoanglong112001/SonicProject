@@ -5,7 +5,6 @@ using Lean.Pool;
 
 public class CollectPowerUp : MonoBehaviour
 {
-    [SerializeField] private CollectManager check;
     [SerializeField] private LeanGameObjectPool powerPool;
     [SerializeField] private SpawnPowerUp currentPower;
     [SerializeField] private GameObject[] railprefab;
@@ -15,7 +14,6 @@ public class CollectPowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        check = GameObject.FindWithTag("Player").GetComponent<CollectManager>();
         powerPool = GameObject.FindWithTag("PowerUpPool").GetComponent<LeanGameObjectPool>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerStateManager>();
     }
@@ -34,28 +32,27 @@ public class CollectPowerUp : MonoBehaviour
             {
                 if (currentPower.PowerSpawn.CompareTag("Maget"))
                 {
-                    check.Ismaget = true;
-                    Debug.Log(check.Ismaget);
+                    CollectManager.instance.Ismaget = true;
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Shield"))
                 {
-                    check.SetShield(true);
+                    CollectManager.instance.SetShield(true);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Ring10"))
                 {
-                    check.SetRing(10);
+                    CollectManager.instance.SetRing(10);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Ring20"))
                 {
-                    check.SetRing(20);
+                    CollectManager.instance.SetRing(20);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("RedRing"))
                 {
-                    check.SetRedStartRing(1);
+                    CollectManager.instance.SetRedStartRing(1);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("EnerbeamPickup"))
                 {
-                    check.Isenerbeam = true;
+                    CollectManager.instance.Isenerbeam = true;
                     if (enerbeamRail == null)
                     {
                         int a = Random.Range(0, railprefab.Length - 1);
@@ -66,11 +63,11 @@ public class CollectPowerUp : MonoBehaviour
                 }
                 else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
                 {
-                    check.IsOrbMaget = true;
+                    CollectManager.instance.IsOrbMaget = true;
                 }
                 else if (currentPower.PowerSpawn.CompareTag("DoubleMutiply"))
                 {
-                    check.IsDouble = true;
+                    CollectManager.instance.IsDouble = true;
                 }
                 powerPool.Despawn(gameObject);
             }

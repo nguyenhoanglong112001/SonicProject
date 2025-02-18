@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class ComboManager : MonoBehaviour
 {
+    public static ComboManager instance;
     public UnityEvent OnComboChange;
     [SerializeField] private ScoreManager score;
     [SerializeField] private float comboTime;
@@ -25,6 +26,14 @@ public class ComboManager : MonoBehaviour
 
     public float RemainTime { get => remainTime; set => remainTime = value; }
     public float ComboTime { get => comboTime; set => comboTime = value; }
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

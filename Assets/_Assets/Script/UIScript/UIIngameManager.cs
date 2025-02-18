@@ -17,8 +17,14 @@ public class UIIngameManager : MonoBehaviour
     public float delaytime;
     public Text currentRedRing;
 
+    [Header("ComboUI")]
+    [SerializeField] private Text comboText;
+    [SerializeField] private Text comboTypeText;
+    [SerializeField] private Image comboCountDown;
+    [SerializeField] private GameObject comboPannel;
+
+
     public GameObject player;
-    public PlayerControll playerControll;
 
     private void Awake()
     {
@@ -26,6 +32,7 @@ public class UIIngameManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
 
     private void Start()
@@ -35,6 +42,14 @@ public class UIIngameManager : MonoBehaviour
         quitBt.onClick.AddListener(OnQuitBtPress);
         exitBt.onClick.AddListener(ExitEndGame);
         ReviveBt.onClick.AddListener(OnRevivePress);
+
+        ComboManager.instance.OnComboChange.AddListener(ShowCombo);
+        comboPannel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        CountDownCombo();
     }
 
     private void OnPauseBtPress()
@@ -71,10 +86,26 @@ public class UIIngameManager : MonoBehaviour
         if (CurrencyManager.instance.currentRedRing > reviveCost)
         {
             endUI.SetActive(false);
-            playerControll.PlayerRevive();
+            PlayerManager.instance.playerControll.PlayerRevive();
             reviveCost += 1;
             CurrencyManager.instance.UpdateRedRing(-reviveCost);
             GameManager.instance.ChangeGameState(GameState.InGame);
         }
+    }
+
+    public void ShowCombo()
+    {
+        gameObject.SetActive(true);
+        comboText.text = ComboManager.instance.ComboCount.ToString();
+    }
+
+    public void ShowCombotype(string comboType)
+    {
+        comboTypeText.text = comboType + "!";
+    }
+
+    public void CountDownCombo()
+    {
+        comboCountDown.fillAmount = ComboManager.instance.RemainTime / ComboManager.instance.ComboTime;
     }
 }

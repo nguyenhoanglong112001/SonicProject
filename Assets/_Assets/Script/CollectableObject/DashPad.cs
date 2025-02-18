@@ -10,7 +10,6 @@ public class DashPad : MonoBehaviour
     [SerializeField] private InputManager speed;
     [SerializeField] private Vector3 startpos;
     [SerializeField] private ComboManager combo;
-    [SerializeField] private ComboUI comboType;
     public bool isdashpad;
     private bool istrigger;
 
@@ -50,7 +49,7 @@ public class DashPad : MonoBehaviour
             dashcheck.isdashing = true;
             switchball.isball = true;
             combo.UpdateCombo();
-            comboType.ShowCombotype("Dashpad");
+            UIIngameManager.instance.ShowCombotype("Dashpad");
             startpos = other.transform.position;
             if (Vector3.Distance(transform.position, startpos) < dashdistance)
             {

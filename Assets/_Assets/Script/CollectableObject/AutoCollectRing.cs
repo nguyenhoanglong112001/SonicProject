@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AutoCollectRing : MonoBehaviour
 {
-    [SerializeField] private CollectManager check;
     [SerializeField] private List<GameObject> Ring;
     [SerializeField] private List<GameObject> Orb;
     [SerializeField] private Transform playerposition;
@@ -24,14 +23,14 @@ public class AutoCollectRing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(check.Ismaget)
+        if(CollectManager.instance.Ismaget)
         {
             if (other.CompareTag("Ring"))
             {
                 Ring.Add(other.gameObject);
             }
         }
-        else if (check.IsOrbMaget)
+        else if (CollectManager.instance.IsOrbMaget)
         {
             if(other.CompareTag("Orb"))
             {
