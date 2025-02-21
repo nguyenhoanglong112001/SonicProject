@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public enum BonusType
 {
-    EnemyBonus,
-    DistanceBonus,
+    EnemyScore,
+    DistanceScore,
     ComboBonus,
 }
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Objects/Character")]
@@ -24,7 +24,4 @@ public class Character
     public BonusType bonusType;
     public Sprite CharacterImage;
     public GameObject CharacterPrefab;
-    public Avatar CharacterAvatar;
-    public AnimatorController CharacterAnimator;
-    public AnimatorOverrideController CharacterOverrideAnimator;
 }

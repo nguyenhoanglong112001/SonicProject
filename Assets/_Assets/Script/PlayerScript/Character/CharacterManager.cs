@@ -13,6 +13,10 @@ public class CharacterManager : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+        SetIdChoice(SaveManager.instance.GetIntData(SaveKey.LeadRunner, 1));
+    }
 
     public void SetIdChoice(int idChoice)
     {
