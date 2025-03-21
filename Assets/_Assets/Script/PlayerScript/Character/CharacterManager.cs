@@ -4,7 +4,10 @@ public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
     public CharacterTable characterTable;
+    public UpdateTable updateList;
+    public int bonus;
     public int idChoose;
+    public BonusType bonusType;
 
     private void Awake()
     {
@@ -29,6 +32,14 @@ public class CharacterManager : MonoBehaviour
         {
             if(idCharacter.id == idChoose)
             {
+                bonusType = idCharacter.bonusType;
+                foreach(UpdateInfo update in updateList.updateList)
+                {
+                    if(idCharacter.currentlevel == update.level)
+                    {
+                        bonus = update.bonus;
+                    }
+                }    
                 GameObject Character = Instantiate(idCharacter.CharacterPrefab, pos.position, Quaternion.identity);
                 ScoreManager.instance.player = Character;
                 mainCam.transform.SetParent(Character.transform);

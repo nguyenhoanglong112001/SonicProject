@@ -173,7 +173,14 @@ public class PlayerControll : MonoBehaviour
             }
             else
             {
-                ScoreManager.instance.UpdateScore(enemyScore);
+                if(CharacterManager.instance.bonusType == BonusType.EnemyScore)
+                {
+                    ScoreManager.instance.UpdateScore(enemyScore * (CharacterManager.instance.bonus/100));
+                }
+                else
+                {
+                    ScoreManager.instance.UpdateScore(enemyScore);
+                }
                 ComboManager.instance.UpdateCombo();
                 UIIngameManager.instance.ShowCombotype("Enemy");
             }

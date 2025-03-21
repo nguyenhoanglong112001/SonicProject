@@ -59,8 +59,14 @@ public class ScoreManager : MonoBehaviour
 
         if(distanceMove > 1)
         {
-            Score += (int)(pointPerMove * mutiplyer.Mutiplyer);
-
+            if(CharacterManager.instance.bonusType == BonusType.DistanceScore)
+            {
+                Score += (int)(pointPerMove * mutiplyer.Mutiplyer * (CharacterManager.instance.bonus/100));
+            }
+            else
+            {
+                Score += (int)(pointPerMove * mutiplyer.Mutiplyer);
+            }
             distanceMove -= 1;
         }
 

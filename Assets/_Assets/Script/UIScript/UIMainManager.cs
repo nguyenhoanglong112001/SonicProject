@@ -10,8 +10,10 @@ public class UIMainManager : MonoBehaviour
     [SerializeField] private Text goldTxt;
     [SerializeField] private Text redRingTxt;
     [SerializeField] private Button teamBt;
+    [SerializeField] private Button backBt;
     [SerializeField] private List<GameObject> teamUI;
     [SerializeField] private List<GameObject> MainUI;
+    [SerializeField] private ToggleGroup group;
 
     private void Start()
     {
@@ -19,6 +21,7 @@ public class UIMainManager : MonoBehaviour
         SetRedRingUI(SaveManager.instance.GetIntData(SaveKey.CurrentRedRing, 0));
         startBt.onClick.AddListener(StartGame);
         teamBt.onClick.AddListener(OnTeamPress);
+        backBt.onClick.AddListener(OnBackPress);
         CurrencyManager.instance.OnUpdateGold.AddListener(SetGoldUI);
         CurrencyManager.instance.OnUpdateRedRing.AddListener(SetRedRingUI);
     }
@@ -40,6 +43,17 @@ public class UIMainManager : MonoBehaviour
 
     private void OnTeamPress()
     {
+        foreach(Toggle toggle in group.GetComponentsInChildren<Toggle>())
+        {
+            if(toggle.GetComponent<RunnerUI>().type == CharacterType.LeadRunner)
+            {
+                toggle.isOn = true;
+            }
+            else
+            {
+                toggle.isOn = false;
+            }
+        }
         foreach(GameObject ui in MainUI)
         {
             ui.SetActive(false);
@@ -47,6 +61,18 @@ public class UIMainManager : MonoBehaviour
         foreach(GameObject team in teamUI)
         {
             team.SetActive(true);
+        }
+    }
+
+    private void OnBackPress()
+    {
+        foreach (GameObject ui in MainUI)
+        {
+            ui.SetActive(true);
+        }
+        foreach (GameObject team in teamUI)
+        {
+            team.SetActive(false);
         }
     }
 }

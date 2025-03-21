@@ -54,7 +54,14 @@ public class ComboManager : MonoBehaviour
         comboCount += comboAdd;
         if(comboCount %10 ==0 && comboCount >0)
         {
-            bonusScore += 10;
+            if(CharacterManager.instance.bonusType == BonusType.ComboBonus)
+            {
+                bonusScore = bonusScore + (10 * CharacterManager.instance.bonus / 100);
+            }
+            else
+            {
+                bonusScore += 10;
+            }
         }
         score.UpdateScore(bonusScore);
         OnComboChange.Invoke();

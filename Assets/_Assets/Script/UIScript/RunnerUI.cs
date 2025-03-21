@@ -10,23 +10,30 @@ public enum CharacterType
 public class RunnerUI : MonoBehaviour
 {
     public int currentID;
+    public int currentLvUpdate;
+    public bool isUnlock;
     public CharacterType type;
     public CharacterTable characterTable;
+    public Character currentCharacter;
     public GameObject EmptySlot;
     public Image characterImage;
+    public Text levelText;
 
     private void Start()
     {
 
     }
 
-    public void GetImage(int id)
+    public void SetCharacter(int id)
     {
         foreach(Character character in characterTable.CharacterList)
         {
             if(character.id == id)
             {
                 characterImage.sprite = character.CharacterImage;
+                currentCharacter = character;
+                currentLvUpdate = character.currentlevel;
+                isUnlock = character.IsUnlock;
             }
         }
     }
@@ -50,7 +57,8 @@ public class RunnerUI : MonoBehaviour
         {
             currentID = SaveManager.instance.GetIntData(SaveKey.SideRunner2, 0);
         }
-        GetImage(currentID);
+        SetCharacter(currentID);
+        levelText.text = "Level" + currentLvUpdate.ToString();
         if (currentID == 0)
         {
             EmptySlot.SetActive(true);

@@ -23,5 +23,11 @@ public class Character
     public string characterName;
     public BonusType bonusType;
     public Sprite CharacterImage;
+    public Sprite CharacterImage2;
     public GameObject CharacterPrefab;
+    public int currentlevel;
+    public CostCurrency currency;
+    public int Cost;
+    public int PlayerLevelRequire;
+    public bool IsUnlock;
 }

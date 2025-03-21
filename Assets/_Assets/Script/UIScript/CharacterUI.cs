@@ -7,18 +7,39 @@ using UnityEngine.UI;
 
 public class CharacterUI : MonoBehaviour
 {
+    public static CharacterUI instance;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public List<Toggle> RunnerBt;
     public ToggleGroup toggleGroup;
     public CharacterTable CharacterInfo;
+    public UpdateTable updateList;
     public Text characterTxt;
     public Text BonusTxt;
+    public Text LevelText;
     public Image imageCharacter;
     public GameObject EmptyBt;
+    public Text currentBonus;
+    public Text nextUpdateBonus;
 
     public Sprite selectImage;
     public Sprite unSelectImage;
 
-    public Dictionary<Toggle, int> idBtToggle; 
+    public Dictionary<Toggle, int> idBtToggle;
+
+    public GameObject updateUI;
+    public GameObject characterCost;
+    public GameObject characterInfo;
+
 
     private void Start()
     {
@@ -40,7 +61,7 @@ public class CharacterUI : MonoBehaviour
     {
         foreach(Character character in CharacterInfo.CharacterList)
         {
-            if(character.id == id)
+            if(character.id == id && character.IsUnlock)
             {
                 foreach(Toggle toggle in toggleGroup.GetComponentsInChildren<Toggle>())
                 {
@@ -57,6 +78,7 @@ public class CharacterUI : MonoBehaviour
                                 toggle.GetComponent<RunnerUI>().currentID = id;
                                 idBtToggle[toggle] = id;
                                 SetChracterChoice(character, id);
+                                toggle.GetComponent<RunnerUI>().currentCharacter = character;
                             }
                         }
                         else
@@ -66,20 +88,26 @@ public class CharacterUI : MonoBehaviour
                                 Toggle key = idBtToggle.FirstOrDefault(kvp => kvp.Value == id).Key;
                                 idBtToggle[key] = toggle.GetComponent<RunnerUI>().currentID;
                                 key.GetComponent<RunnerUI>().currentID = idBtToggle[key];
-                                key.GetComponent<RunnerUI>().GetImage(idBtToggle[key]);
+                                key.GetComponent<RunnerUI>().SetCharacter(idBtToggle[key]);
                                 toggle.GetComponent<RunnerUI>().currentID = id;
                                 idBtToggle[toggle] = id;
                                 SetChracterChoice(character, id);
+                                toggle.GetComponent<RunnerUI>().currentCharacter = character;
                             }
                             else
                             {
                                 toggle.GetComponent<RunnerUI>().currentID = id;
                                 idBtToggle[toggle] = id;
                                 SetChracterChoice(character, id);
+                                toggle.GetComponent<RunnerUI>().currentCharacter = character;
                             }    
                         }
                     }
                 }
+            }
+            else if (character.IsUnlock == false && character.id == id)
+            {
+                UpdateUI.instance.ShowBuyUI(character.id);
             }
         }
     }
@@ -89,6 +117,7 @@ public class CharacterUI : MonoBehaviour
         characterTxt.text = character.characterName;
         imageCharacter.sprite = character.CharacterImage;
         BonusTxt.text = character.bonusType.ToString();
+        LevelText.text = "Lv. " + character.currentlevel.ToString();
         imageCharacter.gameObject.SetActive(true);
         EmptyBt.SetActive(false);
         SaveChoice(id);
@@ -101,9 +130,11 @@ public class CharacterUI : MonoBehaviour
             Image toggleImage = toggle.GetComponent<Image>();
             RunnerUI runnerUI = toggle.GetComponent<RunnerUI>();
             toggleImage.sprite = toggle.isOn ? selectImage : unSelectImage;
-            if(toggle.isOn)
+            if(toggle.isOn && runnerUI.currentID > 0)
             {
+                SetCharacterInfoUI(true,Color.green);
                 imageCharacter = runnerUI.characterImage;
+                LevelText = runnerUI.levelText;
                 EmptyBt = runnerUI.EmptySlot;
                 foreach(Character character in CharacterInfo.CharacterList)
                 {
@@ -111,9 +142,37 @@ public class CharacterUI : MonoBehaviour
                     {
                         characterTxt.text = character.characterName;
                         BonusTxt.text = character.bonusType.ToString();
+                        foreach (UpdateInfo update in updateList.updateList)
+                        {
+                            if (character.currentlevel == update.level)
+                            {
+                                currentBonus.text = update.bonus.ToString() + "%";
+                                if(character.currentlevel < 15)
+                                {
+                                    nextUpdateBonus.text = updateList.updateList[character.currentlevel].bonus.ToString() + "%";
+                                }
+                            }
+                        }
                     }
                 }
             }
+            else
+            {
+                SetCharacterInfoUI(false,Color.gray);
+            }
+        }
+    }
+
+    private void SetCharacterInfoUI(bool isActive,Color color)
+    {
+        characterInfo.GetComponent<Image>().color = color;
+        BonusTxt.gameObject.SetActive(isActive);
+        currentBonus.gameObject.SetActive(isActive);
+        nextUpdateBonus.gameObject.SetActive(false);
+        UpdateUI.instance.informationBt.interactable = isActive;
+        foreach (Transform child in characterInfo.transform)
+        {
+            child.gameObject.SetActive(isActive);
         }
     }
 
@@ -142,5 +201,10 @@ public class CharacterUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetUpForBuy(GameObject costObj)
+    {
+        characterCost = costObj;
     }
 }
