@@ -10,7 +10,7 @@ public class AddBackGround : MonoBehaviour
         if(!checkEnd.isEndZone)
         {
             Zone currentZone = ZoneManager.instance.currentZone;
-            Instantiate(ZoneManager.instance.bgDict[currentZone], transform.position, ZoneManager.instance.bgDict[currentZone].transform.rotation);
+            Instantiate(ZoneManager.instance.bgDict[currentZone], transform.position, ZoneManager.instance.bgDict[currentZone].transform.rotation,this.transform);
         }
     }
 }

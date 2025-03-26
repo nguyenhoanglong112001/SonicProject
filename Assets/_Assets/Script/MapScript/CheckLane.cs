@@ -6,13 +6,17 @@ public class CheckLane : MonoBehaviour
 {
     [SerializeField] private Dictionary<float, GameObject> road;
     public bool isEndZone;
+    public bool isExitTunnel;
     public Dictionary<float, GameObject> Road { get => road; set => road = value; }
 
     // Start is called before the first frame update
     void Awake()
     {
         Road = new Dictionary<float, GameObject>();
-        RandomEndZone();
+        if(!isExitTunnel)
+        {
+            RandomEndZone();
+        }
     }
 
     private void Start()
