@@ -7,12 +7,8 @@ using Lean.Pool;
 
 public class SpawnBlock : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] private GameObject blockZone1;
-    [SerializeField] private GameObject blockZone2;
-    [SerializeField] private GameObject blockZone3;
-    [SerializeField] private GameObject blockZone4;
-    [SerializeField] private Dictionary<Zone, GameObject> blockDict;
+    public BlockerType type;
+    public GameObject block;
     List<int> listint;
     private LeanGameObjectPool blockPool;
     void Start()
@@ -22,12 +18,6 @@ public class SpawnBlock : MonoBehaviour
             Destroy(transform.gameObject);
         }    
         blockPool = GameObject.FindWithTag("BlockPool").GetComponent<LeanGameObjectPool>();
-        blockDict = new Dictionary<Zone, GameObject>()
-        {
-            {Zone.Zone1,blockZone1 },
-            {Zone.Zone2,blockZone2 },
-            {Zone.Zone4,blockZone4 }
-        };
         Spawn();
     }
 
@@ -38,10 +28,7 @@ public class SpawnBlock : MonoBehaviour
 
     private void Spawn()
     {
-        if(blockDict.ContainsKey(ZoneManager.instance.currentZone))
-        {
-            blockPool.Prefab = blockDict[ZoneManager.instance.currentZone];
-            blockPool.Spawn(transform.position, blockDict[ZoneManager.instance.currentZone].transform.rotation, transform);
-        }    
+        blockPool.Prefab = SpawnManager.instance.GetBlocker(type);
+        blockPool.Spawn(transform.position, SpawnManager.instance.GetBlocker(type).transform.rotation, transform);
     }
 }

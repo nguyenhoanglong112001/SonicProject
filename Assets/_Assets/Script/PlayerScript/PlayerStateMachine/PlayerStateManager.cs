@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Dreamteck.Splines;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -109,29 +110,12 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("StartRail"))
+        if (other.CompareTag("StartRail") && follower.spline == null)
         {
-            israil = true;
-            path = other.gameObject.GetComponentInParent<WayPointList>().wayPoints;
-            currentPath = path;
-            GameObject objparent = other.transform.parent.transform.parent.transform.parent.gameObject;
-            rail = objparent.GetComponent<CheckLane>().Road;
-            if (currentPath != null)
-            {
-                if (Vector3.Distance(currentPath[0].position, transform.position) > 0.1f)
-                {
-                    currentPath[0] = transform;
-                }
-                if (currentState is not GrindState)
-                {
-                    newState = state.Grind();
-                    SwitchState(newState);
-                }
-                else
-                {
-                    MoveWayPoint();
-                }
-            }
+            Debug.Log("Trigger");
+            follower.spline = other.GetComponent<SplineComputer>();
+            newState = state.Grind();
+            SwitchState(newState);
         }
         if (currentState is GrindState)
         {
@@ -369,13 +353,45 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
+    public void OnCompletRail(double value)
+    {
+        playerrigi.isKinematic = false;
+        SplineComputer nextSpline = CheckNextSpline();
+        follower.onEndReached -= OnCompletRail;
+        follower.spline = null;
+        follower.follow = false;
+        if (nextSpline == null)
+        {
+            newState = state.Run();
+            SwitchState(newState);
+        }
+        else
+        {
+            follower.spline = nextSpline;
+            EnterSpline(OnCompletRail);
+        }
+    }
 
-    public void Turn()
+    private SplineComputer CheckNextSpline()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, 1.0f);
+
+        foreach(Collider hit in hits)
+        {
+            SplineComputer spline = hit.GetComponent<SplineComputer>();
+            return spline;
+        }
+        return null;
+    }    
+
+
+    public void EnterSpline(Action<double> Oncomplete)
     {
         follower.follow = true;
-        follower.SetPercent(0);
+        follower.SetPercent(0,true);
         follower.followSpeed = speed;
-        follower.onEndReached += OnCompletedSpline;
+        follower.onEndReached -= Oncomplete;
+        follower.onEndReached += Oncomplete;
     }
 
     public void OnCompletedSpline(double value)

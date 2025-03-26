@@ -13,7 +13,7 @@ public class TurnState : PlayerBaseState
         int totalGain = SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0);
         SaveManager.instance.Save(SaveKey.GoldRingBank, totalGain+CollectManager.instance.GetRing());
         CollectManager.instance.SetRing(-CollectManager.instance.GetRing());
-        player.Turn();
+        player.EnterSpline(player.OnCompletedSpline);
     }
 
     public override void UpdateState(PlayerStateManager player)

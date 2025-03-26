@@ -102,6 +102,7 @@ public class CharacterUI : MonoBehaviour
                                 toggle.GetComponent<RunnerUI>().currentCharacter = character;
                             }    
                         }
+                        SetCharacterInfoUI(true, Color.green);
                     }
                 }
             }
@@ -130,9 +131,16 @@ public class CharacterUI : MonoBehaviour
             Image toggleImage = toggle.GetComponent<Image>();
             RunnerUI runnerUI = toggle.GetComponent<RunnerUI>();
             toggleImage.sprite = toggle.isOn ? selectImage : unSelectImage;
-            if(toggle.isOn && runnerUI.currentID > 0)
+            if(toggle.isOn)
             {
-                SetCharacterInfoUI(true,Color.green);
+                if(runnerUI.currentID > 0)
+                {
+                    SetCharacterInfoUI(true, Color.green);
+                }
+                else
+                {
+                    SetCharacterInfoUI(false, Color.gray);
+                }
                 imageCharacter = runnerUI.characterImage;
                 LevelText = runnerUI.levelText;
                 EmptyBt = runnerUI.EmptySlot;
@@ -155,10 +163,6 @@ public class CharacterUI : MonoBehaviour
                         }
                     }
                 }
-            }
-            else
-            {
-                SetCharacterInfoUI(false,Color.gray);
             }
         }
     }

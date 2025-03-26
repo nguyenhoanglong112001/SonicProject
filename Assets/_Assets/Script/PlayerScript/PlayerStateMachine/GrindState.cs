@@ -7,11 +7,12 @@ public class GrindState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
+        Debug.Log("EnterState");
         player.playerrigi.isKinematic = true;
         player.playeranimator.SetTrigger("StartGrind");
         player.playeranimator.SetBool("Grind", true);
         player.switchcheck.SwitchToCharacter();
-        player.MoveWayPoint();
+        player.EnterSpline(player.OnCompletRail);
     }
 
 

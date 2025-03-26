@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8943910045370493022}
   - component: {fileID: 1597604495410117391}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DogeArea
   m_TagString: Dodge
   m_Icon: {fileID: 0}
@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7609758510605120716}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9087479619388452592}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1597604495410117391
 BoxCollider:
@@ -40,9 +40,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7609758510605120716}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.28704026, y: 0.353036, z: 3.3919945}
   m_Center: {x: -0.026691178, y: 0.31998977, z: -1.1959974}
 --- !u!1 &9084286210513425723
@@ -56,7 +64,7 @@ GameObject:
   - component: {fileID: 9080087380720100017}
   - component: {fileID: 9107788785084519651}
   - component: {fileID: 9099005183799272823}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ob_zone1_single_blocker1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,13 +78,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9084286210513425723}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9080221072983078116}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
 --- !u!33 &9107788785084519651
 MeshFilter:
@@ -103,6 +111,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -137,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9080221072983078116}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085015736265735923}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -159,7 +171,6 @@ Transform:
   - {fileID: 9080087380720100017}
   - {fileID: 9079923974121643907}
   m_Father: {fileID: 9087479619388452592}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: -0, z: 0}
 --- !u!1 &9085703861445067173
 GameObject:
@@ -173,7 +184,7 @@ GameObject:
   - component: {fileID: 3148604912418941236}
   - component: {fileID: 7780206835461888749}
   - component: {fileID: -3692485476032317330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: zone1_TreeBlock
   m_TagString: Blocker
   m_Icon: {fileID: 0}
@@ -187,6 +198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085703861445067173}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.27413917, y: 0.15999985, z: -78.68501}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
@@ -195,7 +207,6 @@ Transform:
   - {fileID: 9080221072983078116}
   - {fileID: 8943910045370493022}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
 --- !u!136 &3148604912418941236
 CapsuleCollider:
@@ -205,8 +216,17 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085703861445067173}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
   m_Height: 4.6812563
   m_Direction: 1
@@ -224,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typed: 0
+  zone: 1
 --- !u!114 &-3692485476032317330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +271,7 @@ GameObject:
   - component: {fileID: 9079923974121643907}
   - component: {fileID: 9109146379458581092}
   - component: {fileID: 9099165033675564937}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ob_zone1_single_blocker1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,13 +285,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9085875793357699796}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9080221072983078116}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -0, z: -0}
 --- !u!33 &9109146379458581092
 MeshFilter:
@@ -297,6 +318,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
