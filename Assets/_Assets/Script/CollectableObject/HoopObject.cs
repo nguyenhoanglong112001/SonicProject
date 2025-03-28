@@ -22,7 +22,8 @@ public class HoopObject : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player.enerbeamDuration -= 0.1f;
+            SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.hoopSound);
+            player.follower.followSpeed += speedUp;
         }
     }
 }

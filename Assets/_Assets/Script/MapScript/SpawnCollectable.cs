@@ -11,6 +11,7 @@ public class SpawnCollectable : MonoBehaviour
     [SerializeField] private LeanGameObjectPool pool;
     [SerializeField] private Vector3 distanceSpawn;
     [SerializeField] private int a;
+    [SerializeField] private bool isGapRoad;
 
     private void Start()
     {
@@ -38,7 +39,24 @@ public class SpawnCollectable : MonoBehaviour
     {
         int r = Random.Range(0, 100);
         Vector3 pos = gameObject.transform.position;
-        if (r > 0 && r < 33)
+        if (isGapRoad)
+        {
+            for (int i = 0; i < a; i++)
+            {
+                if(i <= (int)(a/2 +1))
+                {
+                    spawnList.Add(SpawnObject(ring, pos));
+                    pos += distanceSpawn;
+                }
+                else
+                {
+                    spawnList.Add(SpawnObject(ring, pos));
+                    pos -= distanceSpawn;
+                }
+            }
+            return;
+        }
+        if (r < 60)
         {
             for (int i = 0; i < a; i++)
             {
@@ -46,28 +64,12 @@ public class SpawnCollectable : MonoBehaviour
                 pos += distanceSpawn;
             }
         }
-        else if (r >= 33 && r < 66)
+        else
         {
             for (int i = 0; i < a; i++)
             {
                 spawnList.Add(SpawnObject(orb, pos));
                 pos += distanceSpawn;
-            }
-        }
-        else if (r >= 66)
-        {
-            for (int i = 1; i < a; i++)
-            {
-                if(i % 2== 0)
-                {
-                    spawnList.Add(SpawnObject(ring,pos));
-                    pos += distanceSpawn;
-                }
-                else
-                {
-                    spawnList.Add(SpawnObject(orb, pos));
-                    pos += distanceSpawn;
-                }
             }
         }
     }

@@ -56,8 +56,8 @@ public class SpawnPowerUp : MonoBehaviour
         }
         else if (r > 98)
         {
-            ActivePowerPickUp(powerList[7]);
-            powerSpawn = powerList[7];
+            ActivePowerPickUp(powerList[6]);
+            powerSpawn = powerList[6];
         }
     }
     

@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndZone: 0
+  isExitTunnel: 0
 --- !u!1 &1076002045745324
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndZone: 0
+  isExitTunnel: 0
 --- !u!114 &6536067747699303830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndZone: 0
+  isExitTunnel: 0
 --- !u!1 &1442146804104925
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +993,7 @@ Transform:
   m_GameObject: {fileID: 1682803515653886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.7234297, z: 23.258049}
+  m_LocalPosition: {x: 0, y: 2.1, z: 23.258049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1012,8 +1015,9 @@ MonoBehaviour:
   ring: {fileID: 6347988586958791715, guid: de472306d4380dc4f90f69e3f9497003, type: 3}
   spawnList: []
   pool: {fileID: 0}
-  distanceSpawn: {x: 0, y: 0, z: 1}
+  distanceSpawn: {x: 0, y: 0.1, z: 1}
   a: 0
+  isGapRoad: 0
 --- !u!1 &1692532885044038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEndZone: 0
+  isExitTunnel: 0
 --- !u!1 &1873446938891128
 GameObject:
   m_ObjectHideFlags: 0

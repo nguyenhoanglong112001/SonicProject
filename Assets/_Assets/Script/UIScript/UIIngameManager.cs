@@ -67,6 +67,7 @@ public class UIIngameManager : MonoBehaviour
     private void OnQuitBtPress()
     {
         GameManager.instance.ChangeGameState(GameState.Menu);
+        Time.timeScale = 1f;
     }
 
     private void ExitEndGame()
@@ -95,7 +96,6 @@ public class UIIngameManager : MonoBehaviour
 
     public void ShowCombo()
     {
-        gameObject.SetActive(true);
         comboText.text = ComboManager.instance.ComboCount.ToString();
     }
 

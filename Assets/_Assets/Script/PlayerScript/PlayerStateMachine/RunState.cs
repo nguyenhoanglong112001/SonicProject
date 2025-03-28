@@ -9,7 +9,7 @@ public class RunState : PlayerBaseState
     }
     public override void UpdateState(PlayerStateManager player)
     {
-        //player.MoveForward();
+        
     }
 
 

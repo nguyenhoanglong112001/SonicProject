@@ -6,6 +6,7 @@ public class JumpState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
+        SoundManager.instance.PlaySound(player.playerSound, SoundManager.instance.jumpSound);
         if (player.crouchCoroutine != null)
         {
             player.StopCoroutine(player.crouchCoroutine);
@@ -25,6 +26,7 @@ public class JumpState : PlayerBaseState
         //player.MoveForward();
         if(!player.isjump)
         {
+            SoundManager.instance.PlaySound(player.playerSound, SoundManager.instance.landSound);
             player.newState = player.state.Run();
             player.SwitchState(player.newState);
         }

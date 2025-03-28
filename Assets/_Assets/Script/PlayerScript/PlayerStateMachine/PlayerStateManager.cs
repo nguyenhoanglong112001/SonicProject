@@ -1,9 +1,11 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using Dreamteck.Splines;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -12,14 +14,17 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerStateFactory state;
 
     [Header("Chi so chung")]
-    [SerializeField] public PlayerControll playControll;
-    [SerializeField] public Animator playeranimator;
-    [SerializeField] public SwitchBall switchcheck;
+    public PlayerControll playControll;
+    public Animator playeranimator;
+    public SwitchBall switchcheck;
+    public CharacterVoice voice;
     public Collider playerCollider;
     public TypeRoad laneType;
     public float minspeed;
     public Rigidbody playerrigi;
     public SplineFollower follower;
+    public AudioSource playerSound;
+    public AudioSource dashSound;
     [Header("Chi so chay")]
     public float speed;
     private Vector3 startMousepoint;
@@ -77,6 +82,15 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Turn State")]
     public Vector3 posAfterTurn;
     public float progress;
+
+    [Header("VFX")]
+    public GameObject moveLeftVFX;
+    public GameObject moveRightVFX;
+    public GameObject DashVFX;
+    public GameObject dashEndVFX;
+    public GameObject slamVFX;
+    public GameObject ShieldVFX;
+    public GameObject ShieldendVFX;
     private void Awake()
     {
         state = new PlayerStateFactory(this);
@@ -86,11 +100,13 @@ public class PlayerStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        voice = GetComponentInChildren<CharacterVoice>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Time.timeScale);
         InputMove();
         Dash();
         if(currentState != null)
@@ -102,7 +118,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(PlayerManager.instance.isAlive)
+        if (PlayerManager.instance.isAlive)
         {
             MoveForward();
         }
@@ -184,6 +200,8 @@ public class PlayerStateManager : MonoBehaviour
 
                             //}
                             ChangeLane(1);
+                            moveRightVFX.SetActive(true);
+                            moveRightVFX.GetComponent<ParticleSystem>().Play();
                             //lane++;
                         }
                     }
@@ -196,6 +214,8 @@ public class PlayerStateManager : MonoBehaviour
                             //    checkCondition.ComboUpdate("Dodge");
                             //}
                             ChangeLane(-1);
+                            moveLeftVFX.SetActive(true);
+                            moveLeftVFX.GetComponent<ParticleSystem>().Play();
                             //lane--;
                         }
                     }
@@ -252,10 +272,28 @@ public class PlayerStateManager : MonoBehaviour
     public IEnumerator ChangeCrouch()
     {
         switchcheck.ChangeBall();
+        SoundManager.instance.PlaySound(playerSound, SoundManager.instance.rollSound);
         yield return new WaitForSeconds(timeroll);
+        SoundManager.instance.StopSound(playerSound);
         switchcheck.SwitchToCharacter();
         newState = state.Run();
         SwitchState(newState);
+    }
+
+    IEnumerator ActiveSlamVFX()
+    {
+        yield return new WaitUntil(() => playControll.GroundCheck());
+        slamVFX.SetActive(true);
+        ParticleSystem ps =slamVFX.GetComponent<ParticleSystem>();
+        ps.Play();
+
+        yield return new WaitUntil(() => ps.IsAlive() == false);
+        slamVFX.SetActive(false);
+    }
+
+    public void TurnOnSlanVFX()
+    {
+        StartCoroutine(ActiveSlamVFX());
     }
 
     public IEnumerator WaitToChangeBall()
@@ -290,6 +328,7 @@ public class PlayerStateManager : MonoBehaviour
             {
                 if (Time.time - lastclicktime < timeclick)
                 {
+                    SoundManager.instance.PlaySound(dashSound, SoundManager.instance.startDashSound);
                     newState = state.Dash();
                     SwitchState(newState);
                 }
@@ -306,6 +345,16 @@ public class PlayerStateManager : MonoBehaviour
         {
             eslapedTime += Time.deltaTime;
             CollectManager.instance.Energydash = Mathf.Lerp(energy, 0, eslapedTime / duration);
+            if(CollectManager.instance.Energydash <= 20)
+            {
+                foreach (Transform vfx in DashVFX.transform)
+                {
+                    if(vfx.gameObject != dashEndVFX)
+                    {
+                        vfx.gameObject.SetActive(false);
+                    }
+                }
+            }
             yield return null;
         }
         isDash = false;
@@ -355,13 +404,13 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnCompletRail(double value)
     {
-        playerrigi.isKinematic = false;
         SplineComputer nextSpline = CheckNextSpline();
         follower.onEndReached -= OnCompletRail;
-        follower.spline = null;
-        follower.follow = false;
         if (nextSpline == null)
         {
+            playerrigi.isKinematic = false;
+            follower.follow = false;
+            follower.spline = null;
             newState = state.Run();
             SwitchState(newState);
         }
@@ -443,7 +492,6 @@ public class PlayerStateManager : MonoBehaviour
         }
         transform.position = targetPos;
     }
-
 }
 
 

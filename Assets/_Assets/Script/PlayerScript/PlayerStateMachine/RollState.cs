@@ -9,6 +9,7 @@ public class RollState : PlayerBaseState
         if(player.isjump == true)
         {
             Debug.Log("land");
+            SoundManager.instance.PlaySound(player.playerSound, SoundManager.instance.landSound);
             player.isjump = false;
             player.playerrigi.linearVelocity = Vector3.down * player.landSpeed * Time.deltaTime;
         }
@@ -17,6 +18,7 @@ public class RollState : PlayerBaseState
             player.playeranimator.SetTrigger("Roll");
         }
         player.Crouch();
+        player.TurnOnSlanVFX();
     }
 
     public override void UpdateState(PlayerStateManager player)

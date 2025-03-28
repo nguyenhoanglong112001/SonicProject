@@ -28,6 +28,7 @@ public class UIMainManager : MonoBehaviour
 
     private void StartGame()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.playBtSound);
         GameManager.instance.ChangeGameState(GameState.InGame);
     }
 
@@ -43,6 +44,7 @@ public class UIMainManager : MonoBehaviour
 
     private void OnTeamPress()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.popupSound);
         foreach(Toggle toggle in group.GetComponentsInChildren<Toggle>())
         {
             if(toggle.GetComponent<RunnerUI>().type == CharacterType.LeadRunner)
@@ -66,6 +68,7 @@ public class UIMainManager : MonoBehaviour
 
     private void OnBackPress()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.backSound);
         foreach (GameObject ui in MainUI)
         {
             ui.SetActive(true);

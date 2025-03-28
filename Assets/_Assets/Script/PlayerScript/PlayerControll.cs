@@ -1,6 +1,8 @@
+using DG.Tweening;
 using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -20,6 +22,8 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] private MutiplyerScript mutiply;
     [SerializeField] private LayerMask groundlayer;
     [SerializeField] private LayerMask raillayer;
+    [SerializeField] private GameObject magetLimit;
+    [SerializeField] private CharacterVoice voice;
     public Transform[] wayPoints;
     public bool isTurn;
     //public bool isalive;
@@ -35,7 +39,9 @@ public class PlayerControll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CollectManager.instance.magetlimit = magetLimit;
+        voice = GetComponentInChildren<CharacterVoice>();
+        SoundManager.instance.PlaySound(voice.source, voice.introVoice);
     }
 
     // Update is called once per frame
@@ -57,11 +63,13 @@ public class PlayerControll : MonoBehaviour
 
     private void Death(string parameter)
     {
+        SoundManager.instance.PlaySound(player.playerSound, SoundManager.instance.deathSound);
+        SoundManager.instance.StopSound(SoundManager.instance.bgSound);
         change.SwitchToCharacter();
         playeranimator.SetTrigger(parameter);
-        playerrigi.linearVelocity = Vector3.forward * knock * -1 * Time.deltaTime;
+        transform.DOJump(transform.position + Vector3.forward * knock * -1, 0.5f, 1, 0.5f);
+        playerrigi.isKinematic = true;
         PlayerManager.instance.isAlive = false;
-        deathPos = transform.position;
         SaveManager.instance.Save(SaveKey.RedRing, CollectManager.instance.GetRedRingCollect());
         GameManager.instance.ChangeGameState(GameState.EndGame);
     }
@@ -91,6 +99,10 @@ public class PlayerControll : MonoBehaviour
             {
                 _canDodge = false;
             }
+        }
+        if(collision.gameObject.CompareTag("Laser"))
+        {
+            HitEnemy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("NonGround"))
         {
@@ -138,12 +150,14 @@ public class PlayerControll : MonoBehaviour
 
     private void HitEnemy(GameObject enemy)
     {
+        SoundManager.instance.PlaySound(voice.source, voice.hurtVoice);
         if (CollectManager.instance.GetRing() > 0)
         {
             Physics.IgnoreLayerCollision(playerlayer, enemylayer, true);
             Physics.IgnoreLayerCollision(playerlayer, blockerlayer, true);
             StartCoroutine(Ignore());
             playeranimator.SetTrigger("Stumble");
+            SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.ringdropSound);
             CollectManager.instance.SetRing(-CollectManager.instance.GetRing());
         }
         else if (CollectManager.instance.GetRing() <= 0)
@@ -151,7 +165,6 @@ public class PlayerControll : MonoBehaviour
             if (enemy.GetComponentInChildren<EnemyAttackIdentify>() != null)
             {
                 setEnemyAttack = enemy.gameObject.GetComponentInChildren<EnemyAttackIdentify>();
-                setEnemyAttack.AttackOn = false;
             }
             Death("Death1");
         }
@@ -161,9 +174,14 @@ public class PlayerControll : MonoBehaviour
     {
         if (ballcheck.isball || player.currentState is DashState || CollectManager.instance.CheckShield())
         {
+            EnemyType type = enemyHit.GetComponentInChildren<TypeEnemy>().type;
+            CheckEnemyHitSound(type);
             if (CollectManager.instance.CheckShield())
             {
                 CollectManager.instance.SetShield(false);
+                player.ShieldVFX.SetActive(false);
+                player.ShieldendVFX.SetActive(true);
+                player.ShieldendVFX.GetComponent<ParticleSystem>().Play();
                 UIIngameManager.instance.ShowCombotype("Enemy");
             }
             if(player.currentState is DashState)
@@ -192,6 +210,28 @@ public class PlayerControll : MonoBehaviour
         }
     }
 
+    private void CheckEnemyHitSound(EnemyType typeEnemy)
+    {
+        switch(typeEnemy)
+        {
+            case EnemyType.Crab:
+                {
+                    SoundManager.instance.PlaySound(SoundManager.instance.hitEmenySource, SoundManager.instance.hitCrabSound);
+                    break;
+                }
+            case EnemyType.Bee:
+                {
+                    SoundManager.instance.PlaySound(SoundManager.instance.hitEmenySource, SoundManager.instance.hitBeeSound);
+                    break;
+                }
+            case EnemyType.MotoBug:
+                {
+                    SoundManager.instance.PlaySound(SoundManager.instance.hitEmenySource, SoundManager.instance.hitMotoBugSound);
+                    break;
+                }
+        }
+    }
+
     public void ComboUpdate(string comboType)
     {
         ComboManager.instance.UpdateCombo();
@@ -215,7 +255,7 @@ public class PlayerControll : MonoBehaviour
 
     public void PlayerRevive()
     {
-        gameObject.transform.position = deathPos;
+        gameObject.transform.position = new Vector3(0,gameObject.transform.position.y,gameObject.transform.position.z);
         DisableObject();
         StartCoroutine(DelayTimeSpawn());
     }
@@ -224,6 +264,9 @@ public class PlayerControll : MonoBehaviour
     {
         Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(spawnTime);
+        SoundManager.instance.PlayCurrentSound(SoundManager.instance.bgSound);
+        playerrigi.isKinematic = false;
+        player.lane = 1;
         Time.timeScale = 1f;
         playeranimator.SetTrigger("Revive");
         player.currentState = player.state.Run();
@@ -233,15 +276,29 @@ public class PlayerControll : MonoBehaviour
 
     private void DisableObject()
     {
-        Collider[] hitobj = Physics.OverlapSphere(transform.position, rangerCheck, layerCheck);
-        foreach (Collider col in hitobj)
+        RaycastHit[] hitobj = Physics.RaycastAll(transform.position,transform.forward,rangerCheck,layerCheck);
+        foreach (var col in hitobj)
         {
             Vector3 toObj = col.transform.position - transform.position;
 
             if(Vector3.Dot(transform.forward,toObj.normalized) > 0 )
             {
-                Destroy(col.gameObject);
+                if(col.collider.gameObject.layer == LayerMask.NameToLayer("Blocker"))
+                {
+                    Destroy(col.collider.gameObject.transform.parent.gameObject);
+                }    
+                else if (col.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    Destroy(col.collider.gameObject);
+                }
             }
         }
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position,transform.forward * rangerCheck);
+    }
+#endif
 }

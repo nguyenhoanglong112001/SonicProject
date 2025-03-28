@@ -10,6 +10,10 @@ public class TurnState : PlayerBaseState
     {
         player.isTurn = true;
         player.playerrigi.isKinematic = true;
+        if(CollectManager.instance.GetRing() > 0)
+        {
+            SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.ringBankSound);
+        }
         int totalGain = SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0);
         SaveManager.instance.Save(SaveKey.GoldRingBank, totalGain+CollectManager.instance.GetRing());
         CollectManager.instance.SetRing(-CollectManager.instance.GetRing());

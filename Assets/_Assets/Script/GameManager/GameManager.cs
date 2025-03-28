@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(0);
             reviveCount = 0;
+            playerState.currentState = null;
             if (currentState == GameState.EndGame)
             {
                 CurrencyManager.instance.UpdateGoldRing(SaveManager.instance.GetIntData(SaveKey.GoldRingBank, 0));
@@ -91,11 +92,14 @@ public class GameManager : MonoBehaviour
         {
             GetCom();
             PlayerManager.instance.isAlive = true;
+            int a = Random.Range(0, 2);
+            SoundManager.instance.PlaySound(SoundManager.instance.bgSound, SoundManager.instance.ingameSound[a],true);
         }
         else if (scene.name == "Start")
         {
             playerControll = null;
             playerState = null;
+            SoundManager.instance.PlaySound(SoundManager.instance.bgSound, SoundManager.instance.menuSound,true);
         }
     }
 

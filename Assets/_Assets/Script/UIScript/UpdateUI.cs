@@ -63,6 +63,7 @@ public class UpdateUI : MonoBehaviour
 
     public void ShowUpdateUI()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.popupSound);
         UpdateBt.onClick.AddListener(OnUpdatePress);
         updateUI.SetActive(true);
         Updatetxt.text = "UPGRADE";
@@ -136,6 +137,7 @@ public class UpdateUI : MonoBehaviour
     }    
     public void CloseUpdateUI()
     {
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.backSound);
         updateUI.SetActive(false);
         UpdateBt.onClick.RemoveAllListeners();
     }
@@ -174,7 +176,8 @@ public class UpdateUI : MonoBehaviour
 
     private void OnUpdatePress()
     {
-        foreach(Toggle character in characterGroup.GetComponentsInChildren<Toggle>())
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.forwardSound);
+        foreach (Toggle character in characterGroup.GetComponentsInChildren<Toggle>())
         {
             if(character.isOn)
             {
@@ -238,7 +241,8 @@ public class UpdateUI : MonoBehaviour
 
     private void OnBuyBtPress(int id)
     {
-        foreach(Character character in characterList.CharacterList)
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.forwardSound);
+        foreach (Character character in characterList.CharacterList)
         {
             if(id == character.id && !character.IsUnlock)
             {

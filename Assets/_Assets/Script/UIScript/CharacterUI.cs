@@ -36,7 +36,6 @@ public class CharacterUI : MonoBehaviour
 
     public Dictionary<Toggle, int> idBtToggle;
 
-    public GameObject updateUI;
     public GameObject characterCost;
     public GameObject characterInfo;
 
@@ -59,7 +58,8 @@ public class CharacterUI : MonoBehaviour
 
     public void ChoiceCharacter(int id)
     {
-        foreach(Character character in CharacterInfo.CharacterList)
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.changeTabSound);
+        foreach (Character character in CharacterInfo.CharacterList)
         {
             if(character.id == id && character.IsUnlock)
             {
@@ -126,7 +126,8 @@ public class CharacterUI : MonoBehaviour
 
     public void OnToggleChoice()
     {
-        foreach(Toggle toggle in toggleGroup.GetComponentsInChildren<Toggle>())
+        SoundManager.instance.PlaySound(SoundManager.instance.btSound, SoundManager.instance.changeTabSound);
+        foreach (Toggle toggle in toggleGroup.GetComponentsInChildren<Toggle>())
         {
             Image toggleImage = toggle.GetComponent<Image>();
             RunnerUI runnerUI = toggle.GetComponent<RunnerUI>();

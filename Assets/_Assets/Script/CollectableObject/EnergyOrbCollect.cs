@@ -23,13 +23,14 @@ public class EnergyOrbCollect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        SoundManager.instance.PlaySound(SoundManager.instance.collectOrb, SoundManager.instance.collcetOrbSound);
+        if (other.CompareTag("Player"))
         {
-            if (CollectManager.instance.Energydash < 100 && checkdash.currentState is not DashState)
+            if (checkdash.currentState is not DashState)
             {
-                CollectManager.instance.Energydash += dashenergy;
-            }    
-            collectPool.Despawn(gameObject);
+                CollectManager.instance.UpdateEnergyDash(dashenergy);
+                collectPool.Despawn(gameObject);
+            }
         }
     }
 }

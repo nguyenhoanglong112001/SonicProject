@@ -32,26 +32,38 @@ public class CollectPowerUp : MonoBehaviour
             {
                 if (currentPower.PowerSpawn.CompareTag("Maget"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpMagetSound);
                     CollectManager.instance.Ismaget = true;
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Shield"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
+                    player.ShieldVFX.SetActive(true);
+                    player.ShieldVFX.GetComponent<ParticleSystem>().Play();
+                    foreach(Transform vfx in player.ShieldVFX.transform)
+                    {
+                        vfx.gameObject.GetComponent<ParticleSystem>().Play();
+                    }
                     CollectManager.instance.SetShield(true);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Ring10"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
                     CollectManager.instance.SetRing(10);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("Ring20"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
                     CollectManager.instance.SetRing(20);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("RedRing"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
                     CollectManager.instance.SetRedStartRing(1);
                 }
                 else if (currentPower.PowerSpawn.CompareTag("EnerbeamPickup"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
                     CollectManager.instance.Isenerbeam = true;
                     if (enerbeamRail == null)
                     {
@@ -63,10 +75,12 @@ public class CollectPowerUp : MonoBehaviour
                 }
                 else if (currentPower.PowerSpawn.CompareTag("OrbMaget"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpMagetSound);
                     CollectManager.instance.IsOrbMaget = true;
                 }
                 else if (currentPower.PowerSpawn.CompareTag("DoubleMutiply"))
                 {
+                    SoundManager.instance.PlaySound(SoundManager.instance.pickUpSound, SoundManager.instance.pickUpPowerSound);
                     CollectManager.instance.IsDouble = true;
                 }
                 powerPool.Despawn(gameObject);

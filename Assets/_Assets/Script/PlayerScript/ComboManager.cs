@@ -70,6 +70,7 @@ public class ComboManager : MonoBehaviour
     IEnumerator ComboCountDown()
     {
         RemainTime = ComboTime;
+        comboUI.SetActive(true);
         while (RemainTime > 0)
         {
             RemainTime -= Time.deltaTime;

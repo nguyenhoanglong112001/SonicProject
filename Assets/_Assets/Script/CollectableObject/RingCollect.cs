@@ -27,7 +27,8 @@ public class RingCollect : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        SoundManager.instance.PlaySound(SoundManager.instance.collectRing, SoundManager.instance.collcetRingSound);
+        if (other.CompareTag("Player"))
         {
             CollectManager.instance.SetRing(ringsup);
             collectPool.Despawn(gameObject);

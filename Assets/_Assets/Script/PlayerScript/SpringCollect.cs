@@ -21,6 +21,7 @@ public class SpringCollect : MonoBehaviour
 
     private void Start()
     {
+        pool = GameObject.FindWithTag("PowerUpPool").GetComponent<LeanGameObjectPool>();
     }
 
     private void Update()
